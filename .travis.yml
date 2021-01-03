@@ -4,8 +4,12 @@
 # Declare project language and PHP versions to test against.
 # @link http://about.travis-ci.org/docs/user/languages/php/
 language: php
+os:
+    - linux
+dist: xenial
 services:
     - mysql
+    - docker
 
 # Declare versions of PHP to use. Use one decimal max.
 php:
@@ -90,7 +94,7 @@ script:
     # Run the theme through JSHint
     - jshint .
     # Run the theme through JavaScript Code Style checker
-    - jscs .
+    - eslint .
     # Use the new modern jslint
     - yarn run jslint
     # Now let's make sure we didn't mess up the SCSS styles
