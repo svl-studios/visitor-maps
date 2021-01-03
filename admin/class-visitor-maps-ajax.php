@@ -1,4 +1,11 @@
 <?php
+/**
+ * Visitor Map AJAX Class
+ *
+ * @class Visitor_Maps_AJAX
+ * @version 2.0.0
+ * @package VisitorMaps
+ */
 
 defined( 'ABSPATH' ) || exit;
 
@@ -6,15 +13,15 @@ use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
 use MaxMind\Db\Reader\InvalidDatabaseException;
 
-if ( ! class_exists( 'VisitorMapAJAX' ) ) {
+if ( ! class_exists( 'Visitor_Maps_AJAX' ) ) {
 
 	/**
-	 * Class VisitorMapAJAX
+	 * Class Visitor_Maps_AJAX
 	 */
-	class VisitorMapAJAX {
+	class Visitor_Maps_AJAX {
 
 		/**
-		 * VisitorMapAJAX constructor.
+		 * Visitor_Map_AJAX constructor.
 		 */
 		public function __construct() {
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
@@ -154,12 +161,9 @@ if ( ! class_exists( 'VisitorMapAJAX' ) ) {
 
 			$reader = new Reader( Visitor_Maps::$upload_dir . Visitor_Maps::DATABASE_NAME . Visitor_Maps::DATABASE_EXT );
 
-			//if ( '127.0.0.1' !== $user_ip ) {
-				$record = $reader->city( '52.203.84.190' ); // '98.25.64.174'
-			//}
-
-			//print_r($record);
-			//die;
+			if ( '127.0.0.1' !== $user_ip ) {
+				$record = $reader->city( $user_ip ); // '98.25.64.174'
+			}
 
 			$location_info = array();
 
@@ -171,18 +175,6 @@ if ( ! class_exists( 'VisitorMapAJAX' ) ) {
 			$location_info['country_code'] = ( isset( $record->country->isoCode ) ) ? strtoupper( $record->country->isoCode ) : '-';
 			$location_info['latitude']     = ( isset( $record->location->latitude ) ) ? $record->location->latitude : '-';
 			$location_info['longitude']    = ( isset( $record->location->longitude ) ) ? $record->location->longitude : '-';
-
-			// $record = $reader->connectionType('98.25.64.174');
-			// print($record->connectionType . "\n");
-
-			// $record = $reader->domain('98.25.64.174');
-			// print($record->domain . "\n");
-
-			// $record = $reader->isp('98.25.64.174');
-			// print($record->autonomousSystemNumber . "\n"); // 217
-			// print($record->autonomousSystemOrganization . "\n"); // 'University of Minnesota'
-			// print($record->isp . "\n"); // 'University of Minnesota'
-			// print($record->organization . "\n"); // 'University of Minnesota'
 
 			return $location_info;
 		}
@@ -223,5 +215,5 @@ if ( ! class_exists( 'VisitorMapAJAX' ) ) {
 		}
 	}
 
-	new VisitorMapAJAX();
+	new Visitor_Maps_AJAX();
 }

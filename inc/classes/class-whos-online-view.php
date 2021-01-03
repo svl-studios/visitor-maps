@@ -140,6 +140,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 			$since   = $wpdb->get_var( "SELECT time_last_click FROM " . $wo_table_wo . " ORDER BY time_last_click ASC LIMIT 1" );
 			// phpcs:enable
 
+			// phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp
 			$current_time = (int) current_time( 'timestamp' );
 			$xx_mins_ago  = ( $current_time - absint( ( Visitor_Maps::$core->get_option( 'track_time' ) * 60 ) ) );
 
@@ -204,7 +205,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 						}
 
 						if ( Visitor_Maps::$core->get_option( 'enable_location_plugin' ) ) {
-							echo '<br /><a onclick="wo_map_console(this.href); return false;" href="' . esc_url( get_bloginfo( 'url' ) ) . '?wo_map_console=1>' . esc_html( 'Visitor Map Viewer', 'visitor-maps' ) . '</a>';
+							echo '<br /><a onclick="wo_map_console(this.href); return false;" href="' . esc_url( get_bloginfo( 'url' ) ) . '?wo_map_console=1>' . esc_html__( 'Visitor Map Viewer', 'visitor-maps' ) . '</a>';
 						}
 						?>
 					</td>
@@ -230,12 +231,13 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 				<tr>
 					<td align="center">
 					<?php // translators: %1$d = Visitor count, %2$s = Date. ?>
-						<b><?php echo sprintf( esc_html__( '%1$d visitors since %2$s', 'visitor-maps' ), intval( (int) $numrows ), ( intval( $numrows ) > 0 ) ? date( Visitor_Maps::$core->get_option( 'date_time_format' ), (int) $since ) : esc_html__( 'installation', 'visitor-maps' ) ); ?></b>
+						<b><?php echo sprintf( esc_html__( '%1$d visitors since %2$s', 'visitor-maps' ), intval( (int) $numrows ), ( intval( $numrows ) > 0 ) ? gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), (int) $since ) : esc_html__( 'installation', 'visitor-maps' ) ); ?></b>
 					</td>
 				</tr>
 				<tr>
 					<td align="center">
-						<b><?php echo esc_html__( 'Last refresh at', 'visitor-maps' ) . ' ' . esc_html( date( Visitor_Maps::$core->get_option( 'time_format' ) ), current_time( 'timestamp' ) ); ?></b>
+					<?php // phpcs:ignore WordPress ?>
+						<b><?php echo esc_html__( 'Last refresh at', 'visitor-maps' ) . ' ' . esc_html__( gmdate( Visitor_Maps::$core->get_option( 'time_format' ) ), current_time( 'timestamp' ) ); ?></b>
 					</td>
 				</tr>
 				<tr>
@@ -487,12 +489,12 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 
 															<!-- Time Entry -->
 														<td valign="top">&nbsp;
-															<font color="<?php echo esc_attr( $fg_color ); ?>"><?php echo esc_html( date( Visitor_Maps::$core->get_option( 'time_format_hms' ) ), $whos_online['time_entry'] ); ?></font>
+															<font color="<?php echo esc_attr( $fg_color ); ?>"><?php echo esc_html( gmdate( Visitor_Maps::$core->get_option( 'time_format_hms' ), $whos_online['time_entry'] ) ); ?></font>
 														</td>
 
 														<!-- Last Click -->
 														<td valign="top">&nbsp;
-															<font color="<?php echo esc_attr( $fg_color ); ?>"><?php echo esc_html( date( Visitor_Maps::$core->get_option( 'time_format_hms' ) ), $whos_online['time_last_click'] ); ?></font>
+															<font color="<?php echo esc_attr( $fg_color ); ?>"><?php echo esc_html( gmdate( Visitor_Maps::$core->get_option( 'time_format_hms' ), $whos_online['time_last_click'] ) ); ?></font>
 														</td>
 
 														<?php
@@ -631,8 +633,8 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 
 														// TODO:  Fix this, I think it doesn't compare properly.
 														$geoip_file_time   = filemtime( Visitor_Maps::$upload_dir . Visitor_Maps::DATABASE_NAME . Visitor_Maps::DATABASE_EXT );
-														$geoip_days_ago    = floor( ( strtotime( date( 'Y-m-d' ) . ' 00:00:00' ) - strtotime( date( 'Y-m-d', $geoip_file_time ) . ' 00:00:00' ) ) / ( 60 * 60 * 24 ) );
-														$geoip_begin_month = strtotime( '01-' . date( 'm' ) . '-' . date( 'Y' ) );
+														$geoip_days_ago    = floor( ( strtotime( gmdate( 'Y-m-d' ) . ' 00:00:00' ) - strtotime( gmdate( 'Y-m-d', $geoip_file_time ) . ' 00:00:00' ) ) / ( 60 * 60 * 24 ) );
+														$geoip_begin_month = strtotime( '01-' . gmdate( 'm' ) . '-' . gmdate( 'Y' ) );
 
 														if ( $geoip_begin_month > $geoip_file_time ) {
 															$geoip_old = $this->check_geoip_date( $geoip_file_time );
@@ -667,6 +669,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 			// TODO: URL escaping.
 			global $wpdb;
 
+			// phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp
 			$current_time     = (int) current_time( 'timestamp' );
 			$xx_mins_ago_long = ( $current_time - ( Visitor_Maps::$core->get_option( 'active_time' ) * 60 ) );
 
@@ -698,7 +701,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 		 */
 		private function display_details( $whos_online ) {
 			// Display User Agent.
-			echo esc_html__( 'User Agent:', 'visitor-maps' ) . ' ' . esc_html( wordwrap( esc_html( $whos_online['user_agent'] ) ), $this->set['useragent_wordwrap_chars'], '<br />', true );
+			echo esc_html__( 'User Agent:', 'visitor-maps' ) . ' ' . esc_html( wordwrap( $whos_online['user_agent'], $this->set['useragent_wordwrap_chars'], '<br />', true ) );
 			echo '<br />';
 
 			if ( Visitor_Maps::$core->get_option( 'enable_host_lookups' ) ) {
@@ -709,7 +712,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 			}
 
 			if ( '' !== $whos_online['http_referer'] ) {
-				echo esc_html__( 'Referer:', 'visitor-maps' ) . ' <a href="' . esc_url( $whos_online['http_referer'] ) . '" target="_blank">' . esc_html( wordwrap( esc_html( $whos_online['http_referer'] ) ), $this->set['referer_wordwrap_chars'], '<br />', true ) . '</a>';
+				echo esc_html__( 'Referer:', 'visitor-maps' ) . ' <a href="' . esc_url( $whos_online['http_referer'] ) . '" target="_blank">' . esc_html( wordwrap( $whos_online['http_referer'], $this->set['referer_wordwrap_chars'], '<br />', true ) ) . '</a>';
 				echo '<br />';
 			}
 
@@ -799,6 +802,8 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 			// phpcs:disable
 			$time_last_check = $wpdb->get_var( 'SELECT time_last_check FROM ' . $wo_table_ge );
 			// phpcs:enable
+
+			// phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp
 			$current_time = (int) current_time( 'timestamp' );
 
 			// phpcs:disable

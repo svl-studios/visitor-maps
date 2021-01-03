@@ -152,7 +152,7 @@ if ( ! class_exists( 'Visitor_Maps' ) ) {
 			self::$core = new Visitor_Maps_Core();
 
 			require_once self::$dir . 'admin/class-visitor-maps-options.php';
-			require_once self::$dir . 'inc/enqueue.php';
+			require_once self::$dir . 'inc/class-visitor-maps-enqueue.php';
 
 			require_once self::$dir . 'geo-location/class-visitor-maps-geolocation.php';
 			self::$geolocation = new Visitor_Maps_Geolocation();

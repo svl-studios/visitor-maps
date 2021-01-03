@@ -116,9 +116,9 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 			echo '<div class="wrap">';
 			echo '<h2>' . esc_html__( 'Visitor Maps', 'visitor-maps' ) . ' - ' . esc_html__( "Who's Been Online", 'visitor-maps' ) . '</h2>';
 
-			require_once Visitor_Maps::$dir . 'inc/classes/class-wo-been.php';
+			require_once Visitor_Maps::$dir . 'inc/classes/class-whos-online-been.php';
 
-			$wo_view = new WoBeen();
+			$wo_view = new Whos_Online_Been();
 			$wo_view->view_whos_been_online();
 
 			if ( Visitor_Maps::$core->get_option( 'enable_location_plugin' ) && Visitor_Maps::$core->get_option( 'enable_dash_map' ) ) {

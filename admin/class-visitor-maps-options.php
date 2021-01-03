@@ -160,7 +160,7 @@ if ( ! class_exists( 'Visitor_Maps_Options' ) ) {
 			$usage .= esc_html__( 'Add the shortcode [visitor-maps] in a Page (not a Post). That page will then become your Visitor Maps page.', 'visitor-maps' ) . '&nbsp;&nbsp;<a href="' . Visitor_Maps::$url . 'img/help/screenshot-6.gif" target="_new">' . esc_html__( 'Help', 'visitor-maps' ) . '</a><br>';
 			$usage .= esc_html__( "Add the Who's Online sidebar. Click on Appearance,", 'visitor-maps' ) . ' <a href=' . admin_url( 'widgets.php' ) . '>' . esc_html__( 'Widgets', 'visitor-maps' ) . '</a>, ' . esc_html__( 'then drag the Who\'s Online widget to the sidebar column on the right.', 'visitor-maps' ) . '&nbsp;&nbsp;<a href="' . Visitor_Maps::$url . 'img/help/screenshot-7.gif" target="_new">' . esc_html__( 'Help', 'visitor-maps' ) . '</a>';
 
-			include_once Visitor_Maps::$dir . 'admin/ajax.php';
+			include_once Visitor_Maps::$dir . 'admin/class-visitor-maps-ajax.php';
 
 			require_once ABSPATH . 'wp-includes/pluggable.php';
 			$nonce = wp_create_nonce( 'visitor_maps_geolitecity' );
