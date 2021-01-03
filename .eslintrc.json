@@ -1,0 +1,20 @@
+{
+	"extends": "wordpress",
+	"env": {
+		"browser": true,
+		"node": true
+	},
+	"parser": "babel-eslint",
+	"rules": {
+		"quotes": [
+			2,
+			"single"
+		],
+		"linebreak-style": 0,
+        "wrap-iife": ["error", "any"]
+	},
+	"parserOptions": {
+		"ecmaVersion": 5,
+		"sourceType": "script"
+	}
+}

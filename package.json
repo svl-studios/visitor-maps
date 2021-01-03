@@ -1,0 +1,57 @@
+{
+  "description": "Visitor Maps and Who's Online",
+  "main": "gulpfile.js",
+  "name": "visitor-maps",
+  "author": "SVL Studios + Kevin Provance",
+  "version": "2.0.0",
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/svl-studios/visitor-maps.git"
+  },
+  "bugs": {
+    "url": "https://github.com/svl-studios/visitor-maps/issues"
+  },
+  "homepage": "https://www.svlstudios.com",
+  "resolutions": {
+    "lodash": "4.17.5"
+  },
+  "sourcType": "script",
+  "dependencies": {
+    "babel-eslint": "^10.1.0",
+    "browser-sync": "^2.26.7",
+    "eslint": "^7.17.0",
+    "eslint-config-wordpress": "^2.0.0",
+    "gifsicle": "^4.0.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^6.1.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-eslint": "^6.0.0",
+    "gulp-filter": "^6.0.0",
+    "gulp-imagemin": "^6.0.0",
+    "gulp-jshint": "^2.1.0",
+    "gulp-line-ending-corrector": "^1.0.3",
+    "gulp-merge-media-queries": "^0.2.1",
+    "gulp-notify": "^3.2.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sass-packager": "^0.0.5",
+    "gulp-sort": "^2.0.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "gulp-uglifycss": "^1.1.0",
+    "gulp-wp-pot": "^2.3.5",
+    "imagemin-gifsicle": "^6.0.1",
+    "jshint": "^2.10.2",
+    "lodash": "^4.17.15",
+    "merge-stream": "^2.0.0",
+    "node-sass": "^4.12.0",
+    "npm-force-resolutions": "^0.0.2",
+    "optipng-bin": "^6.0.0",
+    "stylelint": "^13.8.0"
+  },
+  "engines": {
+    "node": ">=0.10.33",
+    "npm": ">=1.4.0"
+  }
+}

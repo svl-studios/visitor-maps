@@ -1,0 +1,1141 @@
+# Copyright (C) 2021 visitor-maps
+# This file is distributed under the same license as the visitor-maps package.
+msgid ""
+msgstr ""
+"Project-Id-Version: visitor-maps\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: SVL Studios <support@svlstudios.com>\n"
+"Last-Translator: Kevin Provance <kevin.provance@gmail.com>\n"
+"Report-Msgid-Bugs-To: https://www.svlstudios.com/contact\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: admin/ajax.php:40, geo-location/class-wo-update.php:295
+msgid "IP:"
+msgstr ""
+
+#: admin/ajax.php:41, geo-location/class-wo-update.php:296
+msgid "City:"
+msgstr ""
+
+#: admin/ajax.php:42, geo-location/class-wo-update.php:297
+msgid "State Name:"
+msgstr ""
+
+#: admin/ajax.php:43, geo-location/class-wo-update.php:298
+msgid "State Code:"
+msgstr ""
+
+#: admin/ajax.php:44, geo-location/class-wo-update.php:299
+msgid "Country Name:"
+msgstr ""
+
+#: admin/ajax.php:45, geo-location/class-wo-update.php:300
+msgid "Country Code:"
+msgstr ""
+
+#: admin/ajax.php:46, geo-location/class-wo-update.php:301
+msgid "Lat:"
+msgstr ""
+
+#: admin/ajax.php:47, geo-location/class-wo-update.php:302
+msgid "Lon: "
+msgstr ""
+
+#: admin/ajax.php:50
+msgid "Note: Location information was not available. This is normal on a local or private network."
+msgstr ""
+
+#: admin/ajax.php:102
+msgid "The MaxMind license key is invalid. If you have recently created this key, you may need to wait for it to become active."
+msgstr ""
+
+#: admin/ajax.php:106
+msgid "Failed to download the MaxMind database."
+msgstr ""
+
+#: admin/ajax.php:207
+msgid "Retry"
+msgstr ""
+
+#: admin/ajax.php:208, admin/class-visitor-maps-options.php:199, inc/enqueue.php:35
+msgid "Run lookup test?"
+msgstr ""
+
+#: admin/ajax.php:216
+msgid "Downloading GeoLiteCity database..."
+msgstr ""
+
+#: admin/ajax.php:217
+msgid "Update Failed."
+msgstr ""
+
+#: admin/ajax.php:218
+msgid "GeoLiteCity database successfully installed!"
+msgstr ""
+
+#: admin/ajax.php:219
+msgid "There was an error in the GeoLiteCity database lookup."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:160
+msgid "Add the shortcode [visitor-maps] in a Page (not a Post). That page will then become your Visitor Maps page."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:160, admin/class-visitor-maps-options.php:161
+msgid "Help"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:161
+msgid "Add the Who's Online sidebar. Click on Appearance,"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:161
+msgid "Widgets"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:161
+msgid "then drag the Who's Online widget to the sidebar column on the right."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:194, inc/enqueue.php:37
+msgid "Install Update"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:206, inc/enqueue.php:34
+msgid "The Maxmind GeoLiteCity database is installed and enabled."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:186, inc/enqueue.php:36
+msgid "The Maxmind GeoLiteCity database is installed but not enabled (click the switch below)."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:172
+msgid "Install Now"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:175
+msgid "The Maxmind GeoLiteCity database is not yet installed."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:219
+msgid "GeoLocation options will not be available until the GeoLiteCity database is installed."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:222
+msgid "Visitor Map Usage"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:229
+msgid "GeoLocation"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:236
+msgid "MaxMind License Key"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:242
+msgid "Enable GeoLocation"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:250
+msgid "GeoLocation Map Text"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:251
+msgid "Missing map background fix."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:254
+msgid "Some PHP servers do not have full support for printing text on the Visitor Map image. Only if the Visitor Map just displays pins and no image for the world or countries, select this setting. After selecting this setting, check your visitor maps page to see if the map is now working."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:261
+msgid "Display City & State"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:262
+msgid "Enable display of city, state next to country flag."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:265
+msgid "When enabled, the specific city and state information will appear next to the country flag."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:272
+msgid "Visitor Map on Dashboard"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:273
+msgid "Enable visitor map on Who's Online dashboard."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:276
+msgid "Changes display options on Who's Online dashboard pages."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:283
+msgid "Visitor Map on Shortcode Page"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:284
+msgid "Enable visitor map on Visitor Map shortcode page."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:287
+msgid "Changes map display options on the page where the visitor map shortcode was inserted."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:294
+msgid "Visitor Map link in Widget"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:295
+msgid "Enable visitor map link on Who's Online widget."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:298
+msgid "Changes display options on Who's Online widget."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:305
+msgid "Hover Labels for Location Pins"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:306
+msgid "Enable hover labels for location pins on visitor map page."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:309
+msgid "Some themes interfere with the proper display of the location pins on the Visitor Maps page. After enabling this setting, check your visitor maps page to make sure the pins are placed correctly. If the pins are about 10 pixels too low on the map, undo this setting."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:316
+msgid "User Names on Hover Labels for Location Pins"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:317
+msgid "Enable user names on hover labels for location pins on visitor map page."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:320
+msgid "When enabled, registered users will have green location pins on the Visitor Maps page. Also the hover tag will include the user name."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:327
+msgid "Map Viewing"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:328
+msgid "Hide map viewing by non administrators."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:331
+msgid "This setting restricts viewing the Visitor Map Viewer page to administrators only."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:338
+msgid "Location Pin Limit"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:342
+msgid "This limit protects server resources by limiting pins when displaying maps. Default is 2000. The human eye will not be able to see more than 2000 pins anyway."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:349
+msgid "Visitor Map Time"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:350
+msgid "How long should users remain on the current visitor map.  Duration unit is set below in the next option."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:358
+msgid "Visitor Map Time Duration"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:359
+msgid "The duration unit of time users should remain on the visitor map."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:361
+msgid "Minutes"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:362
+msgid "Hours"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:363
+msgid "Days"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:372
+msgid "Default Visitor Map"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:374, inc/classes/class-whos-online-map-page.php:109
+msgid "World (smallest)"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:375, inc/classes/class-whos-online-map-page.php:110
+msgid "World (small)"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:376, inc/classes/class-whos-online-map-page.php:111
+msgid "World (medium)"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:377, inc/classes/class-whos-online-map-page.php:112
+msgid "World (large)"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:381
+msgid "Default map to display on the Visitor Maps page. After setting this, check your visitor maps page to make sure it fits correctly. If the map is too wide, select the next smaller one."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:389
+msgid "Dashboard Permissions"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:390
+msgid "Users who can view the dashboard pages."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:392, admin/class-visitor-maps-options.php:441
+msgid "Administrators"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:393
+msgid "Editors"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:394
+msgid "Authors"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:395
+msgid "Contributors"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:399
+msgid "By default, only Administrators can view the dashboard pages. Change this setting to also allow Editors, Authors, or Contributors to view the dashboard pages. When set to Authors, you are also allowing Administrator and Editors."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:411
+msgid "Visitors"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:417
+msgid "Active Time"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:418
+msgid "Minutes that a visitor is considered \"active\"."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:425
+msgid "Inactive Time"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:426
+msgid "Minutes until an inactive visitor is removed from display."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:433
+msgid "Data Store"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:434
+msgid "Days to store visitor data in database table. This data is used for the geolocation maps."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:442
+msgid "Do not include administrators count or location on the maps."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:448, inc/classes/class-whos-online-view.php:97, inc/classes/class-whos-online-view.php:609, inc/classes/class-wo-been.php:36
+msgid "Bots"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:449
+msgid "Do not include search bots in the visitors online count."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:455
+msgid "Combine Guests & Members"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:456
+msgid "Combine guests and members on widgets so they are only shown as visitors.  Use this setting when your site has registration turned off."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:462
+msgid "IP Addresses to Ignore"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:463
+msgid "Start each entry on a new line.  Use * for wildcards.  Examples:"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:469
+msgid "URLs to Ignore"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:470
+msgid "Optional list of URLs on your site you do not want in any Who's Online data.  This feature can be used to block any URLs such as /wp-admin/, or for compatibility with other plugins.  Use partial URL or full URL.  Start each entry on a new line.  Examples:"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:480
+msgid "Lookups"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:486
+msgid "WHOIS Lookup URL"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:487
+msgid "URL to open when an IP address is clicked on."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:494
+msgid "Open WHOIS URL is a Popup Window"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:500
+msgid "Host Lookup for IP Addresses"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:510
+msgid "Stats"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:516
+msgid "Display in Blog Footer"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:517
+msgid "Enable stats display in blog footer."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:523
+msgid "Display in Admin Footer"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:524
+msgid "Enable stats display in admin footer."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:530
+msgid "Display on Map Page"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:531
+msgid "Enable stats display on map page."
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:537
+msgid "Credit Link"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:538
+msgid "Enable plugin credit link:"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:548
+msgid "Time Format"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:549
+msgid "Available formatting:"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:549
+msgid "Table of date format characters"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:555
+msgid "Time Format (Max Users)"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:556
+msgid "Time format for \"Max users today\" and \"Last refresh time\" display. Default: h:i a T (02:25 pm PST)"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:562
+msgid "Time Format (Last Click)"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:563
+msgid "Time format for \"Entry\" and \"Last Click\" display. Default\" h:i:sa (02:25:25pm)"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:569
+msgid "Date/Time format (All Time Records)"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:570
+msgid "Date/Time format for month, year, an all time records. Default: m-d-Y h:i a T (12-14-2008 02:25 pm PST)"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:576
+msgid "Date/Time format (GeoLite data)"
+msgstr ""
+
+#: admin/class-visitor-maps-options.php:577
+msgid "Date/Time format for \"The GeoLite data was last updated on...\". Default: m-d-Y h:i a T (12-14-2008 02:25 pm PST)"
+msgstr ""
+
+#: geo-location/class-visitor-maps-geolocation.php:33
+msgid "Uses GeoLiteCity data created by MaxMind, available from http://www.maxmind.com"
+msgstr ""
+
+#. translators: Number of days past
+#: geo-location/class-visitor-maps-geolocation.php:41, geo-location/class-visitor-maps-geolocation.php:37
+msgid "The GeoLiteCity data was last updated %d days ago"
+msgstr ""
+
+#: geo-location/class-visitor-maps-geolocation.php:37
+msgid "an update is available"
+msgstr ""
+
+#: geo-location/class-visitor-maps-geolocation.php:38
+msgid "click here to update"
+msgstr ""
+
+#: geo-location/class-wo-update.php:80, inc/class-visitor-maps-core.php:117, inc/class-visitor-maps-core.php:172, inc/class-visitor-maps-core.php:187, inc/class-visitor-maps-core.php:240, inc/class-visitor-maps-core.php:264, inc/class-visitor-maps-core.php:454, inc/class-visitor-maps-core.php:496, inc/class-visitor-maps-core.php:1603, inc/class-visitor-maps-core.php:1621, inc/class-visitor-maps-core.php:1760, inc/classes/class-whos-online-map-page.php:66
+msgid "Visitor Maps"
+msgstr ""
+
+#: geo-location/class-wo-update.php:93
+msgid "Checking for updates for the Maxmind GeoLiteCity database"
+msgstr ""
+
+#: geo-location/class-wo-update.php:87
+msgid "Preparing a first time install of the Maxmind GeoLiteCity database"
+msgstr ""
+
+#: geo-location/class-wo-update.php:125
+msgid "PHP Memory Limit is %s, increasing is not needed."
+msgstr ""
+
+#: geo-location/class-wo-update.php:109
+msgid "PHP Memory Limit is %1$s, temporarily increasing to %2$s"
+msgstr ""
+
+#: geo-location/class-wo-update.php:118
+msgid "failed."
+msgstr ""
+
+#: geo-location/class-wo-update.php:116
+msgid "completed."
+msgstr ""
+
+#: geo-location/class-wo-update.php:107
+msgid "PHP Memory Limit is unknown, increase is not available."
+msgstr ""
+
+#: geo-location/class-wo-update.php:132
+msgid "Connecting to this URL:"
+msgstr ""
+
+#: geo-location/class-wo-update.php:138
+msgid "Warning: Your web host has PHP safe_mode turned on."
+msgstr ""
+
+#: geo-location/class-wo-update.php:140
+msgid "PHP safe_mode can cause problems with this updater such as file permission errors."
+msgstr ""
+
+#: geo-location/class-wo-update.php:141
+msgid "PHP safe_mode is better turned off, relying on this feature might work, but is highly discouraged. Contact your web host for support."
+msgstr ""
+
+#: geo-location/class-wo-update.php:147
+msgid "Warning: Your web host has the PHP setting allow_url_fopen turned off."
+msgstr ""
+
+#: geo-location/class-wo-update.php:149
+msgid "PHP allow_url_fopen setting is required for this automatic update feature. Contact your web host for support."
+msgstr ""
+
+#: geo-location/class-wo-update.php:150
+msgid "The geolite database is really just a file. As a workaround, you can manually download the GeoLiteCity.dat.gz file from this URL: http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz"
+msgstr ""
+
+#: geo-location/class-wo-update.php:151
+msgid "Unzip the file and FTP upload GeoLiteCity.dat to the /wp-content/visitor-maps-geoip/ folder. When the file is not installed, the blog still works, but the location information for a user is skipped. "
+msgstr ""
+
+#: geo-location/class-wo-update.php:190
+msgid "You have the latest available Maxmind GeoLiteCity database"
+msgstr ""
+
+#: geo-location/class-wo-update.php:191
+msgid "Note: Maxmind usually updates GeoLiteCity once monthly on the 1st, but sometimes they update on the 2nd or 3rd or even later dates!"
+msgstr ""
+
+#: geo-location/class-wo-update.php:192
+msgid "Maxmind last updated it %1$s (%2$d days ago)"
+msgstr ""
+
+#: geo-location/class-wo-update.php:192
+msgid "this is the <a href=\"%s\" target=\"_new\">newest file available</a>"
+msgstr ""
+
+#: geo-location/class-wo-update.php:194
+msgid "You updated to the current GeoLiteCity database on %s (%d days ago)"
+msgstr ""
+
+#: geo-location/class-wo-update.php:194
+msgid "No new updates are available today."
+msgstr ""
+
+#: geo-location/class-wo-update.php:208
+msgid "Error: Download failed, the GeoLiteCity.dat.gz download file was not found"
+msgstr ""
+
+#: geo-location/class-wo-update.php:211
+msgid "Download success, uncompressing file, please wait"
+msgstr ""
+
+#: geo-location/class-wo-update.php:217
+msgid "unzip error: opening GeoLiteCity.dat file"
+msgstr ""
+
+#: geo-location/class-wo-update.php:219
+msgid "unzip error: gzopen opening GeoLiteCity.dat.gz file"
+msgstr ""
+
+#: geo-location/class-wo-update.php:232
+msgid "unzip error: Chmod 0644 GeoLiteCity.dat file failed"
+msgstr ""
+
+#: geo-location/class-wo-update.php:240, geo-location/class-wo-update.php:252
+msgid "Error: the GeoLiteCity.dat file was not found"
+msgstr ""
+
+#: geo-location/class-wo-update.php:255
+msgid "Install/Update completed"
+msgstr ""
+
+#: geo-location/class-wo-update.php:278
+msgid "Testing a lookup with your IP address:"
+msgstr ""
+
+#: geo-location/class-wo-update.php:287
+msgid "test_lookup error: the GeoLiteCity.dat file was not found"
+msgstr ""
+
+#: geo-location/class-wo-update.php:306
+msgid "Note: location information was not available, this is normal if on a private network."
+msgstr ""
+
+#: geo-location/class-wo-update.php:312, inc/class-visitor-maps-core.php:187
+msgid "View Who's Online"
+msgstr ""
+
+#: geo-location/class-wo-update.php:313, inc/classes/class-whos-online-view.php:203, inc/classes/class-wo-been.php:186
+msgid "Visitor Maps Options"
+msgstr ""
+
+#: geo-location/class-wo-update.php:341
+msgid "error: could not connect to remote file"
+msgstr ""
+
+#: geo-location/class-wo-update.php:356
+msgid "error: fetching timestamp failed for URL, 404 not found?"
+msgstr ""
+
+#: geo-location/class-wo-update.php:404
+msgid "error: could not connect to remote URL"
+msgstr ""
+
+#: geo-location/class-wo-update.php:390
+msgid "error: fetching timestamp failed for URL 404 not found?"
+msgstr ""
+
+#: geo-location/class-wo-update.php:409
+msgid "Please allow plenty of time for the approximately 19meg file to download."
+msgstr ""
+
+#: geo-location/class-wo-update.php:410
+msgid "The time needed depends on your server download speed."
+msgstr ""
+
+#: geo-location/class-wo-update.php:411
+msgid "A timeout can happen if the connection is really slow causing this to take more than 3 minutes."
+msgstr ""
+
+#: geo-location/class-wo-update.php:421
+msgid "error: reading or opening file"
+msgstr ""
+
+#: geo-location/class-wo-update.php:422, geo-location/class-wo-update.php:442
+msgid "error: cannot write to file, check server permission settings"
+msgstr ""
+
+#: geo-location/class-wo-update.php:424
+msgid "Download started, (counting megs)"
+msgstr ""
+
+#: geo-location/class-wo-update.php:454
+msgid "error: CHMOD 0644 download file failed"
+msgstr ""
+
+#: inc/class-visitor-maps-core.php:85, inc/class-visitor-maps-core.php:86, inc/class-visitor-maps-core.php:1603, inc/class-visitor-maps-core.php:1631, inc/class-visitor-maps-core.php:1647, inc/class-visitor-maps-core.php:1656, inc/classes/class-wo-been.php:183
+msgid "Who's Online"
+msgstr ""
+
+#: inc/class-visitor-maps-core.php:97, inc/class-visitor-maps-core.php:98, inc/class-visitor-maps-core.php:117, inc/classes/class-whos-online-view.php:200
+msgid "Who's Been Online"
+msgstr ""
+
+#: inc/class-visitor-maps-core.php:113, inc/class-visitor-maps-core.php:183
+msgid "You do not have permissions for managing this option"
+msgstr ""
+
+#. translators: %1$s: Blog URL.
+#. translators: %1$s: Blog URL.
+#: inc/class-visitor-maps-core.php:167, inc/class-visitor-maps-core.php:235
+msgid "View more maps in the %1$s"
+msgstr ""
+
+#: inc/class-visitor-maps-core.php:172, inc/class-visitor-maps-core.php:240, inc/class-visitor-maps-core.php:496, inc/class-visitor-maps-core.php:1621, inc/class-visitor-maps-core.php:1760
+msgid "Powered by"
+msgstr ""
+
+#: inc/class-visitor-maps-core.php:375
+msgid "Visitor Maps geolocation is disabled in settings."
+msgstr ""
+
+#: inc/class-visitor-maps-core.php:363
+msgid "Close"
+msgstr ""
+
+#: inc/class-visitor-maps-core.php:366
+msgid "Powered by Visitor Maps"
+msgstr ""
+
+#: inc/class-visitor-maps-core.php:458
+msgid "View more maps in the "
+msgstr ""
+
+#: inc/class-visitor-maps-core.php:458
+msgid "Visitor Map Viewer"
+msgstr ""
+
+#: inc/class-visitor-maps-core.php:471, inc/class-visitor-maps-core.php:1309, inc/class-visitor-maps-core.php:1310
+msgid "Max visitors today"
+msgstr ""
+
+#: inc/class-visitor-maps-core.php:471, inc/class-visitor-maps-core.php:475, inc/class-visitor-maps-core.php:479, inc/class-visitor-maps-core.php:483, inc/class-visitor-maps-core.php:1309, inc/class-visitor-maps-core.php:1310, inc/class-visitor-maps-core.php:1314, inc/class-visitor-maps-core.php:1315, inc/class-visitor-maps-core.php:1319, inc/class-visitor-maps-core.php:1320, inc/class-visitor-maps-core.php:1324, inc/class-visitor-maps-core.php:1325
+msgid "at"
+msgstr ""
+
+#: inc/class-visitor-maps-core.php:475, inc/class-visitor-maps-core.php:1314, inc/class-visitor-maps-core.php:1315
+msgid "This month"
+msgstr ""
+
+#: inc/class-visitor-maps-core.php:479, inc/class-visitor-maps-core.php:1319, inc/class-visitor-maps-core.php:1320
+msgid "This year"
+msgstr ""
+
+#: inc/class-visitor-maps-core.php:483, inc/class-visitor-maps-core.php:1324, inc/class-visitor-maps-core.php:1325
+msgid "All time"
+msgstr ""
+
+#: inc/class-visitor-maps-core.php:487
+msgid "Records of the most visitors online at once:"
+msgstr ""
+
+#: inc/class-visitor-maps-core.php:773
+msgid "Settings"
+msgstr ""
+
+#. translators: %d: Visitors count.
+#. translators: %d: Visitors count.
+#: inc/class-visitor-maps-core.php:1275, inc/class-visitor-maps-core.php:1726
+msgid "%d visitors online now"
+msgstr ""
+
+#. translators: %d: Guest count.
+#. translators: %d: Guests count.
+#. translators: %d: Guest & Member count.
+#: inc/class-visitor-maps-core.php:1278, inc/class-visitor-maps-core.php:1729, inc/class-visitor-maps-core.php:1742
+msgid "%d guests"
+msgstr ""
+
+#. translators: %d: Bot count.
+#. translators: %d: Bots count.
+#: inc/class-visitor-maps-core.php:1282, inc/class-visitor-maps-core.php:1736
+msgid "%d bots"
+msgstr ""
+
+#. translators: %d: Members count.
+#. translators: %d: Members count.
+#: inc/class-visitor-maps-core.php:1286, inc/class-visitor-maps-core.php:1732
+msgid "%d members"
+msgstr ""
+
+#: inc/class-visitor-maps-core.php:1755
+msgid "Map of Visitors</a>"
+msgstr ""
+
+#. translators: %d = Days to store results.
+#: inc/classes/class-whos-online-map-page.php:69
+msgid "Select a time period up to %d days ago"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:71
+msgid "Time:"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:73
+msgid "Units:"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:77, inc/classes/class-whos-online-view-maps.php:185
+msgid "minutes"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:78, inc/classes/class-whos-online-view-maps.php:189
+msgid "hours"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:79, inc/classes/class-whos-online-view-maps.php:193
+msgid "days"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:104
+msgid "Map:"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:113, inc/classes/class-whos-online-map-page.php:114
+msgid "US"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:113, inc/classes/class-whos-online-map-page.php:115, inc/classes/class-whos-online-map-page.php:117, inc/classes/class-whos-online-map-page.php:119, inc/classes/class-whos-online-map-page.php:121, inc/classes/class-whos-online-map-page.php:123, inc/classes/class-whos-online-map-page.php:125, inc/classes/class-whos-online-map-page.php:127, inc/classes/class-whos-online-map-page.php:129, inc/classes/class-whos-online-map-page.php:131, inc/classes/class-whos-online-map-page.php:133, inc/classes/class-whos-online-map-page.php:135, inc/classes/class-whos-online-map-page.php:137, inc/classes/class-whos-online-map-page.php:139, inc/classes/class-whos-online-map-page.php:141, inc/classes/class-whos-online-map-page.php:143, inc/classes/class-whos-online-map-page.php:145, inc/classes/class-whos-online-map-page.php:147, inc/classes/class-whos-online-map-page.php:150, inc/classes/class-whos-online-map-page.php:152, inc/classes/class-whos-online-map-page.php:154
+msgid "(black)"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:114, inc/classes/class-whos-online-map-page.php:116, inc/classes/class-whos-online-map-page.php:118, inc/classes/class-whos-online-map-page.php:120, inc/classes/class-whos-online-map-page.php:122, inc/classes/class-whos-online-map-page.php:124, inc/classes/class-whos-online-map-page.php:126, inc/classes/class-whos-online-map-page.php:128, inc/classes/class-whos-online-map-page.php:130, inc/classes/class-whos-online-map-page.php:132, inc/classes/class-whos-online-map-page.php:134, inc/classes/class-whos-online-map-page.php:136, inc/classes/class-whos-online-map-page.php:138, inc/classes/class-whos-online-map-page.php:140, inc/classes/class-whos-online-map-page.php:142, inc/classes/class-whos-online-map-page.php:144, inc/classes/class-whos-online-map-page.php:146, inc/classes/class-whos-online-map-page.php:148, inc/classes/class-whos-online-map-page.php:151, inc/classes/class-whos-online-map-page.php:153, inc/classes/class-whos-online-map-page.php:155
+msgid "(brown)"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:115, inc/classes/class-whos-online-map-page.php:116
+msgid "Canada and US"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:117, inc/classes/class-whos-online-map-page.php:118
+msgid "Asia"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:119, inc/classes/class-whos-online-map-page.php:120
+msgid "Australia and NZ"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:121, inc/classes/class-whos-online-map-page.php:122
+msgid "Europe Central"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:123, inc/classes/class-whos-online-map-page.php:124
+msgid "Europe"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:125, inc/classes/class-whos-online-map-page.php:126
+msgid "Scandinavia"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:127, inc/classes/class-whos-online-map-page.php:128
+msgid "Great Britain"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:129, inc/classes/class-whos-online-map-page.php:130
+msgid "US Midwest"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:131, inc/classes/class-whos-online-map-page.php:132
+msgid "US Upper Midwest"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:133, inc/classes/class-whos-online-map-page.php:134
+msgid "US Northeast"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:135, inc/classes/class-whos-online-map-page.php:136
+msgid "US Northwest"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:137, inc/classes/class-whos-online-map-page.php:138
+msgid "US Rocky Mountain"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:139, inc/classes/class-whos-online-map-page.php:140
+msgid "US South"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:141, inc/classes/class-whos-online-map-page.php:142
+msgid "US Southeast"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:143, inc/classes/class-whos-online-map-page.php:144
+msgid "US Southwest"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:145, inc/classes/class-whos-online-map-page.php:146
+msgid "Spain/Portugal"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:147, inc/classes/class-whos-online-map-page.php:148, inc/classes/class-whos-online-map-page.php:149
+msgid "Finland"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:149
+msgid "(yellow)"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:150, inc/classes/class-whos-online-map-page.php:151
+msgid "Japan"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:152, inc/classes/class-whos-online-map-page.php:153
+msgid "Netherlands"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:154, inc/classes/class-whos-online-map-page.php:155
+msgid "Brazil"
+msgstr ""
+
+#: inc/classes/class-whos-online-map-page.php:172, inc/classes/class-whos-online-map-page.php:173
+msgid "Go"
+msgstr ""
+
+#: inc/classes/class-whos-online-view-maps.php:45, visitor-maps-worldmap.php:15
+msgid "error: geolocation data not enabled or installed"
+msgstr ""
+
+#. translators: %1$d = row count, %2$d = time unit.
+#: inc/classes/class-whos-online-view-maps.php:341
+msgid "%1$d visitors since %2$d ago"
+msgstr ""
+
+#: inc/classes/class-whos-online-view-maps.php:337
+msgid "%1$d visitors since %2$d %3$s ago"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:56, inc/classes/class-whos-online-view.php:87, inc/classes/class-wo-been.php:34
+msgid "None"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:92, inc/classes/class-wo-been.php:35
+msgid "All"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:102, inc/classes/class-whos-online-view.php:600, inc/classes/class-wo-been.php:37
+msgid "Guests"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:108, inc/classes/class-whos-online-view.php:526, inc/classes/class-wo-been.php:102, inc/classes/class-wo-been.php:501
+msgid "No"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:113, inc/classes/class-whos-online-view.php:528, inc/classes/class-wo-been.php:103, inc/classes/class-wo-been.php:503
+msgid "Yes"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:189, inc/classes/class-wo-been.php:175
+msgid "Profile Display:"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:193
+msgid "Refresh Rate:"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:196, inc/classes/class-wo-been.php:180
+msgid "Show Bots:"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:214, inc/classes/class-whos-online-view.php:214, inc/classes/class-whos-online-view.php:214, inc/classes/class-whos-online-view.php:689, inc/classes/class-whos-online-view.php:689, inc/classes/class-wo-been.php:197, inc/classes/class-wo-been.php:197, inc/classes/class-wo-been.php:197, inc/classes/class-wo-been.php:589, inc/classes/class-wo-been.php:589
+msgid "Active Guest"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:216, inc/classes/class-whos-online-view.php:216, inc/classes/class-whos-online-view.php:216, inc/classes/class-whos-online-view.php:681, inc/classes/class-whos-online-view.php:681, inc/classes/class-wo-been.php:199, inc/classes/class-wo-been.php:199, inc/classes/class-wo-been.php:199, inc/classes/class-wo-been.php:583, inc/classes/class-wo-been.php:583
+msgid "Inactive Guest"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:220, inc/classes/class-whos-online-view.php:220, inc/classes/class-whos-online-view.php:220, inc/classes/class-whos-online-view.php:677, inc/classes/class-whos-online-view.php:677, inc/classes/class-wo-been.php:203, inc/classes/class-wo-been.php:203, inc/classes/class-wo-been.php:203, inc/classes/class-wo-been.php:579, inc/classes/class-wo-been.php:579
+msgid "Active Bot"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:222, inc/classes/class-whos-online-view.php:222, inc/classes/class-whos-online-view.php:222, inc/classes/class-whos-online-view.php:675, inc/classes/class-whos-online-view.php:675, inc/classes/class-wo-been.php:205, inc/classes/class-wo-been.php:205, inc/classes/class-wo-been.php:205, inc/classes/class-wo-been.php:577, inc/classes/class-wo-been.php:577
+msgid "Inactive Bot"
+msgstr ""
+
+#. translators: %1$d = Visitor count, %2$s = Date.
+#: inc/classes/class-whos-online-view.php:233, inc/classes/class-wo-been.php:216
+msgid "%1$d visitors since %2$s"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:233, inc/classes/class-wo-been.php:216
+msgid "installation"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:238
+msgid "Last refresh at"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:249
+msgid "Online"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:250, inc/classes/class-wo-been.php:49, inc/classes/class-wo-been.php:250
+msgid "Who"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:253, inc/classes/class-wo-been.php:52, inc/classes/class-wo-been.php:254
+msgid "IP Address"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:258, inc/classes/class-wo-been.php:53, inc/classes/class-wo-been.php:257
+msgid "Location"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:261
+msgid "Entry"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:262
+msgid "Last Click"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:266, inc/classes/class-wo-been.php:54, inc/classes/class-wo-been.php:262
+msgid "Last URL"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:271, inc/classes/class-wo-been.php:266
+msgid "Referer"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:412, inc/classes/class-wo-been.php:388
+msgid "Error"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:397, inc/classes/class-whos-online-view.php:613, inc/classes/class-wo-been.php:373
+msgid "You"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:393, inc/classes/class-wo-been.php:369
+msgid "Guest"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:427, inc/classes/class-wo-been.php:413
+msgid "visits"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:432, inc/classes/class-wo-been.php:419
+msgid "host lookups not enabled"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:453, inc/classes/class-whos-online-view.php:453, inc/classes/class-wo-been.php:442, inc/classes/class-wo-been.php:442
+msgid "unknown"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:552, inc/classes/class-wo-been.php:517
+msgid "Last URL:"
+msgstr ""
+
+#. translators: %1$d = Inactive minutes, %2$d = Removed minutes.
+#: inc/classes/class-whos-online-view.php:580
+msgid "Visitors online (Considered inactive after %1$d minutes. Removed after %2$d minutes)"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:587
+msgid "Duplicate IPs"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:594
+msgid "Members (includes you)"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:602
+msgid "are active"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:619
+msgid "Your IP Address:"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:624
+msgid "Your Host:"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:701, inc/classes/class-wo-been.php:595
+msgid "User Agent:"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:707, inc/classes/class-wo-been.php:601
+msgid "Host:"
+msgstr ""
+
+#: inc/classes/class-whos-online-view.php:712, inc/classes/class-wo-been.php:607
+msgid "Referer:"
+msgstr ""
+
+#: inc/classes/class-wo-been.php:50, inc/classes/class-wo-been.php:251
+msgid "Visits"
+msgstr ""
+
+#: inc/classes/class-wo-been.php:51, inc/classes/class-wo-been.php:252
+msgid "Last Visit"
+msgstr ""
+
+#: inc/classes/class-wo-been.php:75
+msgid "Descending"
+msgstr ""
+
+#: inc/classes/class-wo-been.php:76
+msgid "Ascending"
+msgstr ""
+
+#: inc/classes/class-wo-been.php:178
+msgid "Sort:"
+msgstr ""
+
+#: inc/classes/class-wo-been.php:189
+msgid "<a href=\"%s\">Visitor Map Viewer</a>"
+msgstr ""
+
+#: inc/classes/class-wo-been.php:225, inc/classes/class-wo-been.php:223, inc/classes/class-wo-been.php:547, inc/classes/class-wo-been.php:545
+msgid "FIRST"
+msgstr ""
+
+#: inc/classes/class-wo-been.php:227, inc/classes/class-wo-been.php:223, inc/classes/class-wo-been.php:549, inc/classes/class-wo-been.php:545
+msgid "PREV"
+msgstr ""
+
+#: inc/classes/class-wo-been.php:230, inc/classes/class-wo-been.php:552
+msgid "Page %1$d of %2$d"
+msgstr ""
+
+#: inc/classes/class-wo-been.php:236, inc/classes/class-wo-been.php:233, inc/classes/class-wo-been.php:558, inc/classes/class-wo-been.php:555
+msgid "NEXT"
+msgstr ""
+
+#: inc/classes/class-wo-been.php:237, inc/classes/class-wo-been.php:233, inc/classes/class-wo-been.php:559, inc/classes/class-wo-been.php:555
+msgid "LAST"
+msgstr ""
+
+#: inc/enqueue.php:37
+msgid "An update is available."
+msgstr ""
+
+#: visitor-maps-worldmap.php:287, visitor-maps-worldmap.php:303
+msgid "from"
+msgstr ""
