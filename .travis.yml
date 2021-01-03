@@ -4,9 +4,6 @@
 # Declare project language and PHP versions to test against.
 # @link http://about.travis-ci.org/docs/user/languages/php/
 language: php
-os:
-    - linux
-dist: xenial
 services:
     - mysql
     - docker

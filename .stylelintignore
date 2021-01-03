@@ -5,5 +5,5 @@ obj
 !*.scss
 *.svg
 *.png
-redux-core/assets/scss/vendor/*.scss
-redux-core/assets/scss/vendor/**/*.scss
+css/*.scss
+
