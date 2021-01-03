@@ -80,7 +80,7 @@ before_script:
     # Install JSHint, a JavaScript Code Quality Tool
     # @link http://jshint.com/docs/
     - npm install -g jshint
-    - - npm install -g stylelint
+    - npm install -g stylelint
     - wget https://develop.svn.wordpress.org/trunk/.jshintrc
 
 # Run test script commands.
@@ -92,9 +92,9 @@ script:
     # Run the theme through JSHint
     - jshint .
     # Run the theme through JavaScript Code Style checker
-    - eslint .
+    - eslint "js/*.js"
     # Use the new modern jslint
-    - stylelint
+    - stylelint "**/*.{css,scss,sass}"
     # WordPress Coding Standards
     # @link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards
     # @link http://pear.php.net/package/PHP_CodeSniffer/
