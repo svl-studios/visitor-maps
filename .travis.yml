@@ -4,6 +4,9 @@
 # Declare project language and PHP versions to test against.
 # @link http://about.travis-ci.org/docs/user/languages/php/
 language: php
+node_js:
+    - 10
+
 services:
     - mysql
     - docker
