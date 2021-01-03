@@ -80,10 +80,8 @@ before_script:
     # Install JSHint, a JavaScript Code Quality Tool
     # @link http://jshint.com/docs/
     - npm install -g jshint
+    - - npm install -g stylelint
     - wget https://develop.svn.wordpress.org/trunk/.jshintrc
-    # Install Yarn
-    - curl -o- -L https://yarnpkg.com/install.sh | bash
-    - yarn install --ignore-engines
 
 # Run test script commands.
 # Default is specific to project language.
@@ -96,9 +94,7 @@ script:
     # Run the theme through JavaScript Code Style checker
     - eslint .
     # Use the new modern jslint
-    - yarn run jslint
-    # Now let's make sure we didn't mess up the SCSS styles
-    - yarn run stylelint
+    - stylelint .
     # WordPress Coding Standards
     # @link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards
     # @link http://pear.php.net/package/PHP_CodeSniffer/
