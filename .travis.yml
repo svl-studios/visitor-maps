@@ -22,11 +22,6 @@ notifications:
             - kevin.provance@gmail.com
         on_failure: always
 
-# Ditch sudo and use containers.
-# @link http://docs.travis-ci.com/user/migrating-from-legacy/#Why-migrate-to-container-based-infrastructure%3F
-# @link http://docs.travis-ci.com/user/workers/container-based-infrastructure/#Routing-your-build-to-container-based-infrastructure
-sudo: false
-
 # Declare which versions of WordPress to test against.
 # Also declare whether or not to test in Multisite.
 env:
@@ -75,8 +70,8 @@ before_script:
     - nvm install 10.12
     # Install JSCS: JavaScript Code Style checker
     # @link http://jscs.info/
-    - npm install -g eslint
-    - npm install -g @wordpress/eslint-plugin
+    # - npm install -g eslint
+    # - npm install -g @wordpress/eslint-plugin
     # Install JSHint, a JavaScript Code Quality Tool
     # @link http://jshint.com/docs/
     - npm install -g jshint

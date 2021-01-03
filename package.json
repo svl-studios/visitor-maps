@@ -18,6 +18,7 @@
   },
   "sourcType": "script",
   "dependencies": {
+    "@wordpress/eslint-plugin": "^7.4.0",
     "babel-eslint": "^10.1.0",
     "browser-sync": "^2.26.7",
     "eslint": "^7.17.0",
