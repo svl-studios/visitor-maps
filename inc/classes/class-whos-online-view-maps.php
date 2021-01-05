@@ -318,7 +318,7 @@ if ( ! class_exists( 'Whos_Online_View_Maps' ) ) {
 								$this_pin_im = $pin_im_user;
 							}
 
-							if ( ! Visitor_Maps::$core->get_option( 'hide_bots' ) && 0 === $row['user_id'] && 'Guest' !== $row['name'] ) {
+							if ( ! Visitor_Maps::$core->get_option( 'hide_bots' ) && 0 === intval( $row['user_id'] ) && 'Guest' !== $row['name'] ) {
 								// different pin color for search bot.
 								$this_pin_im = $pin_im_bot;
 							}

@@ -180,7 +180,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 			<table class="visitor-map-actions">
 				<tr>
 					<td>
-						<form name="wo_view" action="<?php echo esc_url( admin_url( 'index.php?page=visitor-maps' ) ); ?>" method="get">
+						<form name="wo_view" action="<?php echo esc_url( admin_url( 'admin.php?page=visitor-maps' ) ); ?>" method="get">
 							<input type="hidden" name="wo_view_nonce" value="<?php echo esc_attr( wp_create_nonce( 'wo_view' ) ); ?>"/>
 							<?php
 							if ( $this->set['allow_profile_display'] ) {
@@ -196,7 +196,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 							?>
 							<input type="hidden" name="page" value="visitor-maps"/>
 						</form>
-						<a href="<?php echo esc_url( admin_url( 'index.php?page=whos-been-online' ) ); ?>"><?php echo esc_html__( "Who's Been Online", 'visitor-maps' ); ?></a>
+						<a href="<?php echo esc_url( admin_url( 'admin.php?page=whos-been-online' ) ); ?>"><?php echo esc_html__( "Who's Been Online", 'visitor-maps' ); ?></a>
 						<?php
 						if ( current_user_can( 'manage_options' ) ) {
 							echo '<br /> <a href="' . esc_url( admin_url( 'options-general.php?page=visitor_maps_opt' ) ) . '">' . esc_html__( 'Visitor Maps Options', 'visitor-maps' ) . "</a>\n";
@@ -341,7 +341,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 												$is_guest = false;
 												$is_user  = false;
 
-												if ( 'Guest' !== $whos_online['name'] && 0 === $whos_online['user_id'] ) {
+												if ( 'Guest' !== $whos_online['name'] && 0 === intval( $whos_online['user_id'] ) ) {
 													$total_bots ++;
 													$fg_color = $this->set['color_bot'];
 													$is_bot   = true;
@@ -681,7 +681,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 			$current_time     = (int) current_time( 'timestamp' );
 			$xx_mins_ago_long = ( $current_time - ( Visitor_Maps::$core->get_option( 'active_time' ) * 60 ) );
 
-			if ( 'Guest' !== $whos_online['name'] && 0 === $whos_online['user_id'] ) {   // bot.
+			if ( 'Guest' !== $whos_online['name'] && 0 === intval( $whos_online['user_id'] ) ) {   // bot.
 				if ( $whos_online['time_last_click'] < $xx_mins_ago_long ) {
 					return '<img src="' . esc_url( Visitor_Maps::$url ) . 'img/maps/' . $this->set['image_inactive_bot'] . '" border="0" alt="' . esc_attr__( 'Inactive Bot', 'visitor-maps' ) . '" title="' . esc_attr__( 'Inactive Bot', 'visitor-maps' ) . '" />';
 				} else {

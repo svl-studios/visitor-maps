@@ -303,7 +303,7 @@ if ( $rows_arr ) { // check of there are any visitors
 					$this_image_pin = str_replace( '.jpg', '-user.jpg', $image_pin );
 				}
 			}
-			if ( ! Visitor_Maps::$core->get_option( 'hide_bots' ) && 0 === $row['user_id'] && 'Guest' !== $row['name'] ) {
+			if ( ! Visitor_Maps::$core->get_option( 'hide_bots' ) && 0 === intval( $row['user_id'] ) && 'Guest' !== $row['name'] ) {
 				// find name for bot.
 				// different pin color for bot.
 				if ( ! empty( $row['name'] ) ) {

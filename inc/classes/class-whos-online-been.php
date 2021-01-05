@@ -439,7 +439,7 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 												$is_guest = false;
 												$is_user  = false;
 
-												if ( 'Guest' !== $whos_online['name'] && 0 === $whos_online['user_id'] ) {
+												if ( 'Guest' !== $whos_online['name'] && 0 === intval( $whos_online['user_id'] ) ) {
 													$total_bots ++;
 													$fg_color = $this->set['color_bot'];
 													$is_bot   = true;
@@ -720,7 +720,7 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 
 			$xx_mins_ago_long = ( $current_time - ( Visitor_Maps::$core->get_option( 'active_time' ) * 60 ) );
 
-			if ( 'Guest' !== $whos_online['name'] && 0 === $whos_online['user_id'] ) {   // bot.
+			if ( 'Guest' !== $whos_online['name'] && 0 === intval( $whos_online['user_id'] ) ) {   // bot.
 				if ( $whos_online['time_last_click'] < $xx_mins_ago_long ) {
 					return '<img src="' . esc_url( Visitor_Maps::$url ) . 'img/maps/' . $this->set['image_inactive_bot'] . '" border="0" alt="' . esc_attr__( 'Inactive Bot', 'visitor-maps' ) . '" title="' . esc_attr__( 'Inactive Bot', 'visitor-maps' ) . '" />';
 				} else {

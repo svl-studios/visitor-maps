@@ -612,7 +612,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 						$query .= '&amp;bots=' . $wo_prefs_arr['bots'];
 					}
 
-					echo '<meta http-equiv="refresh" content="' . esc_html( $wo_prefs_arr['refresh'] ) . ';URL=' . esc_url( admin_url( 'index.php?page=visitor-maps' ) ) . $query . '" />'; // phpcs:ignore WordPress.Security.EscapeOutput
+					echo '<meta http-equiv="refresh" content="' . esc_html( $wo_prefs_arr['refresh'] ) . ';URL=' . esc_url( admin_url( 'admin.php?page=visitor-maps' ) ) . $query . '" />'; // phpcs:ignore WordPress.Security.EscapeOutput
 				}
 				?>
 				<script type="text/javascript">
