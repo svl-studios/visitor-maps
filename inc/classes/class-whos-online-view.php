@@ -421,7 +421,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 																?>
 
 															<!-- IP Address -->
-																<td class="ip-address" style="color:<?php esc_attr( $fg_color ); ?>;">&nbsp;
+																<td class="ip-address" style="color:<?php echo esc_attr( $fg_color ); ?>;">&nbsp;
 																<?php
 																if ( 'unknown' === $whos_online['ip_address'] ) {
 																	echo esc_html( $whos_online['ip_address'] );
@@ -450,9 +450,9 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 															if ( Visitor_Maps::$core->get_option( 'enable_location_plugin' ) ) {
 																?>
 																<!-- Country Flag -->
-																<td class="flag" style="color:<?php esc_attr( $fg_color ); ?>;">&nbsp;
+																<td class="flag" style="color:<?php echo esc_attr( $fg_color ); ?>;">&nbsp;
 																<?php
-																if ( '' !== $whos_online['country_code'] ) {
+																if ( '-' !== $whos_online['country_code'] ) {
 																	$whos_online['country_code'] = strtolower( $whos_online['country_code'] );
 																	if ( '-' === $whos_online['country_code'] || '--' === $country_code ) { // unknown.
 																		echo '<img src="' . esc_url( Visitor_Maps::$url ) . 'img/flags/unknown.png" alt="' . esc_attr__( 'unknown', 'visitor-maps' ) . '" title="' . esc_attr__( 'unknown', 'visitor-maps' ) . '" />';
@@ -466,7 +466,8 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 																	if ( is_numeric( $refresh ) && $whos_online['time_entry'] > ( $current_time - absint( $refresh ) ) ) {
 																		$newguy = true; // Holds the italicized "new lookup" indication for 1 refresh cycle.
 																	}
-																	if ( '' !== $whos_online['city_name'] ) {
+
+																	if ( '-' !== $whos_online['city_name'] ) {
 																		if ( 'us' === $whos_online['country_code'] ) {
 																			$whos_online['print'] = $whos_online['city_name'];
 																			if ( '' !== $whos_online['state_code'] ) {
@@ -476,12 +477,15 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 																			$whos_online['print'] = $whos_online['city_name'] . ', ' . strtoupper( $whos_online['country_code'] );
 																		}
 																	} else {
-																		$whos_online['print'] = '~ ' . $whos_online['country_name'];
+																		$whos_online['print'] = '~ ' . ( '-' !== $whos_online['country_name'] ? $whos_online['country_name'] : '' );
 																	}
+
 																	if ( $newguy ) {
 																		echo '<em>';
 																	}
+
 																	echo esc_html( $whos_online['print'] );
+
 																	if ( $newguy ) {
 																		echo '</em>';
 																	}
