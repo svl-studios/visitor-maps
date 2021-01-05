@@ -529,7 +529,7 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 														} else {
 															$this_nick = '';
 
-															if ( '' !== $whos_online['nickname'] ) {
+															if ( null !== $whos_online['nickname'] ) {
 																$this_nick = ' (' . $whos_online['nickname'] . ' - ' . $whos_online['num_visits'] . ' ' . esc_html__( 'visits', 'visitor-maps' ) . ')';
 															}
 

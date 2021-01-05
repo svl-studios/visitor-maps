@@ -427,7 +427,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 																	echo esc_html( $whos_online['ip_address'] );
 																} else {
 																	$this_nick = '';
-																	if ( '' !== $whos_online['nickname'] ) {
+																	if ( null !== $whos_online['nickname'] ) {
 																		$this_nick = ' (' . $whos_online['nickname'] . ' - ' . $whos_online['num_visits'] . ' ' . esc_html__( 'visits', 'visitor-maps' ) . ')';
 																	}
 																	if ( Visitor_Maps::$core->get_option( 'enable_host_lookups' ) ) {
