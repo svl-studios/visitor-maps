@@ -164,7 +164,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 				if ( ! Visitor_Maps::$core->get_option( 'hide_console' ) || ( Visitor_Maps::$core->get_option( 'hide_console' ) && current_user_can( 'manage_options' ) ) ) {
 
 					// translators: %1$s: Blog URL.
-					echo '<p>' . sprintf( esc_html__( 'View more maps in the %1$s', 'visitor-maps' ), '<a onclick="wo_map_console(this.href); return false;" href="' . esc_url( get_bloginfo( 'url' ) ) . '?wo_map_console=1">' . esc_html( 'Visitor Map Viewer', 'visitor-maps' ) . '</a>' ) . '</p>';
+					echo '<p>' . sprintf( esc_html__( 'View more maps in the %1$s', 'visitor-maps' ), '<a onclick="wo_map_console(this.href); return false;" href="' . esc_url( get_bloginfo( 'url' ) ) . '?wo_map_console=1">' . esc_html__( 'Visitor Map Viewer', 'visitor-maps' ) . '</a>' ) . '</p>';
 				}
 			}
 
@@ -232,7 +232,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 				if ( ! Visitor_Maps::$core->get_option( 'hide_console' ) || ( Visitor_Maps::$core->get_option( 'hide_console' ) && current_user_can( 'manage_options' ) ) ) {
 
 					// translators: %1$s: Blog URL.
-					echo '<p>' . sprintf( esc_html__( 'View more maps in the %1$s', 'visitor-maps' ), '<a onclick="wo_map_console(this.href); return false;" href="' . esc_url( get_bloginfo( 'url' ) ) . '?wo_map_console=1">' . esc_html( 'Visitor Map Viewer', 'visitor-maps' ) . '</a>' ) . '</p>';
+					echo '<p>' . sprintf( esc_html__( 'View more maps in the %1$s', 'visitor-maps' ), '<a onclick="wo_map_console(this.href); return false;" href="' . esc_url( get_bloginfo( 'url' ) ) . '?wo_map_console=1">' . esc_html__( 'Visitor Map Viewer', 'visitor-maps' ) . '</a>' ) . '</p>';
 				}
 			}
 
@@ -468,19 +468,19 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 
 				foreach ( $visitors_arr as $visitors ) {
 					if ( 'day' === $visitors['type'] ) {
-						$day = esc_html__( 'Max visitors today', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date( Visitor_Maps::$core->get_option( 'time_format' ), strtotime( current_time( $visitors['time'] ) ) );
+						$day = esc_html__( 'Max visitors today', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'time_format' ), strtotime( current_time( $visitors['time'] ) ) );
 					}
 
 					if ( 'month' === $visitors['type'] ) {
-						$month = esc_html__( 'This month', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
+						$month = esc_html__( 'This month', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
 					}
 
 					if ( 'year' === $visitors['type'] ) {
-						$year = esc_html__( 'This year', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
+						$year = esc_html__( 'This year', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
 					}
 
 					if ( 'all' === $visitors['type'] ) {
-						$all = esc_html__( 'All time', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
+						$all = esc_html__( 'All time', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
 					}
 				}
 
@@ -633,26 +633,6 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 
 					//]]>
 				</script>
-				<style type="text/css">
-					.table-top {
-						color: black;
-						background-color: #96C6F5;
-						text-align: left;
-						font-weight: bold;
-					}
-
-					.column-dark {
-						color: black;
-						background-color: #F1F8FE;
-						white-space: nowrap;
-					}
-
-					.column-light {
-						color: black;
-						background-color: white;
-						white-space: nowrap;
-					}
-				</style>
 				<!-- end visitor maps - whos online page header code -->
 				<?php
 			}
@@ -696,26 +676,6 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 
 					//-->
 				</script>
-				<style type="text/css">
-					.table-top {
-						color: black;
-						background-color: #96C6F5;
-						text-align: left;
-						font-weight: bold;
-					}
-
-					.column-dark {
-						color: black;
-						background-color: #F1F8FE;
-						white-space: nowrap;
-					}
-
-					.column-light {
-						color: black;
-						background-color: white;
-						white-space: nowrap;
-					}
-				</style>
 				<!-- end visitor maps - whos been online page header code -->
 				<?php
 			}
@@ -816,7 +776,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 			$http_referer     = $this->get_http_referer();
 			$user_agent       = $this->get_http_user_agent();
 			$user_agent_lower = strtolower( $user_agent );
-			$current_time     = (int) current_time( 'timestamp' );
+			$current_time     = (int) current_time( 'timestamp' ); // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp
 			$xx_mins_ago      = ( $current_time - absint( ( Visitor_Maps::$core->get_option( 'track_time' ) * 60 ) ) );
 
 			// see if the user is a spider (bot) or not
@@ -841,7 +801,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 			if ( $spider_flag ) {
 				// is a bot, the bot name is extracted from the User Agent name later on in the whos-online viewer script.
 				$name = $user_agent_lower;
-			} elseif ( '' !== $user_ID && '' !== $current_user->user_login ) {
+			} elseif ( 0 !== $user_ID && '' !== $current_user->user_login ) {
 				// logged in wp user.
 				$name       = $current_user->user_login;
 				$wo_user_id = $user_ID;
@@ -1120,7 +1080,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 			$wo_table_ge = $wpdb->prefix . 'visitor_maps_ge';
 
 			$mysql_now    = current_time( 'mysql' );
-			$current_time = (int) current_time( 'timestamp' );
+			$current_time = (int) current_time( 'timestamp' ); // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp
 			$query_time   = ( $current_time - absint( ( Visitor_Maps::$core->get_option( 'track_time' ) * 60 ) ) );
 
 			if ( Visitor_Maps::$core->get_option( 'hide_bots' ) ) {
@@ -1225,7 +1185,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 
 			$wo_table_st  = $wpdb->prefix . 'visitor_maps_st';
 			$wo_table_wo  = $wpdb->prefix . 'visitor_maps_wo';
-			$current_time = (int) current_time( 'timestamp' );
+			$current_time = (int) current_time( 'timestamp' ); // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp
 
 			$query_time = ( $current_time - absint( ( Visitor_Maps::$core->get_option( 'track_time' ) * 60 ) ) );
 			if ( Visitor_Maps::$core->get_option( 'hide_bots' ) ) {
@@ -1306,23 +1266,23 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 
 			foreach ( $visitors_arr as $visitors ) {
 				if ( 'day' === $visitors['type'] ) {
-					$visitor_maps_stats['today'] = esc_html__( 'Max visitors today', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date( Visitor_Maps::$core->get_option( 'time_format' ), strtotime( current_time( $visitors['time'] ) ) );
-					$string                     .= esc_html__( 'Max visitors today', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date( Visitor_Maps::$core->get_option( 'time_format' ), strtotime( current_time( $visitors['time'] ) ) ) . '<br />';
+					$visitor_maps_stats['today'] = esc_html__( 'Max visitors today', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'time_format' ), strtotime( current_time( $visitors['time'] ) ) );
+					$string                     .= esc_html__( 'Max visitors today', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'time_format' ), strtotime( current_time( $visitors['time'] ) ) ) . '<br />';
 				}
 
 				if ( 'month' === $visitors['type'] ) {
-					$visitor_maps_stats['month'] = esc_html__( 'This month', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
-					$string                     .= esc_html__( 'This month', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) ) . '<br />';
+					$visitor_maps_stats['month'] = esc_html__( 'This month', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
+					$string                     .= esc_html__( 'This month', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) ) . '<br />';
 				}
 
 				if ( 'year' === $visitors['type'] ) {
-					$visitor_maps_stats['year'] = esc_html__( 'This year', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
-					$string                    .= esc_html__( 'This year', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) ) . '<br />';
+					$visitor_maps_stats['year'] = esc_html__( 'This year', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
+					$string                    .= esc_html__( 'This year', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) ) . '<br />';
 				}
 
 				if ( 'all' === $visitors['type'] ) {
-					$visitor_maps_stats['all'] = esc_html__( 'All time', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
-					$string                   .= esc_html__( 'All time', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) ) . '<br />';
+					$visitor_maps_stats['all'] = esc_html__( 'All time', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
+					$string                   .= esc_html__( 'All time', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) ) . '<br />';
 				}
 			}
 
@@ -1665,7 +1625,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 			global $visitor_maps_stats, $wpdb;
 
 			$wo_table_wo  = $wpdb->prefix . 'visitor_maps_wo';
-			$current_time = (int) current_time( 'timestamp' );
+			$current_time = (int) current_time( 'timestamp' ); // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp
 			$query_time   = ( $current_time - absint( ( Visitor_Maps::$core->get_option( 'track_time' ) * 60 ) ) );
 
 			if ( Visitor_Maps::$core->get_option( 'hide_bots' ) ) {

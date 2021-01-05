@@ -7,8 +7,6 @@
  * @package VisitorMaps
  */
 
-// TODO: All these deprecated HTML attributes.  Go to CSS, I guess.
-
 defined( 'ABSPATH' ) || exit;
 
 if ( ! class_exists( 'Whos_Online_View' ) ) {
@@ -179,7 +177,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 			$refresh = ( isset( $wo_prefs_arr['refresh'] ) ) ? $wo_prefs_arr['refresh'] : 'none';
 			$show    = ( isset( $wo_prefs_arr['show'] ) ) ? $wo_prefs_arr['show'] : 'none';
 			?>
-			<table border="0" width="99%">
+			<table class="visitor-map-actions">
 				<tr>
 					<td>
 						<form name="wo_view" action="<?php echo esc_url( admin_url( 'index.php?page=visitor-maps' ) ); ?>" method="get">
@@ -210,7 +208,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 						?>
 					</td>
 					<td>
-						<table border="0" cellspacing="2" cellpadding="2" align="right">
+						<table class="visitor-map-key">
 							<tr>
 								<td><?php echo '<img src="' . esc_url( Visitor_Maps::$url . 'img/maps/' . $this->set['image_active_guest'] ) . '" border="0" alt="' . esc_attr__( 'Active Guest', 'visitor-maps' ) . '" title="' . esc_attr__( 'Active Guest', 'visitor-maps' ) . '" /> ' . esc_html__( 'Active Guest', 'visitor-maps' ); ?>
 								</td>
@@ -227,25 +225,25 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 					</td>
 				</tr>
 			</table>
-			<table border="0" cellspacing="2" cellpadding="2" width="99%">
+			<table class="visitor-maps-data">
 				<tr>
-					<td align="center">
+					<td class="visitors-since">
 					<?php // translators: %1$d = Visitor count, %2$s = Date. ?>
 						<b><?php echo sprintf( esc_html__( '%1$d visitors since %2$s', 'visitor-maps' ), intval( (int) $numrows ), ( intval( $numrows ) > 0 ) ? gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), (int) $since ) : esc_html__( 'installation', 'visitor-maps' ) ); ?></b>
 					</td>
 				</tr>
 				<tr>
-					<td align="center">
+					<td class="visitors-since">
 					<?php // phpcs:ignore WordPress ?>
 						<b><?php echo esc_html__( 'Last refresh at', 'visitor-maps' ) . ' ' . esc_html__( gmdate( Visitor_Maps::$core->get_option( 'time_format' ) ), current_time( 'timestamp' ) ); ?></b>
 					</td>
 				</tr>
 				<tr>
-					<td valign="top">
-						<table border="0" cellspacing="0" cellpadding="2" width="99%">
+					<td class="visitors">
+						<table class="outer-table">
 							<tr>
-								<td valign="top">
-									<table border="0" cellspacing="0" cellpadding="2" width="99%">
+								<td>
+									<table class="inner-table">
 										<tr class="table-top">
 											<td>&nbsp;</td>
 											<td>&nbsp;<?php echo esc_html__( 'Online', 'visitor-maps' ); ?></td>
@@ -382,21 +380,23 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 													?>
 													<tr <?php echo esc_html( $row_class ); ?>>
 														<!-- Status Light -->
-														<td text-align="left" vertical-align="top"><?php echo $this->check_status( $whos_online ); ?></td> <?php // phpcs:ignore WordPress.Security.EscapeOutput ?>
+														<td class="status"><?php echo $this->check_status( $whos_online ); ?></td> <?php // phpcs:ignore WordPress.Security.EscapeOutput ?>
 
 														<!-- Time Online -->
-														<td valign="top">&nbsp;<font	color="<?php echo esc_attr( $fg_color ); ?>"><?php echo $this->time_online( $time_online ); ?></font> <?php // phpcs:ignore WordPress.Security.EscapeOutput ?>
+														<td class="time-online" style="color:<?php echo esc_attr( $fg_color ); ?>;">
+															<?php // phpcs:ignore WordPress.Security.EscapeOutput ?>
+															<?php echo $this->time_online( $time_online ); ?>
 														</td>
 
 														<!-- Name -->
-														<td valign="top">&nbsp;<font color="<?php echo esc_attr( $fg_color ); ?>">
+														<td class="name" style="color:<?php echo esc_attr( $fg_color ); ?>;">
 																<?php
 																if ( $is_guest ) {
-																	echo esc_html( __( 'Guest', 'visitor-maps' ) ) . '&nbsp;';
+																	echo esc_html__( 'Guest', 'visitor-maps' ) . '&nbsp;';
 																} elseif ( $is_user ) {
 																	echo '<a href="' . esc_url( admin_url( 'user-edit.php?user_id=' . $whos_online['user_id'] ) ) . '">' . esc_html( $whos_online['name'] ) . '</a>&nbsp;';
 																} elseif ( $is_admin ) {
-																	echo '<a href="' . esc_url( admin_url( 'user-edit.php?user_id=' . $whos_online['user_id'] ) ) . '">' . esc_html( __( 'You', 'visitor-maps' ) ) . '</a>&nbsp;';
+																	echo '<a href="' . esc_url( admin_url( 'user-edit.php?user_id=' . $whos_online['user_id'] ) ) . '">' . esc_html__( 'You', 'visitor-maps' ) . '</a>&nbsp;';
 																	// Check for Bot.
 																} elseif ( $is_bot ) {
 																	// Tokenize UserAgent and try to find Bots name.
@@ -413,88 +413,93 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 																} else {
 																	echo esc_html__( 'Error', 'visitor-maps' );
 																}
-																echo '</font></td>' . "\n";
+																?>
+																</td>
+															<?php
 
-																if ( $this->set['allow_ip_display'] ) {
-																	?>
-
-																<!-- IP Address -->
-														<td valign="top">&nbsp;
-																	<?php
-																	if ( 'unknown' === $whos_online['ip_address'] ) {
-																		echo '<font color="' . esc_attr( $fg_color ) . '">' . esc_html( $whos_online['ip_address'] ) . '</font>' . "\n";
-																	} else {
-																		$this_nick = '';
-																		if ( '' !== $whos_online['nickname'] ) {
-																			$this_nick = ' (' . $whos_online['nickname'] . ' - ' . $whos_online['num_visits'] . ' ' . __( 'visits', 'visitor-maps' ) . ')';
-																		}
-																		if ( Visitor_Maps::$core->get_option( 'enable_host_lookups' ) ) {
-																			$this_host = ( '' !== $whos_online['hostname'] ) ? Visitor_Maps::$core->host_to_domain( $whos_online['hostname'] ) : 'n/a';
-																		} else {
-																			$this_host = __( 'host lookups not enabled', 'visitor-maps' );
-																		}
-
-																		if ( Visitor_Maps::$core->get_option( 'whois_url_popup' ) ) {
-																			echo '<a href="' . esc_url( Visitor_Maps::$core->get_option( 'whois_url' ) . $whos_online['ip_address'] ) . '" onclick="who_is(this.href); return false;" title="' . esc_attr( $this_host ) . '">' . esc_html( $whos_online['ip_address'] ) . esc_html( $this_nick ) . '</a>';
-																		} else {
-																			echo '<a href="' . esc_url( Visitor_Maps::$core->get_option( 'whois_url' ) . $whos_online['ip_address'] ) . '" title="' . esc_attr( $this_host ) . '" target="_blank">' . esc_html( $whos_online['ip_address'] ) . esc_html( $this_nick ) . '</a>';
-																		}
-																	}
-																	echo '</td>';
-																} // end if.
-
-																if ( Visitor_Maps::$core->get_option( 'enable_location_plugin' ) ) {
-																	?>
-															<!-- Country Flag -->
-														<td valign="top">&nbsp;
-
-																	<?php
-																	if ( '' !== $whos_online['country_code'] ) {
-																		$whos_online['country_code'] = strtolower( $whos_online['country_code'] );
-																		if ( '-' === $whos_online['country_code'] || '--' === $country_code ) { // unknown.
-																			echo '<img src="' . esc_url( Visitor_Maps::$url ) . 'img/flags/unknown.png" alt="' . esc_attr( __( 'unknown', 'visitor-maps' ) ) . '" title="' . esc_attr( __( 'unknown', 'visitor-maps' ) ) . '" />';
-																		} else {
-																			echo '<img src="' . esc_url( Visitor_Maps::$url ) . 'img/flags/' . esc_html( $whos_online['country_code'] ) . '.png" alt="' . esc_attr( $whos_online['country_name'] ) . '" title="' . esc_attr( $whos_online['country_name'] ) . '" />';
-																		}
-																	}
-
-																	if ( Visitor_Maps::$core->get_option( 'enable_state_display' ) ) {
-																		$newguy = false;
-																		if ( is_numeric( $refresh ) && $whos_online['time_entry'] > ( $current_time - absint( $refresh ) ) ) {
-																			$newguy = true; // Holds the italicized "new lookup" indication for 1 refresh cycle.
-																		}
-																		if ( '' !== $whos_online['city_name'] ) {
-																			if ( 'us' === $whos_online['country_code'] ) {
-																				$whos_online['print'] = $whos_online['city_name'];
-																				if ( '' !== $whos_online['state_code'] ) {
-																					$whos_online['print'] = $whos_online['city_name'] . ', ' . strtoupper( $whos_online['state_code'] );
-																				}
-																			} else {      // all non us countries.
-																				$whos_online['print'] = $whos_online['city_name'] . ', ' . strtoupper( $whos_online['country_code'] );
-																			}
-																		} else {
-																			$whos_online['print'] = '~ ' . $whos_online['country_name'];
-																		}
-																		if ( $newguy ) {
-																			echo '<em>';
-																		}
-																		echo '<font color="' . esc_attr( $fg_color ) . '">  ' . esc_html( $whos_online['print'] ) . '</font>';
-																		if ( $newguy ) {
-																			echo '</em>';
-																		}
-																	}
-																	echo '</td>';
-																}
+															if ( $this->set['allow_ip_display'] ) {
 																?>
 
+															<!-- IP Address -->
+																<td class="ip-address" style="color:<?php esc_attr( $fg_color ); ?>;">&nbsp;
+																<?php
+																if ( 'unknown' === $whos_online['ip_address'] ) {
+																	echo esc_html( $whos_online['ip_address'] );
+																} else {
+																	$this_nick = '';
+																	if ( '' !== $whos_online['nickname'] ) {
+																		$this_nick = ' (' . $whos_online['nickname'] . ' - ' . $whos_online['num_visits'] . ' ' . esc_html__( 'visits', 'visitor-maps' ) . ')';
+																	}
+																	if ( Visitor_Maps::$core->get_option( 'enable_host_lookups' ) ) {
+																		$this_host = ( '' !== $whos_online['hostname'] ) ? Visitor_Maps::$core->host_to_domain( $whos_online['hostname'] ) : 'n/a';
+																	} else {
+																		$this_host = esc_html__( 'host lookups not enabled', 'visitor-maps' );
+																	}
+
+																	if ( Visitor_Maps::$core->get_option( 'whois_url_popup' ) ) {
+																		echo '<a href="' . esc_url( Visitor_Maps::$core->get_option( 'whois_url' ) . $whos_online['ip_address'] ) . '" onclick="who_is(this.href); return false;" title="' . esc_attr( $this_host ) . '">' . esc_html( $whos_online['ip_address'] ) . esc_html( $this_nick ) . '</a>';
+																	} else {
+																		echo '<a href="' . esc_url( Visitor_Maps::$core->get_option( 'whois_url' ) . $whos_online['ip_address'] ) . '" title="' . esc_attr( $this_host ) . '" target="_blank">' . esc_html( $whos_online['ip_address'] ) . esc_html( $this_nick ) . '</a>';
+																	}
+																}
+																?>
+																</td>
+																<?php
+															} // end if.
+
+															if ( Visitor_Maps::$core->get_option( 'enable_location_plugin' ) ) {
+																?>
+																<!-- Country Flag -->
+																<td class="flag" style="color:<?php esc_attr( $fg_color ); ?>;">&nbsp;
+																<?php
+																if ( '' !== $whos_online['country_code'] ) {
+																	$whos_online['country_code'] = strtolower( $whos_online['country_code'] );
+																	if ( '-' === $whos_online['country_code'] || '--' === $country_code ) { // unknown.
+																		echo '<img src="' . esc_url( Visitor_Maps::$url ) . 'img/flags/unknown.png" alt="' . esc_attr__( 'unknown', 'visitor-maps' ) . '" title="' . esc_attr__( 'unknown', 'visitor-maps' ) . '" />';
+																	} else {
+																		echo '<img src="' . esc_url( Visitor_Maps::$url ) . 'img/flags/' . esc_html( $whos_online['country_code'] ) . '.png" alt="' . esc_attr( $whos_online['country_name'] ) . '" title="' . esc_attr( $whos_online['country_name'] ) . '" />';
+																	}
+																}
+
+																if ( Visitor_Maps::$core->get_option( 'enable_state_display' ) ) {
+																	$newguy = false;
+																	if ( is_numeric( $refresh ) && $whos_online['time_entry'] > ( $current_time - absint( $refresh ) ) ) {
+																		$newguy = true; // Holds the italicized "new lookup" indication for 1 refresh cycle.
+																	}
+																	if ( '' !== $whos_online['city_name'] ) {
+																		if ( 'us' === $whos_online['country_code'] ) {
+																			$whos_online['print'] = $whos_online['city_name'];
+																			if ( '' !== $whos_online['state_code'] ) {
+																				$whos_online['print'] = $whos_online['city_name'] . ', ' . strtoupper( $whos_online['state_code'] );
+																			}
+																		} else {      // all non us countries.
+																			$whos_online['print'] = $whos_online['city_name'] . ', ' . strtoupper( $whos_online['country_code'] );
+																		}
+																	} else {
+																		$whos_online['print'] = '~ ' . $whos_online['country_name'];
+																	}
+																	if ( $newguy ) {
+																		echo '<em>';
+																	}
+																	echo esc_html( $whos_online['print'] );
+																	if ( $newguy ) {
+																		echo '</em>';
+																	}
+																}
+																?>
+																</td>
+																<?php
+															}
+															?>
+
 															<!-- Time Entry -->
-														<td valign="top">&nbsp;
-															<font color="<?php echo esc_attr( $fg_color ); ?>"><?php echo esc_html( gmdate( Visitor_Maps::$core->get_option( 'time_format_hms' ), $whos_online['time_entry'] ) ); ?></font>
+														<td class="time" style="color:<?php echo esc_attr( $fg_color ); ?>;">&nbsp;
+															<?php echo esc_html( gmdate( Visitor_Maps::$core->get_option( 'time_format_hms' ), $whos_online['time_entry'] ) ); ?>
 														</td>
 
 														<!-- Last Click -->
-														<td valign="top">&nbsp;
-															<font color="<?php echo esc_attr( $fg_color ); ?>"><?php echo esc_html( gmdate( Visitor_Maps::$core->get_option( 'time_format_hms' ), $whos_online['time_last_click'] ) ); ?></font>
+														<td class="last-click" style="color:<?php echo esc_attr( $fg_color ); ?>;">&nbsp;
+															<?php echo esc_html( gmdate( Visitor_Maps::$core->get_option( 'time_format_hms' ), $whos_online['time_last_click'] ) ); ?>
 														</td>
 
 														<?php
@@ -502,7 +507,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 														if ( ( $this->set['allow_last_url_display'] ) && ( ! isset( $_GET['nlurl'] ) ) && ( ( $this->set['allow_profile_display'] ) && ( 'none' === $show ) ) ) {
 															?>
 														<!-- Last URL -->
-														<td valign="top">&nbsp;
+														<td class="last-url">&nbsp;
 															<?php
 															$display_link = $whos_online['last_page_url'];
 															// escape any special characters to conform to HTML DTD.
@@ -515,22 +520,22 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 
 															echo '<a href="' . esc_url( $temp_url_link ) . '" target="_blank">' . esc_html( $display_link ) . '</a>';
 
-															echo '</td>' . "\n";
+															?>
+														</td>
+															<?php
 														} // end if.
 
 														if ( $this->set['allow_referer_display'] ) {
 															?>
 															<!-- Referer -->
-														<td valign="top">&nbsp;
-															<font color="<?php echo esc_attr( $fg_color ); ?>">
-																<?php
-																if ( '' === $whos_online['http_referer'] ) {
-																	echo esc_html__( 'No', 'visitor-maps' );
-																} else {
-																	echo '<a href="' . esc_url( $whos_online['http_referer'] ) . '" target="_blank">' . esc_html( __( 'Yes', 'visitor-maps' ) ) . '</a>';
-																}
-																?>
-															</font>
+														<td class="referer" style="color:<?php echo esc_attr( $fg_color ); ?>;">&nbsp;
+															<?php
+															if ( '' === $whos_online['http_referer'] ) {
+																echo esc_html__( 'No', 'visitor-maps' );
+															} else {
+																echo '<a href="' . esc_url( $whos_online['http_referer'] ) . '" target="_blank">' . esc_html__( 'Yes', 'visitor-maps' ) . '</a>';
+															}
+															?>
 														</td>
 															<?php
 														} // end if.
@@ -575,50 +580,50 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 										?>
 										<tr>
 											<td colspan="9"><br/>
-												<table border="0" cellpadding="0" cellspacing="3" width="600">
+												<table class="visitor-stats">
 													<tr>
-														<td align="right"><?php echo esc_html( "$total_sess" ); ?></td>
+														<td style="text-align:right;"><?php echo esc_html( "$total_sess" ); ?></td>
 														<?php // translators: %1$d = Inactive minutes, %2$d = Removed minutes. ?>
-														<td align="left"><?php echo sprintf( esc_html__( 'Visitors online (Considered inactive after %1$d minutes. Removed after %2$d minutes)', 'visitor-maps' ), absint( Visitor_Maps::$core->get_option( 'active_time' ) ), absint( Visitor_Maps::$core->get_option( 'track_time' ) ) ); ?></td>
+														<td style="text-align:left;"><?php echo sprintf( esc_html__( 'Visitors online (Considered inactive after %1$d minutes. Removed after %2$d minutes)', 'visitor-maps' ), absint( Visitor_Maps::$core->get_option( 'active_time' ) ), absint( Visitor_Maps::$core->get_option( 'track_time' ) ) ); ?></td>
 													</tr>
 													<?php
 													if ( $total_dupes > 0 ) {
 														?>
 														<tr>
-															<td align="right"><?php echo esc_html( "$total_dupes" ); ?></td>
-															<td align="left"><?php echo esc_html__( 'Duplicate IPs', 'visitor-maps' ); ?></td>
+															<td style="text-align:right;"><?php echo esc_html( "$total_dupes" ); ?></td>
+															<td style="text-align:left;"><?php echo esc_html__( 'Duplicate IPs', 'visitor-maps' ); ?></td>
 														</tr>
 														<?php
 													}
 													?>
 													<tr>
-														<td align="right"><?php echo esc_html( "$total_users" ); ?></td>
+														<td style="text-align:right;"><?php echo esc_html( "$total_users" ); ?></td>
 														<td><?php echo esc_html__( 'Members (includes you)', 'visitor-maps' ); ?></td>
 													</tr>
 													<tr>
-														<td align="right"><?php echo esc_html( "$total_guests" ); ?></td>
-														<td>
+														<td style="text-align:right;"><?php echo esc_html( "$total_guests" ); ?></td>
+														<td style="color:<?php esc_attr( $this->set['color_guest'] ); ?>">
 															<?php
 															echo esc_html__( 'Guests', 'visitor-maps' );
 															if ( count( $this->ip_addrs_active ) > 0 ) {
-																echo ', <font color="' . esc_attr( $this->set['color_guest'] ) . '">' . count( $this->ip_addrs_active ) . ' ' . esc_html__( 'are active', 'visitor-maps' ) . '</font>';
+																echo ', ' . count( $this->ip_addrs_active ) . ' ' . esc_html__( 'are active', 'visitor-maps' );
 															}
 															?>
 														</td>
 													</tr>
 													<tr>
-														<td align="right"><?php echo esc_html( "$total_bots" ); ?></td>
+														<td style="text-align:right;"><?php echo esc_html( "$total_bots" ); ?></td>
 														<td><?php echo esc_html__( 'Bots', 'visitor-maps' ); ?></td>
 													</tr>
 													<tr>
-														<td align="right"><?php echo esc_html( "$total_admin" ); ?></td>
+														<td style="text-align:right;"><?php echo esc_html( "$total_admin" ); ?></td>
 														<td><?php echo esc_html__( 'You', 'visitor-maps' ); ?></td>
 													</tr>
 												</table>
 												<br/>
 												<?php
 												if ( $this->set['allow_ip_display'] ) {
-													echo esc_html( __( 'Your IP Address:', 'visitor-maps' ) ) . ' ' . esc_html( $this->wo_visitor_ip );
+													echo esc_html__( 'Your IP Address:', 'visitor-maps' ) . ' ' . esc_html( $this->wo_visitor_ip );
 												}
 												if ( Visitor_Maps::$core->get_option( 'enable_host_lookups' ) ) {
 													$this_host = ( isset( $this->set['hostname'] ) && '' !== $this->set['hostname'] ) ? Visitor_Maps::$core->host_to_domain( $this->set['hostname'] ) : 'n/a';
@@ -635,7 +640,8 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 														$geoip_file_time   = filemtime( Visitor_Maps::$upload_dir . Visitor_Maps::DATABASE_NAME . Visitor_Maps::DATABASE_EXT );
 														$geoip_days_ago    = floor( ( strtotime( gmdate( 'Y-m-d' ) . ' 00:00:00' ) - strtotime( gmdate( 'Y-m-d', $geoip_file_time ) . ' 00:00:00' ) ) / ( 60 * 60 * 24 ) );
 														$geoip_begin_month = strtotime( '01-' . gmdate( 'm' ) . '-' . gmdate( 'Y' ) );
-
+var_dump('filetime: ' . $geoip_file_time);
+var_dump($geoip_begin_month);
 														if ( $geoip_begin_month > $geoip_file_time ) {
 															$geoip_old = $this->check_geoip_date( $geoip_file_time );
 														}
@@ -666,7 +672,6 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 		 * @return string
 		 */
 		private function check_status( $whos_online ) {
-			// TODO: URL escaping.
 			global $wpdb;
 
 			// phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp
@@ -675,13 +680,13 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 
 			if ( 'Guest' !== $whos_online['name'] && 0 === $whos_online['user_id'] ) {   // bot.
 				if ( $whos_online['time_last_click'] < $xx_mins_ago_long ) {
-					return '<img src="' . Visitor_Maps::$url . 'img/maps/' . $this->set['image_inactive_bot'] . '" border="0" alt="' . esc_attr__( 'Inactive Bot', 'visitor-maps' ) . '" title="' . esc_attr__( 'Inactive Bot', 'visitor-maps' ) . '" />';
+					return '<img src="' . esc_url( Visitor_Maps::$url ) . 'img/maps/' . $this->set['image_inactive_bot'] . '" border="0" alt="' . esc_attr__( 'Inactive Bot', 'visitor-maps' ) . '" title="' . esc_attr__( 'Inactive Bot', 'visitor-maps' ) . '" />';
 				} else {
-					return '<img src="' . Visitor_Maps::$url . 'img/maps/' . $this->set['image_active_bot'] . '" border="0" alt="' . esc_attr__( 'Active Bot', 'visitor-maps' ) . '" title="' . esc_attr__( 'Active Bot', 'visitor-maps' ) . '" />';
+					return '<img src="' . esc_url( Visitor_Maps::$url ) . 'img/maps/' . $this->set['image_active_bot'] . '" border="0" alt="' . esc_attr__( 'Active Bot', 'visitor-maps' ) . '" title="' . esc_attr__( 'Active Bot', 'visitor-maps' ) . '" />';
 				}
 			} else {  // guest.
 				if ( $whos_online['time_last_click'] < $xx_mins_ago_long ) {
-					return '<img src="' . Visitor_Maps::$url . 'img/maps/' . $this->set['image_inactive_guest'] . '" border="0" alt="' . esc_attr__( 'Inactive Guest', 'visitor-maps' ) . '" title="' . esc_attr__( 'Inactive Guest', 'visitor-maps' ) . '" />';
+					return '<img src="' . esc_url( Visitor_Maps::$url ) . 'img/maps/' . $this->set['image_inactive_guest'] . '" border="0" alt="' . esc_attr__( 'Inactive Guest', 'visitor-maps' ) . '" title="' . esc_attr__( 'Inactive Guest', 'visitor-maps' ) . '" />';
 				} else {
 					if ( ! in_array( $whos_online['ip_address'], $this->ip_addrs_active, true ) ) {
 						if ( $whos_online['ip_address'] !== $this->wo_visitor_ip ) {
@@ -689,7 +694,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 						}
 					}
 
-					return '<img src="' . Visitor_Maps::$url . 'img/maps/' . $this->set['image_active_guest'] . '" border="0" alt="' . esc_attr__( 'Active Guest', 'visitor-maps' ) . '" title="' . esc_attr__( 'Active Guest', 'visitor-maps' ) . '" />';
+					return '<img src="' . esc_url( Visitor_Maps::$url ) . 'img/maps/' . $this->set['image_active_guest'] . '" border="0" alt="' . esc_attr__( 'Active Guest', 'visitor-maps' ) . '" title="' . esc_attr__( 'Active Guest', 'visitor-maps' ) . '" />';
 				}
 			}
 		}
@@ -716,7 +721,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 				echo '<br />';
 			}
 
-			echo '<br clear="all" />';
+			echo '<br class="clear" />';
 		}
 
 		/**

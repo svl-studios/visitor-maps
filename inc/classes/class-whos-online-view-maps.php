@@ -257,7 +257,7 @@ if ( ! class_exists( 'Whos_Online_View_Maps' ) ) {
 			$scale = 360 / $image_worldmap_width;
 
 			// Time to remove old entries.
-			$current_time = (int) current_time( 'timestamp' );
+			$current_time = (int) current_time( 'timestamp' ); // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp
 			$xx_secs_ago  = ( $current_time - $seconds_ago );
 
 			$rows_arr = array();

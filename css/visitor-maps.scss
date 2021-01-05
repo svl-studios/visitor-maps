@@ -1,0 +1,85 @@
+.visitor-map-actions {
+    border-width: 0;
+    width: 99%;
+}
+
+.visitor-map-key {
+    padding: 2px;
+    border-spacing: 2px;
+    width: 99%;
+    text-align: right;
+}
+
+.visitor-maps-data {
+    border-width: 0;
+    border-spacing: 2px;
+    padding: 2px;
+    width: 99%;
+
+    .visitors-since {
+        text-align: center;
+    }
+
+    .visitors-pagination {
+        text-align: left;
+    }
+
+    .visitors {
+        vertical-align: top;
+
+        .outer-table {
+            border-width: 0;
+            border-spacing: 0;
+            padding: 2px;
+            width: 99%;
+
+            td {
+                vertical-align: top;
+
+                .inner-table {
+                    border-width: 0;
+                    border-spacing: 0;
+                    padding: 2px;
+                    width: 99%;
+
+                    .table-top {
+                        color: black;
+                        background-color: #96C6F5;
+                        text-align: left;
+                        font-weight: bold;
+                    }
+
+                    .column-light {
+                        color: black;
+                        background-color: white;
+                        white-space: nowrap;
+                    }
+
+                    .column-dark {
+                        color: black;
+                        background-color: #F1F8FE;
+                        white-space: nowrap;
+                    }
+
+                    .status {
+                        text-align: left;
+                        vertical-align: top;
+                    }
+                }
+            }
+        }
+    }
+
+    .visitor-stats {
+        border-width: 0;
+        border-spacing: 3px;
+        padding:0px;
+        width:600px;
+    }
+
+    br {
+        .clear {
+            clear: both;
+        }
+    }
+}

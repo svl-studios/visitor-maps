@@ -16,71 +16,71 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: admin/ajax.php:40, geo-location/class-wo-update.php:295
+#: admin/class-visitor-maps-ajax.php:47
 msgid "IP:"
 msgstr ""
 
-#: admin/ajax.php:41, geo-location/class-wo-update.php:296
+#: admin/class-visitor-maps-ajax.php:48
 msgid "City:"
 msgstr ""
 
-#: admin/ajax.php:42, geo-location/class-wo-update.php:297
+#: admin/class-visitor-maps-ajax.php:49
 msgid "State Name:"
 msgstr ""
 
-#: admin/ajax.php:43, geo-location/class-wo-update.php:298
+#: admin/class-visitor-maps-ajax.php:50
 msgid "State Code:"
 msgstr ""
 
-#: admin/ajax.php:44, geo-location/class-wo-update.php:299
+#: admin/class-visitor-maps-ajax.php:51
 msgid "Country Name:"
 msgstr ""
 
-#: admin/ajax.php:45, geo-location/class-wo-update.php:300
+#: admin/class-visitor-maps-ajax.php:52
 msgid "Country Code:"
 msgstr ""
 
-#: admin/ajax.php:46, geo-location/class-wo-update.php:301
+#: admin/class-visitor-maps-ajax.php:53
 msgid "Lat:"
 msgstr ""
 
-#: admin/ajax.php:47, geo-location/class-wo-update.php:302
+#: admin/class-visitor-maps-ajax.php:54
 msgid "Lon: "
 msgstr ""
 
-#: admin/ajax.php:50
+#: admin/class-visitor-maps-ajax.php:57
 msgid "Note: Location information was not available. This is normal on a local or private network."
 msgstr ""
 
-#: admin/ajax.php:102
+#: admin/class-visitor-maps-ajax.php:109
 msgid "The MaxMind license key is invalid. If you have recently created this key, you may need to wait for it to become active."
 msgstr ""
 
-#: admin/ajax.php:106
+#: admin/class-visitor-maps-ajax.php:113
 msgid "Failed to download the MaxMind database."
 msgstr ""
 
-#: admin/ajax.php:207
+#: admin/class-visitor-maps-ajax.php:199
 msgid "Retry"
 msgstr ""
 
-#: admin/ajax.php:208, admin/class-visitor-maps-options.php:199, inc/enqueue.php:35
+#: admin/class-visitor-maps-ajax.php:200, admin/class-visitor-maps-options.php:199, inc/class-visitor-maps-enqueue.php:43
 msgid "Run lookup test?"
 msgstr ""
 
-#: admin/ajax.php:216
+#: admin/class-visitor-maps-ajax.php:208
 msgid "Downloading GeoLiteCity database..."
 msgstr ""
 
-#: admin/ajax.php:217
+#: admin/class-visitor-maps-ajax.php:209
 msgid "Update Failed."
 msgstr ""
 
-#: admin/ajax.php:218
+#: admin/class-visitor-maps-ajax.php:210
 msgid "GeoLiteCity database successfully installed!"
 msgstr ""
 
-#: admin/ajax.php:219
+#: admin/class-visitor-maps-ajax.php:211
 msgid "There was an error in the GeoLiteCity database lookup."
 msgstr ""
 
@@ -104,15 +104,15 @@ msgstr ""
 msgid "then drag the Who's Online widget to the sidebar column on the right."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:194, inc/enqueue.php:37
+#: admin/class-visitor-maps-options.php:194, inc/class-visitor-maps-enqueue.php:45
 msgid "Install Update"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:206, inc/enqueue.php:34
+#: admin/class-visitor-maps-options.php:206, inc/class-visitor-maps-enqueue.php:42
 msgid "The Maxmind GeoLiteCity database is installed and enabled."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:186, inc/enqueue.php:36
+#: admin/class-visitor-maps-options.php:186, inc/class-visitor-maps-enqueue.php:44
 msgid "The Maxmind GeoLiteCity database is installed but not enabled (click the switch below)."
 msgstr ""
 
@@ -360,7 +360,7 @@ msgstr ""
 msgid "Do not include administrators count or location on the maps."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:448, inc/classes/class-whos-online-view.php:97, inc/classes/class-whos-online-view.php:609, inc/classes/class-wo-been.php:36
+#: admin/class-visitor-maps-options.php:448, inc/classes/class-whos-online-been.php:77, inc/classes/class-whos-online-view.php:97, inc/classes/class-whos-online-view.php:611
 msgid "Bots"
 msgstr ""
 
@@ -509,196 +509,20 @@ msgstr ""
 msgid "click here to update"
 msgstr ""
 
-#: geo-location/class-wo-update.php:80, inc/class-visitor-maps-core.php:117, inc/class-visitor-maps-core.php:172, inc/class-visitor-maps-core.php:187, inc/class-visitor-maps-core.php:240, inc/class-visitor-maps-core.php:264, inc/class-visitor-maps-core.php:454, inc/class-visitor-maps-core.php:496, inc/class-visitor-maps-core.php:1603, inc/class-visitor-maps-core.php:1621, inc/class-visitor-maps-core.php:1760, inc/classes/class-whos-online-map-page.php:66
-msgid "Visitor Maps"
-msgstr ""
-
-#: geo-location/class-wo-update.php:93
-msgid "Checking for updates for the Maxmind GeoLiteCity database"
-msgstr ""
-
-#: geo-location/class-wo-update.php:87
-msgid "Preparing a first time install of the Maxmind GeoLiteCity database"
-msgstr ""
-
-#: geo-location/class-wo-update.php:125
-msgid "PHP Memory Limit is %s, increasing is not needed."
-msgstr ""
-
-#: geo-location/class-wo-update.php:109
-msgid "PHP Memory Limit is %1$s, temporarily increasing to %2$s"
-msgstr ""
-
-#: geo-location/class-wo-update.php:118
-msgid "failed."
-msgstr ""
-
-#: geo-location/class-wo-update.php:116
-msgid "completed."
-msgstr ""
-
-#: geo-location/class-wo-update.php:107
-msgid "PHP Memory Limit is unknown, increase is not available."
-msgstr ""
-
-#: geo-location/class-wo-update.php:132
-msgid "Connecting to this URL:"
-msgstr ""
-
-#: geo-location/class-wo-update.php:138
-msgid "Warning: Your web host has PHP safe_mode turned on."
-msgstr ""
-
-#: geo-location/class-wo-update.php:140
-msgid "PHP safe_mode can cause problems with this updater such as file permission errors."
-msgstr ""
-
-#: geo-location/class-wo-update.php:141
-msgid "PHP safe_mode is better turned off, relying on this feature might work, but is highly discouraged. Contact your web host for support."
-msgstr ""
-
-#: geo-location/class-wo-update.php:147
-msgid "Warning: Your web host has the PHP setting allow_url_fopen turned off."
-msgstr ""
-
-#: geo-location/class-wo-update.php:149
-msgid "PHP allow_url_fopen setting is required for this automatic update feature. Contact your web host for support."
-msgstr ""
-
-#: geo-location/class-wo-update.php:150
-msgid "The geolite database is really just a file. As a workaround, you can manually download the GeoLiteCity.dat.gz file from this URL: http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz"
-msgstr ""
-
-#: geo-location/class-wo-update.php:151
-msgid "Unzip the file and FTP upload GeoLiteCity.dat to the /wp-content/visitor-maps-geoip/ folder. When the file is not installed, the blog still works, but the location information for a user is skipped. "
-msgstr ""
-
-#: geo-location/class-wo-update.php:190
-msgid "You have the latest available Maxmind GeoLiteCity database"
-msgstr ""
-
-#: geo-location/class-wo-update.php:191
-msgid "Note: Maxmind usually updates GeoLiteCity once monthly on the 1st, but sometimes they update on the 2nd or 3rd or even later dates!"
-msgstr ""
-
-#: geo-location/class-wo-update.php:192
-msgid "Maxmind last updated it %1$s (%2$d days ago)"
-msgstr ""
-
-#: geo-location/class-wo-update.php:192
-msgid "this is the <a href=\"%s\" target=\"_new\">newest file available</a>"
-msgstr ""
-
-#: geo-location/class-wo-update.php:194
-msgid "You updated to the current GeoLiteCity database on %s (%d days ago)"
-msgstr ""
-
-#: geo-location/class-wo-update.php:194
-msgid "No new updates are available today."
-msgstr ""
-
-#: geo-location/class-wo-update.php:208
-msgid "Error: Download failed, the GeoLiteCity.dat.gz download file was not found"
-msgstr ""
-
-#: geo-location/class-wo-update.php:211
-msgid "Download success, uncompressing file, please wait"
-msgstr ""
-
-#: geo-location/class-wo-update.php:217
-msgid "unzip error: opening GeoLiteCity.dat file"
-msgstr ""
-
-#: geo-location/class-wo-update.php:219
-msgid "unzip error: gzopen opening GeoLiteCity.dat.gz file"
-msgstr ""
-
-#: geo-location/class-wo-update.php:232
-msgid "unzip error: Chmod 0644 GeoLiteCity.dat file failed"
-msgstr ""
-
-#: geo-location/class-wo-update.php:240, geo-location/class-wo-update.php:252
-msgid "Error: the GeoLiteCity.dat file was not found"
-msgstr ""
-
-#: geo-location/class-wo-update.php:255
-msgid "Install/Update completed"
-msgstr ""
-
-#: geo-location/class-wo-update.php:278
-msgid "Testing a lookup with your IP address:"
-msgstr ""
-
-#: geo-location/class-wo-update.php:287
-msgid "test_lookup error: the GeoLiteCity.dat file was not found"
-msgstr ""
-
-#: geo-location/class-wo-update.php:306
-msgid "Note: location information was not available, this is normal if on a private network."
-msgstr ""
-
-#: geo-location/class-wo-update.php:312, inc/class-visitor-maps-core.php:187
-msgid "View Who's Online"
-msgstr ""
-
-#: geo-location/class-wo-update.php:313, inc/classes/class-whos-online-view.php:203, inc/classes/class-wo-been.php:186
-msgid "Visitor Maps Options"
-msgstr ""
-
-#: geo-location/class-wo-update.php:341
-msgid "error: could not connect to remote file"
-msgstr ""
-
-#: geo-location/class-wo-update.php:356
-msgid "error: fetching timestamp failed for URL, 404 not found?"
-msgstr ""
-
-#: geo-location/class-wo-update.php:404
-msgid "error: could not connect to remote URL"
-msgstr ""
-
-#: geo-location/class-wo-update.php:390
-msgid "error: fetching timestamp failed for URL 404 not found?"
-msgstr ""
-
-#: geo-location/class-wo-update.php:409
-msgid "Please allow plenty of time for the approximately 19meg file to download."
-msgstr ""
-
-#: geo-location/class-wo-update.php:410
-msgid "The time needed depends on your server download speed."
-msgstr ""
-
-#: geo-location/class-wo-update.php:411
-msgid "A timeout can happen if the connection is really slow causing this to take more than 3 minutes."
-msgstr ""
-
-#: geo-location/class-wo-update.php:421
-msgid "error: reading or opening file"
-msgstr ""
-
-#: geo-location/class-wo-update.php:422, geo-location/class-wo-update.php:442
-msgid "error: cannot write to file, check server permission settings"
-msgstr ""
-
-#: geo-location/class-wo-update.php:424
-msgid "Download started, (counting megs)"
-msgstr ""
-
-#: geo-location/class-wo-update.php:454
-msgid "error: CHMOD 0644 download file failed"
-msgstr ""
-
-#: inc/class-visitor-maps-core.php:85, inc/class-visitor-maps-core.php:86, inc/class-visitor-maps-core.php:1603, inc/class-visitor-maps-core.php:1631, inc/class-visitor-maps-core.php:1647, inc/class-visitor-maps-core.php:1656, inc/classes/class-wo-been.php:183
+#: inc/class-visitor-maps-core.php:85, inc/class-visitor-maps-core.php:86, inc/class-visitor-maps-core.php:1603, inc/class-visitor-maps-core.php:1631, inc/class-visitor-maps-core.php:1647, inc/class-visitor-maps-core.php:1656, inc/classes/class-whos-online-been.php:281
 msgid "Who's Online"
 msgstr ""
 
-#: inc/class-visitor-maps-core.php:97, inc/class-visitor-maps-core.php:98, inc/class-visitor-maps-core.php:117, inc/classes/class-whos-online-view.php:200
+#: inc/class-visitor-maps-core.php:97, inc/class-visitor-maps-core.php:98, inc/class-visitor-maps-core.php:117, inc/classes/class-whos-online-view.php:201
 msgid "Who's Been Online"
 msgstr ""
 
 #: inc/class-visitor-maps-core.php:113, inc/class-visitor-maps-core.php:183
 msgid "You do not have permissions for managing this option"
+msgstr ""
+
+#: inc/class-visitor-maps-core.php:117, inc/class-visitor-maps-core.php:172, inc/class-visitor-maps-core.php:187, inc/class-visitor-maps-core.php:240, inc/class-visitor-maps-core.php:264, inc/class-visitor-maps-core.php:454, inc/class-visitor-maps-core.php:496, inc/class-visitor-maps-core.php:1603, inc/class-visitor-maps-core.php:1621, inc/class-visitor-maps-core.php:1760, inc/classes/class-whos-online-map-page.php:66
+msgid "Visitor Maps"
 msgstr ""
 
 #. translators: %1$s: Blog URL.
@@ -709,6 +533,10 @@ msgstr ""
 
 #: inc/class-visitor-maps-core.php:172, inc/class-visitor-maps-core.php:240, inc/class-visitor-maps-core.php:496, inc/class-visitor-maps-core.php:1621, inc/class-visitor-maps-core.php:1760
 msgid "Powered by"
+msgstr ""
+
+#: inc/class-visitor-maps-core.php:187
+msgid "View Who's Online"
 msgstr ""
 
 #: inc/class-visitor-maps-core.php:375
@@ -727,7 +555,7 @@ msgstr ""
 msgid "View more maps in the "
 msgstr ""
 
-#: inc/class-visitor-maps-core.php:458
+#: inc/class-visitor-maps-core.php:458, inc/classes/class-whos-online-been.php:287, inc/classes/class-whos-online-view.php:208
 msgid "Visitor Map Viewer"
 msgstr ""
 
@@ -786,6 +614,170 @@ msgstr ""
 
 #: inc/class-visitor-maps-core.php:1755
 msgid "Map of Visitors</a>"
+msgstr ""
+
+#: inc/class-visitor-maps-enqueue.php:45
+msgid "An update is available."
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:67, inc/classes/class-whos-online-view.php:56, inc/classes/class-whos-online-view.php:87
+msgid "None"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:72, inc/classes/class-whos-online-view.php:92
+msgid "All"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:82, inc/classes/class-whos-online-view.php:102, inc/classes/class-whos-online-view.php:602
+msgid "Guests"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:103, inc/classes/class-whos-online-been.php:357, inc/classes/class-whos-online-view.php:252
+msgid "Who"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:108, inc/classes/class-whos-online-been.php:358
+msgid "Visits"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:113, inc/classes/class-whos-online-been.php:359
+msgid "Last Visit"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:118, inc/classes/class-whos-online-been.php:362, inc/classes/class-whos-online-view.php:255
+msgid "IP Address"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:123, inc/classes/class-whos-online-been.php:366, inc/classes/class-whos-online-view.php:260
+msgid "Location"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:128, inc/classes/class-whos-online-been.php:370, inc/classes/class-whos-online-view.php:268
+msgid "Last URL"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:152
+msgid "Descending"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:157
+msgid "Ascending"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:186, inc/classes/class-whos-online-been.php:625, inc/classes/class-whos-online-view.php:108, inc/classes/class-whos-online-view.php:528
+msgid "No"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:191, inc/classes/class-whos-online-been.php:627, inc/classes/class-whos-online-view.php:113, inc/classes/class-whos-online-view.php:530
+msgid "Yes"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:267, inc/classes/class-whos-online-view.php:190
+msgid "Profile Display:"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:271
+msgid "Sort:"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:277, inc/classes/class-whos-online-view.php:197
+msgid "Show Bots:"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:284, inc/classes/class-whos-online-view.php:204
+msgid "Visitor Maps Options"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:295, inc/classes/class-whos-online-been.php:295, inc/classes/class-whos-online-been.php:295, inc/classes/class-whos-online-been.php:734, inc/classes/class-whos-online-been.php:734, inc/classes/class-whos-online-view.php:215, inc/classes/class-whos-online-view.php:215, inc/classes/class-whos-online-view.php:215, inc/classes/class-whos-online-view.php:692, inc/classes/class-whos-online-view.php:692
+msgid "Active Guest"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:297, inc/classes/class-whos-online-been.php:297, inc/classes/class-whos-online-been.php:297, inc/classes/class-whos-online-been.php:726, inc/classes/class-whos-online-been.php:726, inc/classes/class-whos-online-view.php:217, inc/classes/class-whos-online-view.php:217, inc/classes/class-whos-online-view.php:217, inc/classes/class-whos-online-view.php:684, inc/classes/class-whos-online-view.php:684
+msgid "Inactive Guest"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:301, inc/classes/class-whos-online-been.php:301, inc/classes/class-whos-online-been.php:301, inc/classes/class-whos-online-been.php:722, inc/classes/class-whos-online-been.php:722, inc/classes/class-whos-online-view.php:221, inc/classes/class-whos-online-view.php:221, inc/classes/class-whos-online-view.php:221, inc/classes/class-whos-online-view.php:680, inc/classes/class-whos-online-view.php:680
+msgid "Active Bot"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:303, inc/classes/class-whos-online-been.php:303, inc/classes/class-whos-online-been.php:303, inc/classes/class-whos-online-been.php:720, inc/classes/class-whos-online-been.php:720, inc/classes/class-whos-online-view.php:223, inc/classes/class-whos-online-view.php:223, inc/classes/class-whos-online-view.php:223, inc/classes/class-whos-online-view.php:678, inc/classes/class-whos-online-view.php:678
+msgid "Inactive Bot"
+msgstr ""
+
+#. translators: %1$d = visitor count, %2$s = date.
+#. translators: %1$d = Visitor count, %2$s = Date.
+#: inc/classes/class-whos-online-been.php:315, inc/classes/class-whos-online-view.php:234
+msgid "%1$d visitors since %2$s"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:315, inc/classes/class-whos-online-view.php:234
+msgid "installation"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:325, inc/classes/class-whos-online-been.php:322, inc/classes/class-whos-online-been.php:675, inc/classes/class-whos-online-been.php:672
+msgid "FIRST"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:329, inc/classes/class-whos-online-been.php:322, inc/classes/class-whos-online-been.php:679, inc/classes/class-whos-online-been.php:672
+msgid "PREV"
+msgstr ""
+
+#. translators: %1$d = page num, %2$d = last page.
+#. translators: %1$d = page number, %2$d = last page.
+#: inc/classes/class-whos-online-been.php:333, inc/classes/class-whos-online-been.php:683
+msgid "Page %1$d of %2$d"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:341, inc/classes/class-whos-online-been.php:336, inc/classes/class-whos-online-been.php:691, inc/classes/class-whos-online-been.php:686
+msgid "NEXT"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:344, inc/classes/class-whos-online-been.php:336, inc/classes/class-whos-online-been.php:694, inc/classes/class-whos-online-been.php:686
+msgid "LAST"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:374, inc/classes/class-whos-online-view.php:273
+msgid "Referer"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:509, inc/classes/class-whos-online-view.php:414
+msgid "Error"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:494, inc/classes/class-whos-online-view.php:399, inc/classes/class-whos-online-view.php:615
+msgid "You"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:490, inc/classes/class-whos-online-view.php:395
+msgid "Guest"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:534, inc/classes/class-whos-online-view.php:429
+msgid "visits"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:540, inc/classes/class-whos-online-view.php:434
+msgid "host lookups not enabled"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:563, inc/classes/class-whos-online-been.php:563, inc/classes/class-whos-online-view.php:455, inc/classes/class-whos-online-view.php:455
+msgid "unknown"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:644, inc/classes/class-whos-online-view.php:554
+msgid "Last URL:"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:745, inc/classes/class-whos-online-view.php:704
+msgid "User Agent:"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:751, inc/classes/class-whos-online-view.php:710
+msgid "Host:"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:757, inc/classes/class-whos-online-view.php:715
+msgid "Referer:"
 msgstr ""
 
 #. translators: %d = Days to store results.
@@ -930,210 +922,49 @@ msgstr ""
 msgid "%1$d visitors since %2$d %3$s ago"
 msgstr ""
 
-#: inc/classes/class-whos-online-view.php:56, inc/classes/class-whos-online-view.php:87, inc/classes/class-wo-been.php:34
-msgid "None"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:92, inc/classes/class-wo-been.php:35
-msgid "All"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:102, inc/classes/class-whos-online-view.php:600, inc/classes/class-wo-been.php:37
-msgid "Guests"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:108, inc/classes/class-whos-online-view.php:526, inc/classes/class-wo-been.php:102, inc/classes/class-wo-been.php:501
-msgid "No"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:113, inc/classes/class-whos-online-view.php:528, inc/classes/class-wo-been.php:103, inc/classes/class-wo-been.php:503
-msgid "Yes"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:189, inc/classes/class-wo-been.php:175
-msgid "Profile Display:"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:193
+#: inc/classes/class-whos-online-view.php:194
 msgid "Refresh Rate:"
 msgstr ""
 
-#: inc/classes/class-whos-online-view.php:196, inc/classes/class-wo-been.php:180
-msgid "Show Bots:"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:214, inc/classes/class-whos-online-view.php:214, inc/classes/class-whos-online-view.php:214, inc/classes/class-whos-online-view.php:689, inc/classes/class-whos-online-view.php:689, inc/classes/class-wo-been.php:197, inc/classes/class-wo-been.php:197, inc/classes/class-wo-been.php:197, inc/classes/class-wo-been.php:589, inc/classes/class-wo-been.php:589
-msgid "Active Guest"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:216, inc/classes/class-whos-online-view.php:216, inc/classes/class-whos-online-view.php:216, inc/classes/class-whos-online-view.php:681, inc/classes/class-whos-online-view.php:681, inc/classes/class-wo-been.php:199, inc/classes/class-wo-been.php:199, inc/classes/class-wo-been.php:199, inc/classes/class-wo-been.php:583, inc/classes/class-wo-been.php:583
-msgid "Inactive Guest"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:220, inc/classes/class-whos-online-view.php:220, inc/classes/class-whos-online-view.php:220, inc/classes/class-whos-online-view.php:677, inc/classes/class-whos-online-view.php:677, inc/classes/class-wo-been.php:203, inc/classes/class-wo-been.php:203, inc/classes/class-wo-been.php:203, inc/classes/class-wo-been.php:579, inc/classes/class-wo-been.php:579
-msgid "Active Bot"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:222, inc/classes/class-whos-online-view.php:222, inc/classes/class-whos-online-view.php:222, inc/classes/class-whos-online-view.php:675, inc/classes/class-whos-online-view.php:675, inc/classes/class-wo-been.php:205, inc/classes/class-wo-been.php:205, inc/classes/class-wo-been.php:205, inc/classes/class-wo-been.php:577, inc/classes/class-wo-been.php:577
-msgid "Inactive Bot"
-msgstr ""
-
-#. translators: %1$d = Visitor count, %2$s = Date.
-#: inc/classes/class-whos-online-view.php:233, inc/classes/class-wo-been.php:216
-msgid "%1$d visitors since %2$s"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:233, inc/classes/class-wo-been.php:216
-msgid "installation"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:238
+#: inc/classes/class-whos-online-view.php:240
 msgid "Last refresh at"
 msgstr ""
 
-#: inc/classes/class-whos-online-view.php:249
+#: inc/classes/class-whos-online-view.php:251
 msgid "Online"
 msgstr ""
 
-#: inc/classes/class-whos-online-view.php:250, inc/classes/class-wo-been.php:49, inc/classes/class-wo-been.php:250
-msgid "Who"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:253, inc/classes/class-wo-been.php:52, inc/classes/class-wo-been.php:254
-msgid "IP Address"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:258, inc/classes/class-wo-been.php:53, inc/classes/class-wo-been.php:257
-msgid "Location"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:261
+#: inc/classes/class-whos-online-view.php:263
 msgid "Entry"
 msgstr ""
 
-#: inc/classes/class-whos-online-view.php:262
+#: inc/classes/class-whos-online-view.php:264
 msgid "Last Click"
 msgstr ""
 
-#: inc/classes/class-whos-online-view.php:266, inc/classes/class-wo-been.php:54, inc/classes/class-wo-been.php:262
-msgid "Last URL"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:271, inc/classes/class-wo-been.php:266
-msgid "Referer"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:412, inc/classes/class-wo-been.php:388
-msgid "Error"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:397, inc/classes/class-whos-online-view.php:613, inc/classes/class-wo-been.php:373
-msgid "You"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:393, inc/classes/class-wo-been.php:369
-msgid "Guest"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:427, inc/classes/class-wo-been.php:413
-msgid "visits"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:432, inc/classes/class-wo-been.php:419
-msgid "host lookups not enabled"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:453, inc/classes/class-whos-online-view.php:453, inc/classes/class-wo-been.php:442, inc/classes/class-wo-been.php:442
-msgid "unknown"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:552, inc/classes/class-wo-been.php:517
-msgid "Last URL:"
-msgstr ""
-
 #. translators: %1$d = Inactive minutes, %2$d = Removed minutes.
-#: inc/classes/class-whos-online-view.php:580
+#: inc/classes/class-whos-online-view.php:582
 msgid "Visitors online (Considered inactive after %1$d minutes. Removed after %2$d minutes)"
 msgstr ""
 
-#: inc/classes/class-whos-online-view.php:587
+#: inc/classes/class-whos-online-view.php:589
 msgid "Duplicate IPs"
 msgstr ""
 
-#: inc/classes/class-whos-online-view.php:594
+#: inc/classes/class-whos-online-view.php:596
 msgid "Members (includes you)"
 msgstr ""
 
-#: inc/classes/class-whos-online-view.php:602
+#: inc/classes/class-whos-online-view.php:604
 msgid "are active"
 msgstr ""
 
-#: inc/classes/class-whos-online-view.php:619
+#: inc/classes/class-whos-online-view.php:621
 msgid "Your IP Address:"
 msgstr ""
 
-#: inc/classes/class-whos-online-view.php:624
+#: inc/classes/class-whos-online-view.php:626
 msgid "Your Host:"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:701, inc/classes/class-wo-been.php:595
-msgid "User Agent:"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:707, inc/classes/class-wo-been.php:601
-msgid "Host:"
-msgstr ""
-
-#: inc/classes/class-whos-online-view.php:712, inc/classes/class-wo-been.php:607
-msgid "Referer:"
-msgstr ""
-
-#: inc/classes/class-wo-been.php:50, inc/classes/class-wo-been.php:251
-msgid "Visits"
-msgstr ""
-
-#: inc/classes/class-wo-been.php:51, inc/classes/class-wo-been.php:252
-msgid "Last Visit"
-msgstr ""
-
-#: inc/classes/class-wo-been.php:75
-msgid "Descending"
-msgstr ""
-
-#: inc/classes/class-wo-been.php:76
-msgid "Ascending"
-msgstr ""
-
-#: inc/classes/class-wo-been.php:178
-msgid "Sort:"
-msgstr ""
-
-#: inc/classes/class-wo-been.php:189
-msgid "<a href=\"%s\">Visitor Map Viewer</a>"
-msgstr ""
-
-#: inc/classes/class-wo-been.php:225, inc/classes/class-wo-been.php:223, inc/classes/class-wo-been.php:547, inc/classes/class-wo-been.php:545
-msgid "FIRST"
-msgstr ""
-
-#: inc/classes/class-wo-been.php:227, inc/classes/class-wo-been.php:223, inc/classes/class-wo-been.php:549, inc/classes/class-wo-been.php:545
-msgid "PREV"
-msgstr ""
-
-#: inc/classes/class-wo-been.php:230, inc/classes/class-wo-been.php:552
-msgid "Page %1$d of %2$d"
-msgstr ""
-
-#: inc/classes/class-wo-been.php:236, inc/classes/class-wo-been.php:233, inc/classes/class-wo-been.php:558, inc/classes/class-wo-been.php:555
-msgid "NEXT"
-msgstr ""
-
-#: inc/classes/class-wo-been.php:237, inc/classes/class-wo-been.php:233, inc/classes/class-wo-been.php:559, inc/classes/class-wo-been.php:555
-msgid "LAST"
-msgstr ""
-
-#: inc/enqueue.php:37
-msgid "An update is available."
 msgstr ""
 
 #: visitor-maps-worldmap.php:287, visitor-maps-worldmap.php:303

@@ -106,11 +106,24 @@ if ( ! class_exists( 'Visitor_Maps_AJAX' ) ) {
 				if ( isset( $error_data['code'] ) ) {
 					switch ( $error_data['code'] ) {
 						case 401:
-							return new WP_Error( 'visitormaps_maxmind_geolocation_database_license_key', __( 'The MaxMind license key is invalid. If you have recently created this key, you may need to wait for it to become active.', 'visitor-maps' ) );
+							echo wp_json_encode(
+								array(
+									'status' => 'error',
+									'error'  => esc_html__( 'The MaxMind license key is invalid. If you have recently created this key, you may need to wait for it to become active.', 'visitor-maps' ),
+								)
+							);
+
+							die;
 					}
 				}
+				echo wp_json_encode(
+					array(
+						'status' => 'error',
+						'error'  => esc_html__( 'Failed to download the MaxMind database.', 'visitor-maps' ),
+					)
+				);
 
-				return new WP_Error( 'visitormaps_maxmind_geolocation_database_download', __( 'Failed to download the MaxMind database.', 'visitor-maps' ) );
+				die;
 			}
 
 			// Extract the database from the archive.
