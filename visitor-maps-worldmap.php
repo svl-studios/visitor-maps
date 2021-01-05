@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || exit;
 $wo_table_wo = $wpdb->prefix . 'visitor_maps_wo';
 
 if ( ! Visitor_Maps::$core->get_option( 'enable_location_plugin' ) ) {
-	return '<p>get_visitor_maps_worldmap ' . ' ' . __( 'error: geolocation data not enabled or installed', 'visitor-maps' ) . '</p>';
+	return '<p>get_visitor_maps_worldmap ' . ' ' . esc_html__( 'error: geolocation data not enabled or installed', 'visitor-maps' ) . '</p>';
 }
 
 $C = $G = array();
@@ -284,7 +284,7 @@ if ( $rows_arr ) { // check of there are any visitors
 			if ( Visitor_Maps::$core->get_option( 'enable_users_map_hover' ) && $row['user_id'] > 0 && $row['name'] != '' ) {
 				// find name for logged in user
 				// different pin color for logged in user
-				$title_pre = $row['name'] . ' ' . __( 'from', 'visitor-maps' ) . ' ';
+				$title_pre = $row['name'] . ' ' . esc_html__( 'from', 'visitor-maps' ) . ' ';
 				if ( $G['pin'] == 1 ) {
 					$this_image_pin = str_replace( '.jpg', '-user.jpg', $image_pin );
 				}
@@ -300,7 +300,7 @@ if ( $rows_arr ) { // check of there are any visitors
 							while ( $tok !== false ) {
 								if ( strlen( strtolower( $tok ) ) > 3 ) {
 									if ( ! strstr( strtolower( $tok ), "mozilla" ) && ! strstr( strtolower( $tok ), "compatible" ) && ! strstr( strtolower( $tok ), "msie" ) && ! strstr( strtolower( $tok ), "windows" ) ) {
-										$title_pre = $tok . ' ' . __( 'from', 'visitor-maps' ) . ' ';
+										$title_pre = $tok . ' ' . esc_html__( 'from', 'visitor-maps' ) . ' ';
 										if ( $G['pin'] == 1 ) {
 											$this_image_pin = str_replace( '.jpg', '-bot.jpg', $image_pin );
 										}

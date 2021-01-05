@@ -182,15 +182,15 @@ if ( ! class_exists( 'Whos_Online_View_Maps' ) ) {
 				if ( $time > 0 && ( 'minute' === $units || 'minutes' === $units ) ) {
 					$seconds_ago    = ( $time * 60 ); // minutes.
 					$units_filtered = $units;
-					$units_lang     = __( 'minutes', 'visitor-maps' );
+					$units_lang     = esc_html__( 'minutes', 'visitor-maps' );
 				} elseif ( $time > 0 && ( 'hour' === $units || 'hours' === $units ) ) {
 					$seconds_ago    = ( $time * 60 * 60 ); // hours.
 					$units_filtered = $units;
-					$units_lang     = __( 'hours', 'visitor-maps' );
+					$units_lang     = esc_html__( 'hours', 'visitor-maps' );
 				} elseif ( $time > 0 && ( 'day' === $units || 'days' === $units ) ) {
 					$seconds_ago    = ( $time * 60 * 60 * 24 ); // days.
 					$units_filtered = $units;
-					$units_lang     = __( 'days', 'visitor-maps' );
+					$units_lang     = esc_html__( 'days', 'visitor-maps' );
 				} else {
 					$seconds_ago = absint( Visitor_Maps::$core->get_option( 'track_time' ) * 60 ); // default.
 				}
