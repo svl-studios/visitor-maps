@@ -640,8 +640,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 														$geoip_file_time   = filemtime( Visitor_Maps::$upload_dir . Visitor_Maps::DATABASE_NAME . Visitor_Maps::DATABASE_EXT );
 														$geoip_days_ago    = floor( ( strtotime( gmdate( 'Y-m-d' ) . ' 00:00:00' ) - strtotime( gmdate( 'Y-m-d', $geoip_file_time ) . ' 00:00:00' ) ) / ( 60 * 60 * 24 ) );
 														$geoip_begin_month = strtotime( '01-' . gmdate( 'm' ) . '-' . gmdate( 'Y' ) );
-var_dump('filetime: ' . $geoip_file_time);
-var_dump($geoip_begin_month);
+
 														if ( $geoip_begin_month > $geoip_file_time ) {
 															$geoip_old = $this->check_geoip_date( $geoip_file_time );
 														}

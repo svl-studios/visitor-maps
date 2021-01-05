@@ -1292,11 +1292,11 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Get World map.
 		 *
-		 * @param int $MS Who knows.
+		 * @param int $ms Who knows.
 		 *
 		 * @return mixed
 		 */
-		public function get_visitor_maps_worldmap( $MS = 0 ) { // phpcs:ignore WordPress.NamingConventions.ValidVariableName
+		public function get_visitor_maps_worldmap( $ms = 0 ) {
 			global $wpdb;
 
 			require_once Visitor_Maps::$dir . '/visitor-maps-worldmap.php';

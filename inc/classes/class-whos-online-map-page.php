@@ -61,9 +61,9 @@ if ( ! class_exists( 'Whos_Online_Map_Page' ) ) {
 			}
 
 			?>
-			<div>
+			<div class="wo-mp">
 				<form method="post" name="time_select" action="">
-					<h3><?php echo esc_html__( 'Visitor Maps', 'visitor-maps' ); ?></h3>
+					<h3 class="vm-h3"><?php echo esc_html__( 'Visitor Maps', 'visitor-maps' ); ?></h3>
 					<p>
 						<?php // translators: %d = Days to store results. ?>
 						<?php printf( esc_html__( 'Select a time period up to %d days ago', 'visitor-maps' ), intval( Visitor_Maps::$core->get_option( 'store_days' ) ) ); ?>
