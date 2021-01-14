@@ -8,8 +8,62 @@
 	$( document ).ready(
 		function() {
 			$.visitorMaps.switchClick();
+			$.visitorMaps.mapConsoleClick();
+			$.visitorMaps.whoIsClick();
+			$.visitorMaps.pageNavClick();
 		}
 	);
+
+	$.visitorMaps.pageNavClick = function( ) {
+		var obj = $( '.visitors-pagination .page-nav' );
+
+		obj.on(
+			'click',
+			function( e ) {
+				var pageno = $( this ).data( 'pageno' );
+
+				e.preventDefault();
+
+				$( '.visitor-maps-data #pageno' ).val( pageno );
+
+				document.getElementById( 'vm_nav' ).submit();
+			}
+		);
+	};
+
+	$.visitorMaps.whoIsClick = function( ) {
+		var whoIsLink = $( '.visitor-maps-data a.whois-lookup, a.whois-lookup' );
+
+		whoIsLink.on(
+			'click',
+			function( e ) {
+				e.preventDefault();
+
+				window.open(
+					whoIsLink.attr( 'href' ),
+					'who_is_lookup',
+					'height=650,width=800,toolbar=no,statusbar=no,scrollbars=yes'
+				).focus();
+			}
+		);
+	};
+
+	$.visitorMaps.mapConsoleClick = function( ) {
+		var mapLink = $( '.visitor-map-actions a.map-console, a.map-console-bottom' );
+
+		mapLink.on(
+			'click',
+			function( e ) {
+				e.preventDefault();
+
+				window.open(
+					mapLink.attr( 'href' ),
+					'wo_map_console',
+					'height=650,width=800,toolbar=no,statusbar=no,scrollbars=yes'
+				).focus();
+			}
+		);
+	};
 
 	$.visitorMaps.switchClick = function() {
 		var redux = $( '.redux-main .location-enable .switch-options label' );

@@ -199,11 +199,11 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 						<a href="<?php echo esc_url( admin_url( 'admin.php?page=whos-been-online' ) ); ?>"><?php echo esc_html__( "Who's Been Online", 'visitor-maps' ); ?></a>
 						<?php
 						if ( current_user_can( 'manage_options' ) ) {
-							echo '<br /> <a href="' . esc_url( admin_url( 'options-general.php?page=visitor_maps_opt' ) ) . '">' . esc_html__( 'Visitor Maps Options', 'visitor-maps' ) . "</a>\n";
+							echo '<br /> <a href="' . esc_url( admin_url( 'admin.php?page=visitor_maps_opt' ) ) . '">' . esc_html__( 'Visitor Maps Options', 'visitor-maps' ) . "</a>\n";
 						}
 
 						if ( Visitor_Maps::$core->get_option( 'enable_location_plugin' ) ) {
-							echo '<br /><a onclick="wo_map_console(this.href); return false;" href="' . esc_url( get_bloginfo( 'url' ) ) . '?wo_map_console=1>' . esc_html__( 'Visitor Map Viewer', 'visitor-maps' ) . '</a>';
+							echo '<br /><a class="" onclick="wo_map_console(this.href); return false;" href="' . esc_url( get_bloginfo( 'url' ) ) . '?wo_map_console=1>' . esc_html__( 'Visitor Map Viewer', 'visitor-maps' ) . '</a>';
 						}
 						?>
 					</td>
@@ -437,7 +437,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 																	}
 
 																	if ( Visitor_Maps::$core->get_option( 'whois_url_popup' ) ) {
-																		echo '<a href="' . esc_url( Visitor_Maps::$core->get_option( 'whois_url' ) . $whos_online['ip_address'] ) . '" onclick="who_is(this.href); return false;" title="' . esc_attr( $this_host ) . '">' . esc_html( $whos_online['ip_address'] ) . esc_html( $this_nick ) . '</a>';
+																		echo '<a class="whois-lookup" href="' . esc_url( Visitor_Maps::$core->get_option( 'whois_url' ) . $whos_online['ip_address'] ) . '" title="' . esc_attr( $this_host ) . '">' . esc_html( $whos_online['ip_address'] ) . esc_html( $this_nick ) . '</a>';
 																	} else {
 																		echo '<a href="' . esc_url( Visitor_Maps::$core->get_option( 'whois_url' ) . $whos_online['ip_address'] ) . '" title="' . esc_attr( $this_host ) . '" target="_blank">' . esc_html( $whos_online['ip_address'] ) . esc_html( $this_nick ) . '</a>';
 																	}

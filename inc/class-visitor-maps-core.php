@@ -33,7 +33,6 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 			add_action( 'admin_head', array( $this, 'activity' ), 1 );
 			add_action( 'wp_footer', array( $this, 'public_footer_stats' ), 1 );
 			add_action( 'admin_footer', array( $this, 'admin_footer_stats' ), 1 );
-			add_action( 'wp_footer', array( $this, 'add_script' ) );
 
 			add_shortcode( 'visitor-maps', array( $this, 'shortcode' ), 1 );
 
@@ -164,7 +163,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 				if ( ! Visitor_Maps::$core->get_option( 'hide_console' ) || ( Visitor_Maps::$core->get_option( 'hide_console' ) && current_user_can( 'manage_options' ) ) ) {
 
 					// translators: %1$s: Blog URL.
-					echo '<p>' . sprintf( esc_html__( 'View more maps in the %1$s', 'visitor-maps' ), '<a onclick="wo_map_console(this.href); return false;" href="' . esc_url( get_bloginfo( 'url' ) ) . '?wo_map_console=1">' . esc_html__( 'Visitor Map Viewer', 'visitor-maps' ) . '</a>' ) . '</p>';
+					echo '<p>' . sprintf( esc_html__( 'View more maps in the %1$s', 'visitor-maps' ), '<a class="map-console-bottom" href="' . esc_url( get_bloginfo( 'url' ) ) . '?wo_map_console=1">' . esc_html__( 'Visitor Map Viewer', 'visitor-maps' ) . '</a>' ) . '</p>';
 				}
 			}
 
@@ -232,7 +231,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 				if ( ! Visitor_Maps::$core->get_option( 'hide_console' ) || ( Visitor_Maps::$core->get_option( 'hide_console' ) && current_user_can( 'manage_options' ) ) ) {
 
 					// translators: %1$s: Blog URL.
-					echo '<p>' . sprintf( esc_html__( 'View more maps in the %1$s', 'visitor-maps' ), '<a onclick="wo_map_console(this.href); return false;" href="' . esc_url( get_bloginfo( 'url' ) ) . '?wo_map_console=1">' . esc_html__( 'Visitor Map Viewer', 'visitor-maps' ) . '</a>' ) . '</p>';
+					echo '<p>' . sprintf( esc_html__( 'View more maps in the %1$s', 'visitor-maps' ), '<a class="map-console-bottom" href="' . esc_url( get_bloginfo( 'url' ) ) . '?wo_map_console=1">' . esc_html__( 'Visitor Map Viewer', 'visitor-maps' ) . '</a>' ) . '</p>';
 				}
 			}
 
@@ -455,7 +454,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 				}
 
 				if ( ! Visitor_Maps::$core->get_option( 'hide_console' ) || ( Visitor_Maps::$core->get_option( 'hide_console' ) && current_user_can( 'manage_options' ) ) ) {
-					$string .= '<p>' . esc_html__( 'View more maps in the ', 'visitor-maps' ) . '<a onclick="wo_map_console(this.href); return false;" href="' . get_bloginfo( 'url' ) . '?wo_map_console=1">' . esc_html__( 'Visitor Map Viewer', 'visitor-maps' ) . '</a></p>';
+					$string .= '<p>' . esc_html__( 'View more maps in the ', 'visitor-maps' ) . '<a class="map-console-bottom" href="' . get_bloginfo( 'url' ) . '?wo_map_console=1">' . esc_html__( 'Visitor Map Viewer', 'visitor-maps' ) . '</a></p>';
 				}
 			}
 
@@ -497,25 +496,6 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 			}
 
 			return $string;
-		}
-
-		/**
-		 * Add script.
-		 */
-		public function add_script() {
-			?>
-			<!-- begin visitor maps  -->
-			<script type="text/javascript">
-				//<![CDATA[
-				function wo_map_console( url ) {
-					window.open(
-						url, "wo_map_console", "height=650,width=800,toolbar=no,statusbar=no,scrollbars=yes" ).focus();
-				}
-
-				//]]>
-			</script>
-			<!-- end visitor maps -->
-			<?php
 		}
 
 		/**
@@ -614,70 +594,6 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 
 					echo '<meta http-equiv="refresh" content="' . esc_html( $wo_prefs_arr['refresh'] ) . ';URL=' . esc_url( admin_url( 'admin.php?page=visitor-maps' ) ) . $query . '" />'; // phpcs:ignore WordPress.Security.EscapeOutput
 				}
-				?>
-				<script type="text/javascript">
-					//<![CDATA[
-					function who_is( url ) {
-						window.open(
-							url, "who_is_lookup",
-							"height=650,width=800,toolbar=no,statusbar=no,scrollbars=yes"
-						).focus();
-					}
-
-					function wo_map_console( url ) {
-						window.open(
-							url, "wo_map_console",
-							"height=650,width=800,toolbar=no,statusbar=no,scrollbars=yes"
-						).focus();
-					}
-
-					//]]>
-				</script>
-				<!-- end visitor maps - whos online page header code -->
-				<?php
-			}
-
-			if ( isset( $_GET['page'] ) && is_string( $_GET['page'] ) && preg_match( '/class.visitor-maps.php$/', sanitize_text_field( wp_unslash( $_GET['page'] ) ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-				?>
-				<!-- begin visitor maps - settings page header code -->
-				<script type="text/javascript">
-					<!--
-					function wo_map_console( url ) {
-						window.open(
-							url, "wo_map_console",
-							"height=650,width=800,toolbar=no,statusbar=no,scrollbars=yes"
-						).focus();
-					}
-
-					//-->
-				</script>
-				<!-- end visitor maps - settings page header code -->
-				<?php
-			}
-
-			if ( isset( $_GET['page'] ) && is_string( $_GET['page'] ) && 'whos-been-online' === $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification
-				?>
-				<!-- begin visitor maps - whos been online page header code -->
-				<script type="text/javascript">
-					<!--
-					function who_is( url ) {
-						window.open(
-							url, "who_is_lookup",
-							"height=650,width=800,toolbar=no,statusbar=no,scrollbars=yes"
-						).focus();
-					}
-
-					function wo_map_console( url ) {
-						window.open(
-							url, "wo_map_console",
-							"height=650,width=800,toolbar=no,statusbar=no,scrollbars=yes"
-						).focus();
-					}
-
-					//-->
-				</script>
-				<!-- end visitor maps - whos been online page header code -->
-				<?php
 			}
 		}
 
@@ -730,7 +646,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 			}
 
 			if ( $file === $this_plugin ) {
-				$settings_link = '<a href="options-general.php?page=visitor_maps_opt">' . esc_html( esc_html__( 'Settings', 'visitor-maps' ) ) . '</a>';
+				$settings_link = '<a href="admin.php?page=visitor_maps_opt">' . esc_html( esc_html__( 'Settings', 'visitor-maps' ) ) . '</a>';
 				array_unshift( $links, $settings_link );
 			}
 

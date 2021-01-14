@@ -32,7 +32,13 @@ if ( ! class_exists( 'Visitor_Maps_Enqueue' ) ) {
 
 			$min = Redux_Functions::isMin();
 
-			wp_enqueue_script( 'visitor-maps', Visitor_Maps::$url . 'js/visitor-maps' . $min . '.js', array( 'jquery' ), Visitor_Maps::VERSION, true );
+			wp_enqueue_script(
+				'visitor-maps',
+				Visitor_Maps::$url . 'js/visitor-maps.js',
+				array( 'jquery' ),
+				Visitor_Maps::VERSION,
+				true
+			);
 
 			wp_localize_script(
 				'visitor-maps',
