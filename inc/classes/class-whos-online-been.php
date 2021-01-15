@@ -339,7 +339,7 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 								<table class="outer-table">
 									<tr>
 										<td>
-											<table class="inner-table">
+											<table class="widefat inner-table">
 												<tr class="table-top">
 													<td>&nbsp;</td>
 													<td>&nbsp;<?php echo esc_html__( 'Who', 'visitor-maps' ); ?></td>
