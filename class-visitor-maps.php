@@ -254,6 +254,21 @@ if ( ! class_exists( 'Visitor_Maps' ) ) {
 		}
 
 		/**
+		 * Backup .htaccess.
+		 *
+		 * @param string $htbackup Backup file name.
+		 *
+		 * @return bool
+		 */
+		private function vm_backup_htaccess( $htbackup ) {
+			if ( ! copy( ABSPATH . '.htaccess', $htbackup ) ) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+		/**
 		 * Install extended options.
 		 */
 		public static function vm_install() {
@@ -269,7 +284,7 @@ if ( ! class_exists( 'Visitor_Maps' ) ) {
 				$htbackup = ABSPATH . '.htaccess.backup.' . wp_generate_password( 6, false );
 
 				update_option( 'vm_htbackup', $htbackup );
-				if ( ! vm_backup_htaccess( $htbackup ) ) {
+				if ( ! self::vm_backup_htaccess( $htbackup ) ) {
 					update_option( 'htaccess_warning', true );
 					update_option( 'vm_htaccess', false );
 				} else {
