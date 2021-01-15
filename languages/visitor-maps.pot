@@ -509,7 +509,7 @@ msgstr ""
 msgid "click here to update"
 msgstr ""
 
-#: inc/class-visitor-maps-core.php:84, inc/class-visitor-maps-core.php:85, inc/class-visitor-maps-core.php:1479, inc/class-visitor-maps-core.php:1507, inc/class-visitor-maps-core.php:1523, inc/class-visitor-maps-core.php:1532, inc/classes/class-whos-online-been.php:281
+#: inc/class-visitor-maps-core.php:84, inc/class-visitor-maps-core.php:85, inc/class-visitor-maps-core.php:1479, inc/class-visitor-maps-core.php:1507, inc/class-visitor-maps-core.php:1523, inc/class-visitor-maps-core.php:1532, inc/classes/class-whos-online-been.php:284
 msgid "Who's Online"
 msgstr ""
 
@@ -531,7 +531,7 @@ msgstr ""
 msgid "View more maps in the %1$s"
 msgstr ""
 
-#: inc/class-visitor-maps-core.php:166, inc/class-visitor-maps-core.php:234, inc/class-visitor-maps-core.php:457, inc/classes/class-whos-online-been.php:287, inc/classes/class-whos-online-view.php:206
+#: inc/class-visitor-maps-core.php:166, inc/class-visitor-maps-core.php:234, inc/class-visitor-maps-core.php:457, inc/classes/class-whos-online-been.php:290, inc/classes/class-whos-online-view.php:206
 msgid "Visitor Map Viewer"
 msgstr ""
 
@@ -551,7 +551,7 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: inc/class-visitor-maps-core.php:365
+#: inc/class-visitor-maps-core.php:365, inc/class-visitor-maps-extended.php:118
 msgid "Powered by Visitor Maps"
 msgstr ""
 
@@ -620,6 +620,104 @@ msgstr ""
 msgid "An update is available."
 msgstr ""
 
+#: inc/class-visitor-maps-enqueue.php:53
+msgid "Automatic Update"
+msgstr ""
+
+#: inc/class-visitor-maps-enqueue.php:54
+msgid "Auto Update"
+msgstr ""
+
+#: inc/class-visitor-maps-enqueue.php:55
+msgid "Refresh grid every"
+msgstr ""
+
+#: inc/class-visitor-maps-enqueue.php:56
+msgid "On"
+msgstr ""
+
+#: inc/class-visitor-maps-enqueue.php:57
+msgid "minutes(s)"
+msgstr ""
+
+#: inc/class-visitor-maps-enqueue.php:58
+msgid "Update Settings"
+msgstr ""
+
+#: inc/class-visitor-maps-extended.php:41
+msgid "Visitor Maps Notice"
+msgstr ""
+
+#. translators: %1$s = path to .htaccess, %2$s = path to .htaccess.
+#: inc/class-visitor-maps-extended.php:58
+msgid "%1$s could not be copied. IP and referer banning have been disabled. To enable those features, be sure %2$s exists, then reactivate the plugin."
+msgstr ""
+
+#: inc/class-visitor-maps-extended.php:46
+msgid "%s could not be found. IP and referer banning have been disabled."
+msgstr ""
+
+#: inc/class-visitor-maps-extended.php:49
+msgid "To enable IP and referer banning features, be sure %s exists, then reactivate the plugin."
+msgstr ""
+
+#: inc/class-visitor-maps-extended.php:51
+msgid "Press to generate a new file"
+msgstr ""
+
+#: inc/class-visitor-maps-extended.php:51
+msgid "Create A New .htaccess File Now"
+msgstr ""
+
+#: inc/class-visitor-maps-extended.php:53
+msgid "Press to dismiss this warning. Banning features will not be enabled."
+msgstr ""
+
+#: inc/class-visitor-maps-extended.php:118, inc/classes/class-whos-online-been.php:684, inc/classes/class-whos-online-been.php:681
+msgid "FIRST"
+msgstr ""
+
+#: inc/class-visitor-maps-extended.php:118, inc/classes/class-whos-online-view.php:271
+msgid "Referer"
+msgstr ""
+
+#: inc/class-visitor-maps-extended.php:142, inc/class-visitor-maps-extended.php:213
+msgid "successfully banned!"
+msgstr ""
+
+#: inc/class-visitor-maps-extended.php:137, inc/class-visitor-maps-extended.php:208
+msgid "is already banned!"
+msgstr ""
+
+#: inc/class-visitor-maps-extended.php:172, inc/class-visitor-maps-extended.php:247
+msgid "successfully unbanned!"
+msgstr ""
+
+#: inc/class-visitor-maps-extended.php:188
+msgid "All referers successfully unbanned!"
+msgstr ""
+
+#: inc/class-visitor-maps-extended.php:263
+msgid "All IP addresses successfully unbanned!"
+msgstr ""
+
+#. translators: %s = path to .htaccess.
+#: inc/class-visitor-maps-extended.php:388
+msgid "%s could not be created!"
+msgstr ""
+
+#: inc/class-visitor-maps-extended.php:384
+msgid "%s successfully created!"
+msgstr ""
+
+#: inc/class-visitor-maps-extended.php:384
+msgid "Deactivate and reactivate the plugin now"
+msgstr ""
+
+#: inc/class-visitor-maps-extended.php:411
+msgid "Auto update settings successfully updated."
+msgstr ""
+
 #: inc/classes/class-whos-online-been.php:65, inc/classes/class-whos-online-view.php:54, inc/classes/class-whos-online-view.php:85
 msgid "None"
 msgstr ""
@@ -632,27 +730,27 @@ msgstr ""
 msgid "Guests"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:101, inc/classes/class-whos-online-been.php:357, inc/classes/class-whos-online-view.php:250
+#: inc/classes/class-whos-online-been.php:101, inc/classes/class-whos-online-been.php:345, inc/classes/class-whos-online-view.php:250
 msgid "Who"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:106, inc/classes/class-whos-online-been.php:358
+#: inc/classes/class-whos-online-been.php:106, inc/classes/class-whos-online-been.php:346
 msgid "Visits"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:111, inc/classes/class-whos-online-been.php:359
+#: inc/classes/class-whos-online-been.php:111, inc/classes/class-whos-online-been.php:347
 msgid "Last Visit"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:116, inc/classes/class-whos-online-been.php:362, inc/classes/class-whos-online-view.php:253
+#: inc/classes/class-whos-online-been.php:116, inc/classes/class-whos-online-been.php:350, inc/classes/class-whos-online-view.php:253
 msgid "IP Address"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:121, inc/classes/class-whos-online-been.php:366, inc/classes/class-whos-online-view.php:258
+#: inc/classes/class-whos-online-been.php:121, inc/classes/class-whos-online-been.php:354, inc/classes/class-whos-online-view.php:258
 msgid "Location"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:126, inc/classes/class-whos-online-been.php:370, inc/classes/class-whos-online-view.php:266
+#: inc/classes/class-whos-online-been.php:126, inc/classes/class-whos-online-been.php:358, inc/classes/class-whos-online-view.php:266
 msgid "Last URL"
 msgstr ""
 
@@ -664,119 +762,114 @@ msgstr ""
 msgid "Ascending"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:184, inc/classes/class-whos-online-been.php:626, inc/classes/class-whos-online-view.php:106, inc/classes/class-whos-online-view.php:538
+#: inc/classes/class-whos-online-been.php:184, inc/classes/class-whos-online-been.php:614, inc/classes/class-whos-online-view.php:106, inc/classes/class-whos-online-view.php:538
 msgid "No"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:189, inc/classes/class-whos-online-been.php:628, inc/classes/class-whos-online-view.php:111, inc/classes/class-whos-online-view.php:540
+#: inc/classes/class-whos-online-been.php:189, inc/classes/class-whos-online-been.php:616, inc/classes/class-whos-online-view.php:111, inc/classes/class-whos-online-view.php:540
 msgid "Yes"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:267, inc/classes/class-whos-online-view.php:188
+#: inc/classes/class-whos-online-been.php:270, inc/classes/class-whos-online-view.php:188
 msgid "Profile Display:"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:271
+#: inc/classes/class-whos-online-been.php:274
 msgid "Sort:"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:277, inc/classes/class-whos-online-view.php:195
+#: inc/classes/class-whos-online-been.php:280, inc/classes/class-whos-online-view.php:195
 msgid "Show Bots:"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:284, inc/classes/class-whos-online-view.php:202
+#: inc/classes/class-whos-online-been.php:287, inc/classes/class-whos-online-view.php:202
 msgid "Visitor Maps Options"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:295, inc/classes/class-whos-online-been.php:295, inc/classes/class-whos-online-been.php:295, inc/classes/class-whos-online-been.php:739, inc/classes/class-whos-online-been.php:739, inc/classes/class-whos-online-view.php:213, inc/classes/class-whos-online-view.php:213, inc/classes/class-whos-online-view.php:213, inc/classes/class-whos-online-view.php:700, inc/classes/class-whos-online-view.php:700
+#: inc/classes/class-whos-online-been.php:298, inc/classes/class-whos-online-been.php:298, inc/classes/class-whos-online-been.php:298, inc/classes/class-whos-online-been.php:742, inc/classes/class-whos-online-been.php:742, inc/classes/class-whos-online-view.php:213, inc/classes/class-whos-online-view.php:213, inc/classes/class-whos-online-view.php:213, inc/classes/class-whos-online-view.php:700, inc/classes/class-whos-online-view.php:700
 msgid "Active Guest"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:297, inc/classes/class-whos-online-been.php:297, inc/classes/class-whos-online-been.php:297, inc/classes/class-whos-online-been.php:731, inc/classes/class-whos-online-been.php:731, inc/classes/class-whos-online-view.php:215, inc/classes/class-whos-online-view.php:215, inc/classes/class-whos-online-view.php:215, inc/classes/class-whos-online-view.php:692, inc/classes/class-whos-online-view.php:692
+#: inc/classes/class-whos-online-been.php:300, inc/classes/class-whos-online-been.php:300, inc/classes/class-whos-online-been.php:300, inc/classes/class-whos-online-been.php:734, inc/classes/class-whos-online-been.php:734, inc/classes/class-whos-online-view.php:215, inc/classes/class-whos-online-view.php:215, inc/classes/class-whos-online-view.php:215, inc/classes/class-whos-online-view.php:692, inc/classes/class-whos-online-view.php:692
 msgid "Inactive Guest"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:301, inc/classes/class-whos-online-been.php:301, inc/classes/class-whos-online-been.php:301, inc/classes/class-whos-online-been.php:727, inc/classes/class-whos-online-been.php:727, inc/classes/class-whos-online-view.php:219, inc/classes/class-whos-online-view.php:219, inc/classes/class-whos-online-view.php:219, inc/classes/class-whos-online-view.php:688, inc/classes/class-whos-online-view.php:688
+#: inc/classes/class-whos-online-been.php:304, inc/classes/class-whos-online-been.php:304, inc/classes/class-whos-online-been.php:304, inc/classes/class-whos-online-been.php:730, inc/classes/class-whos-online-been.php:730, inc/classes/class-whos-online-view.php:219, inc/classes/class-whos-online-view.php:219, inc/classes/class-whos-online-view.php:219, inc/classes/class-whos-online-view.php:688, inc/classes/class-whos-online-view.php:688
 msgid "Active Bot"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:303, inc/classes/class-whos-online-been.php:303, inc/classes/class-whos-online-been.php:303, inc/classes/class-whos-online-been.php:725, inc/classes/class-whos-online-been.php:725, inc/classes/class-whos-online-view.php:221, inc/classes/class-whos-online-view.php:221, inc/classes/class-whos-online-view.php:221, inc/classes/class-whos-online-view.php:686, inc/classes/class-whos-online-view.php:686
+#: inc/classes/class-whos-online-been.php:306, inc/classes/class-whos-online-been.php:306, inc/classes/class-whos-online-been.php:306, inc/classes/class-whos-online-been.php:728, inc/classes/class-whos-online-been.php:728, inc/classes/class-whos-online-view.php:221, inc/classes/class-whos-online-view.php:221, inc/classes/class-whos-online-view.php:221, inc/classes/class-whos-online-view.php:686, inc/classes/class-whos-online-view.php:686
 msgid "Inactive Bot"
 msgstr ""
 
 #. translators: %1$d = visitor count, %2$s = date.
 #. translators: %1$d = Visitor count, %2$s = Date.
-#: inc/classes/class-whos-online-been.php:315, inc/classes/class-whos-online-view.php:232
+#: inc/classes/class-whos-online-been.php:333, inc/classes/class-whos-online-view.php:232
 msgid "%1$d visitors since %2$s"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:315, inc/classes/class-whos-online-view.php:232
+#: inc/classes/class-whos-online-been.php:333, inc/classes/class-whos-online-view.php:232
 msgid "installation"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:325, inc/classes/class-whos-online-been.php:322, inc/classes/class-whos-online-been.php:680, inc/classes/class-whos-online-been.php:677
-msgid "FIRST"
+#: inc/classes/class-whos-online-been.php:362
+msgid "Referer & Search String"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:329, inc/classes/class-whos-online-been.php:322, inc/classes/class-whos-online-been.php:684, inc/classes/class-whos-online-been.php:677
-msgid "PREV"
-msgstr ""
-
-#. translators: %1$d = page num, %2$d = last page.
-#. translators: %1$d = page number, %2$d = last page.
-#: inc/classes/class-whos-online-been.php:333, inc/classes/class-whos-online-been.php:688
-msgid "Page %1$d of %2$d"
-msgstr ""
-
-#: inc/classes/class-whos-online-been.php:341, inc/classes/class-whos-online-been.php:336, inc/classes/class-whos-online-been.php:696, inc/classes/class-whos-online-been.php:691
-msgid "NEXT"
-msgstr ""
-
-#: inc/classes/class-whos-online-been.php:344, inc/classes/class-whos-online-been.php:336, inc/classes/class-whos-online-been.php:699, inc/classes/class-whos-online-been.php:691
-msgid "LAST"
-msgstr ""
-
-#: inc/classes/class-whos-online-been.php:374, inc/classes/class-whos-online-view.php:271
-msgid "Referer"
-msgstr ""
-
-#: inc/classes/class-whos-online-been.php:509, inc/classes/class-whos-online-view.php:414
+#: inc/classes/class-whos-online-been.php:497, inc/classes/class-whos-online-view.php:414
 msgid "Error"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:494, inc/classes/class-whos-online-view.php:399, inc/classes/class-whos-online-view.php:624
+#: inc/classes/class-whos-online-been.php:482, inc/classes/class-whos-online-view.php:399, inc/classes/class-whos-online-view.php:624
 msgid "You"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:490, inc/classes/class-whos-online-view.php:395
+#: inc/classes/class-whos-online-been.php:478, inc/classes/class-whos-online-view.php:395
 msgid "Guest"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:533, inc/classes/class-whos-online-view.php:431
+#: inc/classes/class-whos-online-been.php:521, inc/classes/class-whos-online-view.php:431
 msgid "visits"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:539, inc/classes/class-whos-online-view.php:436
+#: inc/classes/class-whos-online-been.php:527, inc/classes/class-whos-online-view.php:436
 msgid "host lookups not enabled"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:562, inc/classes/class-whos-online-been.php:562, inc/classes/class-whos-online-view.php:458, inc/classes/class-whos-online-view.php:458
+#: inc/classes/class-whos-online-been.php:550, inc/classes/class-whos-online-been.php:550, inc/classes/class-whos-online-view.php:458, inc/classes/class-whos-online-view.php:458
 msgid "unknown"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:649, inc/classes/class-whos-online-view.php:563
+#: inc/classes/class-whos-online-been.php:637, inc/classes/class-whos-online-view.php:563
 msgid "Last URL:"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:750, inc/classes/class-whos-online-view.php:712
+#: inc/classes/class-whos-online-been.php:688, inc/classes/class-whos-online-been.php:681
+msgid "PREV"
+msgstr ""
+
+#. translators: %1$d = page number, %2$d = last page.
+#: inc/classes/class-whos-online-been.php:692
+msgid "Page %1$d of %2$d"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:700, inc/classes/class-whos-online-been.php:695
+msgid "NEXT"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:703, inc/classes/class-whos-online-been.php:695
+msgid "LAST"
+msgstr ""
+
+#: inc/classes/class-whos-online-been.php:753, inc/classes/class-whos-online-view.php:712
 msgid "User Agent:"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:756, inc/classes/class-whos-online-view.php:718
+#: inc/classes/class-whos-online-been.php:759, inc/classes/class-whos-online-view.php:718
 msgid "Host:"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:762, inc/classes/class-whos-online-view.php:723
+#: inc/classes/class-whos-online-been.php:765, inc/classes/class-whos-online-view.php:723
 msgid "Referer:"
 msgstr ""
 

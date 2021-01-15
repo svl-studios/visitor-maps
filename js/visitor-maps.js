@@ -38,7 +38,7 @@
 		//);
 
 		if ( vmMessage ) {
-			$( '#vm_form' ).after( '<div class="updated" style="padding:10px 4px">' + vmMessage + '</div>' );
+			$( '#vm_form' ).after( '<div class="updated">' + vmMessage + '</div>' );
 
 			if ( ! htaccessWarning ) {
 				$( '.updated' ).delay( 5000 ).hide( 'slow' );
