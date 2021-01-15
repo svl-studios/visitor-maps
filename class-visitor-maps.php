@@ -97,7 +97,7 @@ if ( ! class_exists( 'Visitor_Maps' ) ) {
 		 *
 		 * @var null
 		 */
-		private static $instance = null;
+		public static $instance = null;
 
 		/**
 		 * Initiate instance.
@@ -152,7 +152,9 @@ if ( ! class_exists( 'Visitor_Maps' ) ) {
 			self::$core = new Visitor_Maps_Core();
 
 			require_once self::$dir . 'admin/class-visitor-maps-options.php';
+
 			require_once self::$dir . 'inc/class-visitor-maps-enqueue.php';
+			require_once self::$dir . 'inc/class-visitor-maps-extended.php';
 
 			require_once self::$dir . 'geo-location/class-visitor-maps-geolocation.php';
 			self::$geolocation = new Visitor_Maps_Geolocation();
@@ -246,6 +248,58 @@ if ( ! class_exists( 'Visitor_Maps' ) ) {
 				);
 			}
 			// phpcs:enable
+
+			// Extended fields.
+			self::vm_install();
+		}
+
+		/**
+		 * Install extended options.
+		 */
+		public static function vm_install() {
+			global $wp_version;
+
+			$vm_htbackup         = get_option( 'vm_htbackup', false );
+			$vm_banned_ips       = get_option( 'vm_banned_ips', array() );
+			$vm_banned_referers  = get_option( 'vm_banned_referers', array() );
+			$vm_auto_update      = get_option( 'vm_auto_update', false );
+			$vm_auto_update_time = get_option( 'vm_auto_update_time', 5 );
+
+			if ( ! $vm_htbackup ) {
+				$htbackup = ABSPATH . '.htaccess.backup.' . wp_generate_password( 6, false );
+
+				update_option( 'vm_htbackup', $htbackup );
+				if ( ! vm_backup_htaccess( $htbackup ) ) {
+					update_option( 'htaccess_warning', true );
+					update_option( 'vm_htaccess', false );
+				} else {
+					update_option( 'htaccess_warning', false );
+					update_option( 'vm_htaccess', true );
+				}
+			} else {
+				update_option( 'htaccess_warning', false );
+				update_option( 'vm_htaccess', true );
+			}
+
+			/* Backwards Compatibility */
+			if ( ! is_array( $vm_banned_ips ) && strlen( $vm_banned_ips ) > 0 ) {
+				$ips = explode( ', ', $vm_banned_ips );
+				update_option( 'vm_banned_ips', $ips );
+			} else {
+				update_option( 'vm_banned_ips', $vm_banned_ips );
+			}
+
+			if ( ! is_array( $vm_banned_referers ) && strlen( $vm_banned_referers ) > 0 ) {
+				$referers = explode( ', ', $vm_banned_referers );
+				update_option( 'vm_banned_referers', $referers );
+			} else {
+				update_option( 'vm_banned_referers', $vm_banned_referers );
+			}
+
+			update_option( 'vm_wp_version', $wp_version );
+			update_option( 'vm_version', self::VERSION );
+			update_option( 'vm_auto_update', $vm_auto_update );
+			update_option( 'vm_auto_update_time', $vm_auto_update_time );
 		}
 
 		/**
@@ -268,6 +322,30 @@ if ( ! class_exists( 'Visitor_Maps' ) ) {
 			delete_option( 'visitor_maps_upgrade_1' );
 			delete_option( 'visitor_maps_upgrade_2' );
 			delete_option( 'visitor_maps_dismiss' );
+
+			// Extended fields.
+			$vm_settings = get_option( 'vm_settings' );
+
+			if ( ! is_array( $vm_settings ) ) {
+				$vm_settings = array( 'preserve_data' => true );
+			}
+
+			$preserve_data = intval( $vm_settings['preserve_data'] );
+
+			if ( ! $preserve_data ) {
+				$vm_htbackup = get_option( 'vm_htbackup' );
+				copy( ABSPATH . '.htaccess', $vm_htbackup );
+				update_option( 'vm_banned_ips', array() );
+				update_option( 'vm_banned_referers', array() );
+				vm_rebuild_htaccess();
+				delete_option( 'vm_wp_version' );
+				delete_option( 'vm_banned_ips' );
+				delete_option( 'vm_banned_referers' );
+				delete_option( 'vm_htbackup' );
+				delete_option( 'vm_auto_update' );
+				delete_option( 'vm_auto_update_time' );
+				delete_option( 'vm_settings' );
+			}
 		}
 	}
 }

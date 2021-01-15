@@ -253,8 +253,8 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 			}
 
 			$limit = 'LIMIT ' . ( $pageno - 1 ) * $rows_per_page . ',' . $rows_per_page;
-
-			// var_dump($_SERVER);
+//var_dump( home_url($_SERVER['REQUEST_URI']));
+//			var_dump($_SERVER);
 
 			?>
 			<table class="visitor-map-actions" data-nonce="<?php echo esc_attr( wp_create_nonce( 'vm_mode' ) ); ?>">
@@ -310,351 +310,358 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 					</td>
 				</tr>
 			</table>
+			<?php // phpcs:ignore WordPress.Security.ValidatedSanitizedInput ?>
+			<form id="vm_form" action="<?php echo esc_url( home_url( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) ); ?>" method="post">
+				<input type="hidden" name="vm_mode_nonce" value="<?php echo esc_attr( wp_create_nonce( 'vm_mode' ) ); ?>">
+				<input type="hidden" name="vm_mode" id="vm_mode" value="" />
+				<input type="hidden" name="vm_ip" id="vm_ip" value="" />
+				<input type="hidden" name="vm_referer" id="vm_referer" value="" />
+			</form>
+			<div id="vm-grid-container">
+				<table class="visitor-maps-data">
+					<form id="vm_nav" action="<?php echo esc_url( admin_url( 'admin.php?page=whos-been-online' ) ); ?>" method="post">
+						<input id="nav-action" type="hidden" name="nav-action" value="">
+						<input id="pageno" type="hidden" name="pageno" value="">
+						<input type="hidden" name="show" value="<?php echo esc_attr( $show ); ?>">
+						<input type="hidden" name="order" value="<?php echo esc_attr( $order ); ?>">
+						<input type="hidden" name="sort_by" value="<?php echo esc_attr( $sort_by ); ?>">
+						<input type="hidden" name="bots" value="<?php echo esc_attr( $bots ); ?>">
 
-			<?php // phpcs:ignore WordPress.Security.EscapeOutput ?>
-			<table class="visitor-maps-data">
-				<form id="vm_nav" action="<?php echo esc_url( admin_url( 'admin.php?page=whos-been-online' ) ); ?>" method="post">
-					<input id="nav-action" type="hidden" name="nav-action" value="">
-					<input id="pageno" type="hidden" name="pageno" value="">
-					<input type="hidden" name="show" value="<?php echo esc_attr( $show ); ?>">
-					<input type="hidden" name="order" value="<?php echo esc_attr( $order ); ?>">
-					<input type="hidden" name="sort_by" value="<?php echo esc_attr( $sort_by ); ?>">
-					<input type="hidden" name="bots" value="<?php echo esc_attr( $bots ); ?>">
+						<tr>
+							<td class="visitors-since">
+								<?php // translators: %1$d = visitor count, %2$s = date. ?>
+								<b><?php echo sprintf( esc_html__( '%1$d visitors since %2$s', 'visitor-maps' ), (int) $numrows, ( intval( $numrows ) > 0 ) ? gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), (int) $since ) : esc_html__( 'installation', 'visitor-maps' ) ); ?></b>
+							</td>
+						</tr>
+						<?php $this->output_page_nav( $pageno, $lastpage ); ?>
+						<tr>
+							<td class="visitors">
+								<table class="outer-table">
+									<tr>
+										<td>
+											<table class="inner-table">
+												<tr class="table-top">
+													<td>&nbsp;</td>
+													<td>&nbsp;<?php echo esc_html__( 'Who', 'visitor-maps' ); ?></td>
+													<td>&nbsp;<?php echo esc_html__( 'Visits', 'visitor-maps' ); ?></td>
+													<td>&nbsp;<?php echo esc_html__( 'Last Visit', 'visitor-maps' ); ?></td>
+													<?php
+													if ( $this->set['allow_ip_display'] ) {
+														echo '<td>&nbsp;' . esc_html__( 'IP Address', 'visitor-maps' ) . '</td> ';
+													}
 
-					<tr>
-						<td class="visitors-since">
-							<?php // translators: %1$d = visitor count, %2$s = date. ?>
-							<b><?php echo sprintf( esc_html__( '%1$d visitors since %2$s', 'visitor-maps' ), (int) $numrows, ( intval( $numrows ) > 0 ) ? gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), (int) $since ) : esc_html__( 'installation', 'visitor-maps' ) ); ?></b>
-						</td>
-					</tr>
-					<?php $this->output_page_nav( $pageno, $lastpage ); ?>
-					<tr>
-						<td class="visitors">
-							<table class="outer-table">
-								<tr>
-									<td>
-										<table class="inner-table">
-											<tr class="table-top">
-												<td>&nbsp;</td>
-												<td>&nbsp;<?php echo esc_html__( 'Who', 'visitor-maps' ); ?></td>
-												<td>&nbsp;<?php echo esc_html__( 'Visits', 'visitor-maps' ); ?></td>
-												<td>&nbsp;<?php echo esc_html__( 'Last Visit', 'visitor-maps' ); ?></td>
+													if ( Visitor_Maps::$core->get_option( 'enable_location_plugin' ) ) {
+														echo '<td>&nbsp;' . esc_html__( 'Location', 'visitor-maps' ) . '</td> ';
+													}
+
+													if ( ( $this->set['allow_last_url_display'] ) && ( ! isset( $_GET['nlurl'] ) ) && ( $this->set['allow_profile_display'] && 'none' === $show ) ) {
+														echo '<td>&nbsp;' . esc_html__( 'Last URL', 'visitor-maps' ) . '</td> ';
+													}
+
+													if ( $this->set['allow_referer_display'] ) {
+														echo '<td>&nbsp;' . esc_html__( 'Referer & Search String', 'visitor-maps' ) . '</td> ';
+													}
+													?>
+												</tr>
+
 												<?php
-												if ( $this->set['allow_ip_display'] ) {
-													echo '<td>&nbsp;' . esc_html__( 'IP Address', 'visitor-maps' ) . '</td> ';
-												}
+												$total_bots            = 0;
+												$total_admin           = 0;
+												$total_guests          = 0;
+												$total_users           = 0;
+												$total_dupes           = 0;
+												$this->ip_addrs_active = array();
+												$ip_addrs              = array();
+												$whos_online_arr       = array();
+												$even_odd              = 0;
 
-												if ( Visitor_Maps::$core->get_option( 'enable_location_plugin' ) ) {
-													echo '<td>&nbsp;' . esc_html__( 'Location', 'visitor-maps' ) . '</td> ';
-												}
+												// phpcs:disable
+												$whos_online_arr = $wpdb->get_results(
+													$wpdb->prepare(
+														'SELECT
+				                                            session_id,
+				                                            ip_address,
+				                                            user_id,
+				                                            name,
+				                                            nickname,
+				                                            country_name,
+				                                            country_code,
+				                                            city_name,
+				                                            state_name,
+				                                            state_code,
+				                                            latitude,
+				                                            longitude,
+				                                            last_page_url,
+				                                            http_referer,
+				                                            user_agent,
+				                                            hostname,
+				                                            time_entry,
+				                                            time_last_click,
+				                                            num_visits
+				                                                FROM ' . $wo_table_wo . '
+				                                                ORDER BY %1$s %2$s ' . $limit,
+														$sort_by_ar[ $sort_by ],
+														$order_ar[ $order ]
+													),
+													ARRAY_A
+												);
+												// phpcs:enable
 
-												if ( ( $this->set['allow_last_url_display'] ) && ( ! isset( $_GET['nlurl'] ) ) && ( $this->set['allow_profile_display'] && 'none' === $show ) ) {
-													echo '<td>&nbsp;' . esc_html__( 'Last URL', 'visitor-maps' ) . '</td> ';
-												}
+												$total_sess = 0;
+												if ( $whos_online_arr ) { // check of there are any visitors.
+													foreach ( $whos_online_arr as $whos_online ) {
+														if ( '' === $whos_online['name'] || '' === $whos_online['session_id'] || '' === $whos_online['ip_address'] ) {
+															continue;
+														}
 
-												if ( $this->set['allow_referer_display'] ) {
-													echo '<td>&nbsp;' . esc_html__( 'Referer', 'visitor-maps' ) . '</td> ';
-												}
-												?>
-											</tr>
+														$total_sess ++;
+														$time_online = ( $whos_online['time_last_click'] - $whos_online['time_entry'] );
 
-											<?php
-											$total_bots            = 0;
-											$total_admin           = 0;
-											$total_guests          = 0;
-											$total_users           = 0;
-											$total_dupes           = 0;
-											$this->ip_addrs_active = array();
-											$ip_addrs              = array();
-											$whos_online_arr       = array();
-											$even_odd              = 0;
+														if ( in_array( $whos_online['ip_address'], $ip_addrs, true ) ) {
+															$total_dupes ++;
+														};
+														$ip_addrs[] = $whos_online['ip_address'];
 
-											// phpcs:disable
-											$whos_online_arr = $wpdb->get_results(
-												$wpdb->prepare(
-													'SELECT
-			                                            session_id,
-			                                            ip_address,
-			                                            user_id,
-			                                            name,
-			                                            nickname,
-			                                            country_name,
-			                                            country_code,
-			                                            city_name,
-			                                            state_name,
-			                                            state_code,
-			                                            latitude,
-			                                            longitude,
-			                                            last_page_url,
-			                                            http_referer,
-			                                            user_agent,
-			                                            hostname,
-			                                            time_entry,
-			                                            time_last_click,
-			                                            num_visits
-			                                                FROM ' . $wo_table_wo . '
-			                                                ORDER BY %1$s %2$s ' . $limit,
-													$sort_by_ar[ $sort_by ],
-													$order_ar[ $order ]
-												),
-												ARRAY_A
-											);
-											// phpcs:enable
+														$is_bot   = false;
+														$is_admin = false;
+														$is_guest = false;
+														$is_user  = false;
 
-											$total_sess = 0;
-											if ( $whos_online_arr ) { // check of there are any visitors.
-												foreach ( $whos_online_arr as $whos_online ) {
-													if ( '' === $whos_online['name'] || '' === $whos_online['session_id'] || '' === $whos_online['ip_address'] ) {
-														continue;
-													}
+														if ( 'Guest' !== $whos_online['name'] && 0 === intval( $whos_online['user_id'] ) ) {
+															$total_bots ++;
+															$fg_color = $this->set['color_bot'];
+															$is_bot   = true;
+														} elseif ( 'Guest' !== $whos_online['name'] && $whos_online['user_id'] > 0 && $whos_online['ip_address'] !== $this->wo_visitor_ip ) {
+															$total_users ++;
+															$fg_color = $this->set['color_user'];
+															$is_user  = true;
 
-													$total_sess ++;
-													$time_online = ( $whos_online['time_last_click'] - $whos_online['time_entry'] );
+															// Admin detection.
+														} elseif ( $whos_online['ip_address'] === $this->wo_visitor_ip ) {
+															$total_admin ++;
+															$total_users ++;
+															$fg_color              = $this->set['color_admin'];
+															$is_admin              = true;
+															$this->set['hostname'] = $whos_online['hostname'];
 
-													if ( in_array( $whos_online['ip_address'], $ip_addrs, true ) ) {
-														$total_dupes ++;
-													};
-													$ip_addrs[] = $whos_online['ip_address'];
-
-													$is_bot   = false;
-													$is_admin = false;
-													$is_guest = false;
-													$is_user  = false;
-
-													if ( 'Guest' !== $whos_online['name'] && 0 === intval( $whos_online['user_id'] ) ) {
-														$total_bots ++;
-														$fg_color = $this->set['color_bot'];
-														$is_bot   = true;
-													} elseif ( 'Guest' !== $whos_online['name'] && $whos_online['user_id'] > 0 && $whos_online['ip_address'] !== $this->wo_visitor_ip ) {
-														$total_users ++;
-														$fg_color = $this->set['color_user'];
-														$is_user  = true;
-
-														// Admin detection.
-													} elseif ( $whos_online['ip_address'] === $this->wo_visitor_ip ) {
-														$total_admin ++;
-														$total_users ++;
-														$fg_color              = $this->set['color_admin'];
-														$is_admin              = true;
-														$this->set['hostname'] = $whos_online['hostname'];
-
-														// Guest detection (may include Bots not detected by spiders.txt).
-													} else {
-														$fg_color = $this->set['color_guest'];
-														$is_guest = true;
-														$total_guests ++;
-													}
-
-													if ( ! ( $is_bot && ! $bots ) ) {
-														$row_class  = '';
-														$even_class = 'class=column-dark';
-														$odd_class  = 'class=column-light';
-
-														if ( $even_odd % 2 ) {
-															$row_class = $odd_class;
+															// Guest detection (may include Bots not detected by spiders.txt).
 														} else {
-															$row_class = $even_class;
+															$fg_color = $this->set['color_guest'];
+															$is_guest = true;
+															$total_guests ++;
 														}
 
-														$even_odd ++;
-														?>
-														<tr <?php echo esc_html( $row_class ); ?>>
+														if ( ! ( $is_bot && ! $bots ) ) {
+															$row_class  = '';
+															$even_class = 'class=column-dark';
+															$odd_class  = 'class=column-light';
 
-														<!-- Status Light -->
-														<?php // phpcs:ignore WordPress.Security.EscapeOutput ?>
-														<td class="status"><?php echo $this->check_status( $whos_online ); ?></td>
-
-														<!-- Name -->
-														<?php
-														echo '<td class="name" style="color:' . esc_attr( $fg_color ) . ';">&nbsp;';
-
-														if ( $is_guest ) {
-															echo esc_html__( 'Guest', 'visitor-maps' ) . '&nbsp;';
-														} elseif ( $is_user ) {
-															echo '<a href="' . esc_url( admin_url( 'user-edit.php?user_id=' . (int) $whos_online['user_id'] ) ) . '">' . esc_html( $whos_online['name'] ) . '</a>&nbsp;';
-														} elseif ( $is_admin ) {
-															echo '<a href="' . esc_url( admin_url( 'user-edit.php?user_id=' . (int) $whos_online['user_id'] ) ) . '">' . esc_html__( 'You', 'visitor-maps' ) . '</a>&nbsp;';
-															// Check for Bot.
-														} elseif ( $is_bot ) {
-															// Tokenize UserAgent and try to find Bots name.
-															$tok = strtok( $whos_online['name'], ' ();/' );
-															while ( false !== $tok ) {
-																if ( strlen( strtolower( $tok ) ) > 3 ) {
-																	if ( ! strstr( strtolower( $tok ), 'mozilla' ) && ! strstr( strtolower( $tok ), 'compatible' ) && ! strstr( strtolower( $tok ), 'msie' ) && ! strstr( strtolower( $tok ), 'windows' ) ) {
-																		echo esc_html( "$tok" );
-																		break;
-																	}
-																}
-																$tok = strtok( ' ();/' );
-															}
-														} else {
-															echo esc_html__( 'Error', 'visitor-maps' );
-														}
-														echo '</td>';
-
-														if ( $this->set['allow_ip_display'] ) {
-															?>
-															<!-- Visits -->
-															<td class="visits" style="color:<?php echo esc_attr( $fg_color ); ?>;">&nbsp;
-																<?php echo esc_html( $whos_online['num_visits'] ); ?>
-															</td>
-
-															<!-- Last Visit -->
-															<td class="last-visit" style="color:<?php echo esc_attr( $fg_color ); ?>;">&nbsp;<?php echo esc_html( gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), $whos_online['time_last_click'] ) ); ?>
-															</td>
-
-															<!-- IP Address -->
-															<td class="ip-address" style="color:<?php echo esc_attr( $fg_color ); ?>;">&nbsp;
-															<?php
-															if ( 'unknown' === $whos_online['ip_address'] ) {
-																echo esc_html( $whos_online['ip_address'] );
+															if ( $even_odd % 2 ) {
+																$row_class = $odd_class;
 															} else {
-																$this_nick = '';
-
-																if ( null !== $whos_online['nickname'] ) {
-																	$this_nick = ' (' . $whos_online['nickname'] . ' - ' . $whos_online['num_visits'] . ' ' . esc_html__( 'visits', 'visitor-maps' ) . ')';
-																}
-
-																if ( Visitor_Maps::$core->get_option( 'enable_host_lookups' ) ) {
-																	$this_host = ( '' !== $whos_online['hostname'] ) ? Visitor_Maps::$core->host_to_domain( $whos_online['hostname'] ) : 'n/a';
-																} else {
-																	$this_host = esc_html__( 'host lookups not enabled', 'visitor-maps' );
-																}
-
-																if ( Visitor_Maps::$core->get_option( 'whois_url_popup' ) ) {
-																	echo '<a class="whois-lookup" href="' . esc_url( Visitor_Maps::$core->get_option( 'whois_url' ) . $whos_online['ip_address'] ) . '" title="' . esc_attr( $this_host ) . '">' . esc_html( $whos_online['ip_address'] ) . esc_html( $this_nick ) . '</a>';
-																} else {
-																	echo '<a href="' . esc_url( Visitor_Maps::$core->get_option( 'whois_url' ) . $whos_online['ip_address'] ) . '" title="' . esc_attr( $this_host ) . '" target="_blank">' . esc_html( $whos_online['ip_address'] ) . esc_html( $this_nick ) . '</a>';
-																}
-															}
-															echo '</td>';
-														}
-
-														if ( Visitor_Maps::$core->get_option( 'enable_location_plugin' ) ) {
-															?>
-															<!-- Country Flag -->
-															<td class="flag" style="color:<?php echo esc_attr( $fg_color ); ?>;">&nbsp;
-															<?php
-															if ( '' !== $whos_online['country_code'] ) {
-																$country_code                = sanitize_key( $whos_online['country_code'] );
-																$country_code                = strtolower( $country_code );
-																$whos_online['country_code'] = strtolower( $whos_online['country_code'] );
-
-																if ( '-' === $country_code || '--' === $country_code ) { // unknown.
-																	echo '<img src="' . esc_url( Visitor_Maps::$url ) . 'img/flags/unknown.png" alt="' . esc_attr( esc_html__( 'unknown', 'visitor-maps' ) ) . '" title="' . esc_attr__( 'unknown', 'visitor-maps' ) . '" />';
-																} else {
-																	echo '<img src="' . esc_url( Visitor_Maps::$url ) . 'img/flags/' . esc_attr( $country_code ) . '.png" alt="' . esc_attr( $whos_online['country_name'] ) . '" title="' . esc_attr( $whos_online['country_name'] ) . '" />';
-																}
+																$row_class = $even_class;
 															}
 
-															if ( Visitor_Maps::$core->get_option( 'enable_state_display' ) ) {
-																$newguy = false;
-																if ( isset( $_GET['refresh'] ) && is_numeric( $_GET['refresh'] ) && $whos_online['time_entry'] > ( time() - absint( $_GET['refresh'] ) ) ) {
-																	$newguy = true; // Holds the italicized "new lookup" indication for 1 refresh cycle.
-																}
-
-																if ( '-' !== $whos_online['city_name'] ) {
-																	if ( 'us' === $whos_online['country_code'] ) {
-																		$whos_online['print'] = $whos_online['city_name'];
-
-																		if ( '' !== $whos_online['state_code'] ) {
-																			$whos_online['print'] = $whos_online['city_name'] . ', ' . strtoupper( $whos_online['state_code'] );
-																		}
-																	} else {      // all non us countries.
-																		$whos_online['print'] = $whos_online['city_name'] . ', ' . strtoupper( $whos_online['country_code'] );
-																	}
-																} else {
-																	$whos_online['print'] = '~ ' . ( '-' !== $whos_online['country_name'] ? $whos_online['country_name'] : '' );
-																}
-
-																if ( $newguy ) {
-																	echo '<em>';
-																}
-
-																echo esc_html( ' ' . $whos_online['print'] );
-
-																if ( $newguy ) {
-																	echo '</em>';
-																}
-															}
-
-															echo '</td>';
-														}
-
-														if ( ( $this->set['allow_last_url_display'] ) && ( ! isset( $_GET['nlurl'] ) ) && ( $this->set['allow_profile_display'] && 'none' === $show ) ) {
-															?>
-															<!-- Last URL -->
-															<td class="last-url">&nbsp;
-															<?php
-															$display_link = $whos_online['last_page_url'];
-
-															$temp_url_link = $display_link;
-															$uri           = wp_parse_url( get_option( 'siteurl' ) );
-
-															if ( isset( $uri['path'] ) ) {
-																$display_link = str_replace( $uri['path'], '', $display_link );
-															}
-
-															echo '<a href="' . esc_url( $temp_url_link ) . '" target="_blank">' . esc_html( $display_link ) . '</a>';
-															echo '</td>';
-														}
-
-														if ( $this->set['allow_referer_display'] ) {
-															?>
-															<!-- Referer -->
-															<td class="referer" style="color:<?php echo esc_attr( $fg_color ); ?>;">&nbsp;
-															<?php
-															if ( '' === $whos_online['http_referer'] ) {
-																echo esc_html__( 'No', 'visitor-maps' );
-															} else {
-																echo '<a href="' . esc_url( $whos_online['http_referer'] ) . '" target="_blank">' . esc_html__( 'Yes', 'visitor-maps' ) . '</a>';
-															}
-															?>
-															</td>
-																	<?php
-														}
-														?>
-														</tr>
-														<?php
-														if ( ( $this->set['allow_last_url_display'] ) && ( ( isset( $_GET['nlurl'] ) ) || ( $this->set['allow_profile_display'] && 'none' !== $show ) ) ) {
+															$even_odd ++;
 															?>
 															<tr <?php echo esc_html( $row_class ); ?>>
-															<?php
-															$uri          = wp_parse_url( get_option( 'siteurl' ) );
-															$display_link = $whos_online['last_page_url'];
 
-															if ( isset( $uri['path'] ) ) {
-																$display_link = str_replace( $uri['path'], '', $display_link );
+															<!-- Status Light -->
+															<?php // phpcs:ignore WordPress.Security.EscapeOutput ?>
+															<td class="status"><?php echo $this->check_status( $whos_online ); ?></td>
+
+															<!-- Name -->
+															<?php
+															echo '<td class="name" style="color:' . esc_attr( $fg_color ) . ';">&nbsp;';
+
+															if ( $is_guest ) {
+																echo esc_html__( 'Guest', 'visitor-maps' ) . '&nbsp;';
+															} elseif ( $is_user ) {
+																echo '<a href="' . esc_url( admin_url( 'user-edit.php?user_id=' . (int) $whos_online['user_id'] ) ) . '">' . esc_html( $whos_online['name'] ) . '</a>&nbsp;';
+															} elseif ( $is_admin ) {
+																echo '<a href="' . esc_url( admin_url( 'user-edit.php?user_id=' . (int) $whos_online['user_id'] ) ) . '">' . esc_html__( 'You', 'visitor-maps' ) . '</a>&nbsp;';
+																// Check for Bot.
+															} elseif ( $is_bot ) {
+																// Tokenize UserAgent and try to find Bots name.
+																$tok = strtok( $whos_online['name'], ' ();/' );
+																while ( false !== $tok ) {
+																	if ( strlen( strtolower( $tok ) ) > 3 ) {
+																		if ( ! strstr( strtolower( $tok ), 'mozilla' ) && ! strstr( strtolower( $tok ), 'compatible' ) && ! strstr( strtolower( $tok ), 'msie' ) && ! strstr( strtolower( $tok ), 'windows' ) ) {
+																			echo esc_html( "$tok" );
+																			break;
+																		}
+																	}
+																	$tok = strtok( ' ();/' );
+																}
+															} else {
+																echo esc_html__( 'Error', 'visitor-maps' );
+															}
+															echo '</td>';
+
+															if ( $this->set['allow_ip_display'] ) {
+																?>
+																<!-- Visits -->
+																<td class="visits" style="color:<?php echo esc_attr( $fg_color ); ?>;">&nbsp;
+																	<?php echo esc_html( $whos_online['num_visits'] ); ?>
+																</td>
+
+																<!-- Last Visit -->
+																<td class="last-visit" style="color:<?php echo esc_attr( $fg_color ); ?>;">&nbsp;<?php echo esc_html( gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), $whos_online['time_last_click'] ) ); ?>
+																</td>
+
+																<!-- IP Address -->
+																<td class="ip-address" style="color:<?php echo esc_attr( $fg_color ); ?>;">&nbsp;
+																<?php
+																if ( 'unknown' === $whos_online['ip_address'] ) {
+																	echo esc_html( $whos_online['ip_address'] );
+																} else {
+																	$this_nick = '';
+
+																	if ( null !== $whos_online['nickname'] ) {
+																		$this_nick = ' (' . $whos_online['nickname'] . ' - ' . $whos_online['num_visits'] . ' ' . esc_html__( 'visits', 'visitor-maps' ) . ')';
+																	}
+
+																	if ( Visitor_Maps::$core->get_option( 'enable_host_lookups' ) ) {
+																		$this_host = ( '' !== $whos_online['hostname'] ) ? Visitor_Maps::$core->host_to_domain( $whos_online['hostname'] ) : 'n/a';
+																	} else {
+																		$this_host = esc_html__( 'host lookups not enabled', 'visitor-maps' );
+																	}
+
+																	if ( Visitor_Maps::$core->get_option( 'whois_url_popup' ) ) {
+																		echo '<a class="whois-lookup" href="' . esc_url( Visitor_Maps::$core->get_option( 'whois_url' ) . $whos_online['ip_address'] ) . '" title="' . esc_attr( $this_host ) . '">' . esc_html( $whos_online['ip_address'] ) . esc_html( $this_nick ) . '</a>';
+																	} else {
+																		echo '<a href="' . esc_url( Visitor_Maps::$core->get_option( 'whois_url' ) . $whos_online['ip_address'] ) . '" title="' . esc_attr( $this_host ) . '" target="_blank">' . esc_html( $whos_online['ip_address'] ) . esc_html( $this_nick ) . '</a>';
+																	}
+																}
+																echo '</td>';
+															}
+
+															if ( Visitor_Maps::$core->get_option( 'enable_location_plugin' ) ) {
+																?>
+																<!-- Country Flag -->
+																<td class="flag" style="color:<?php echo esc_attr( $fg_color ); ?>;">&nbsp;
+																<?php
+																if ( '' !== $whos_online['country_code'] ) {
+																	$country_code                = sanitize_key( $whos_online['country_code'] );
+																	$country_code                = strtolower( $country_code );
+																	$whos_online['country_code'] = strtolower( $whos_online['country_code'] );
+
+																	if ( '-' === $country_code || '--' === $country_code ) { // unknown.
+																		echo '<img src="' . esc_url( Visitor_Maps::$url ) . 'img/flags/unknown.png" alt="' . esc_attr( esc_html__( 'unknown', 'visitor-maps' ) ) . '" title="' . esc_attr__( 'unknown', 'visitor-maps' ) . '" />';
+																	} else {
+																		echo '<img src="' . esc_url( Visitor_Maps::$url ) . 'img/flags/' . esc_attr( $country_code ) . '.png" alt="' . esc_attr( $whos_online['country_name'] ) . '" title="' . esc_attr( $whos_online['country_name'] ) . '" />';
+																	}
+																}
+
+																if ( Visitor_Maps::$core->get_option( 'enable_state_display' ) ) {
+																	$newguy = false;
+																	if ( isset( $_GET['refresh'] ) && is_numeric( $_GET['refresh'] ) && $whos_online['time_entry'] > ( time() - absint( $_GET['refresh'] ) ) ) {
+																		$newguy = true; // Holds the italicized "new lookup" indication for 1 refresh cycle.
+																	}
+
+																	if ( '-' !== $whos_online['city_name'] ) {
+																		if ( 'us' === $whos_online['country_code'] ) {
+																			$whos_online['print'] = $whos_online['city_name'];
+
+																			if ( '' !== $whos_online['state_code'] ) {
+																				$whos_online['print'] = $whos_online['city_name'] . ', ' . strtoupper( $whos_online['state_code'] );
+																			}
+																		} else {      // all non us countries.
+																			$whos_online['print'] = $whos_online['city_name'] . ', ' . strtoupper( $whos_online['country_code'] );
+																		}
+																	} else {
+																		$whos_online['print'] = '~ ' . ( '-' !== $whos_online['country_name'] ? $whos_online['country_name'] : '' );
+																	}
+
+																	if ( $newguy ) {
+																		echo '<em>';
+																	}
+
+																	echo esc_html( ' ' . $whos_online['print'] );
+
+																	if ( $newguy ) {
+																		echo '</em>';
+																	}
+																}
+
+																echo '</td>';
+															}
+
+															if ( ( $this->set['allow_last_url_display'] ) && ( ! isset( $_GET['nlurl'] ) ) && ( $this->set['allow_profile_display'] && 'none' === $show ) ) {
+																?>
+																<!-- Last URL -->
+																<td class="last-url">&nbsp;
+																<?php
+																$display_link = $whos_online['last_page_url'];
+
+																$temp_url_link = $display_link;
+																$uri           = wp_parse_url( get_option( 'siteurl' ) );
+
+																if ( isset( $uri['path'] ) ) {
+																	$display_link = str_replace( $uri['path'], '', $display_link );
+																}
+
+																echo '<a href="' . esc_url( $temp_url_link ) . '" target="_blank">' . esc_html( $display_link ) . '</a>';
+																echo '</td>';
+															}
+
+															if ( $this->set['allow_referer_display'] ) {
+																?>
+																<!-- Referer -->
+																<td class="referer" style="color:<?php echo esc_attr( $fg_color ); ?>;">&nbsp;
+																<?php
+																if ( '' === $whos_online['http_referer'] ) {
+																	echo esc_html__( 'No', 'visitor-maps' );
+																} else {
+																	echo '<a href="' . esc_url( $whos_online['http_referer'] ) . '" target="_blank">' . esc_html__( 'Yes', 'visitor-maps' ) . '</a>';
+																}
+																?>
+																</td>
+																		<?php
 															}
 															?>
-															<td style="text-align:left" colspan="8">
-																<?php echo esc_html__( 'Last URL:', 'visitor-maps' ) . ' <a href="' . esc_url( $whos_online['last_page_url'] ) . '" target="_blank">' . esc_html( $display_link ) . '</a>'; ?></td>
 															</tr>
 															<?php
-														}
-
-														if ( $this->set['allow_profile_display'] ) {
-															if ( ( 'all' === $show ) || ( ( 'bots' === $show ) && $is_bot ) || ( ( 'guests' === $show ) && ( $is_guest || $is_admin || $is_user ) ) ) {
+															if ( ( $this->set['allow_last_url_display'] ) && ( ( isset( $_GET['nlurl'] ) ) || ( $this->set['allow_profile_display'] && 'none' !== $show ) ) ) {
 																?>
 																<tr <?php echo esc_html( $row_class ); ?>>
-																<td colspan="8"><?php $this->display_details( $whos_online ); ?></td>
+																<?php
+																$uri          = wp_parse_url( get_option( 'siteurl' ) );
+																$display_link = $whos_online['last_page_url'];
+
+																if ( isset( $uri['path'] ) ) {
+																	$display_link = str_replace( $uri['path'], '', $display_link );
+																}
+																?>
+																<td style="text-align:left" colspan="8">
+																	<?php echo esc_html__( 'Last URL:', 'visitor-maps' ) . ' <a href="' . esc_url( $whos_online['last_page_url'] ) . '" target="_blank">' . esc_html( $display_link ) . '</a>'; ?></td>
 																</tr>
 																<?php
 															}
+
+															if ( $this->set['allow_profile_display'] ) {
+																if ( ( 'all' === $show ) || ( ( 'bots' === $show ) && $is_bot ) || ( ( 'guests' === $show ) && ( $is_guest || $is_admin || $is_user ) ) ) {
+																	?>
+																	<tr <?php echo esc_html( $row_class ); ?>>
+																	<td colspan="8"><?php $this->display_details( $whos_online ); ?></td>
+																	</tr>
+																	<?php
+																}
+															}
 														}
 													}
 												}
-											}
-											?>
-										</table>
-									</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<?php $this->output_page_nav( $pageno, $lastpage ); ?>
-				</form>
-			</table>
+												?>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<?php $this->output_page_nav( $pageno, $lastpage ); ?>
+					</form>
+				</table>
+			</div>
 			<?php
 		}
 
