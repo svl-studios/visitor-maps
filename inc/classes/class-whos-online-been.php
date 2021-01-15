@@ -259,7 +259,7 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 			?>
 			<table class="widefat visitor-map-actions" data-nonce="<?php echo esc_attr( wp_create_nonce( 'vm_mode' ) ); ?>">
 				<tr>
-					<td>
+					<td class="actions">
 						<?php
 						echo '<form name="wo_been" action="' . esc_url( admin_url( 'admin.php?page=whos-been-online' ) ) . '" method="post">';
 
@@ -287,7 +287,7 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 							echo '<br /> <a href="' . esc_url( admin_url( 'admin.php?page=visitor_maps_opt' ) ) . '">' . esc_html__( 'Visitor Maps Options', 'visitor-maps' ) . '</a>';
 						}
 						if ( Visitor_Maps::$core->get_option( 'enable_location_plugin', true ) ) {
-							echo '<br /><a class="map-console" href="' . esc_url( get_bloginfo( 'url' ) ) . '?wo_map_console=1">' . esc_html__( 'Visitor Map Viewer', 'visitor-maps' ) . '</a>';
+							echo '<br /><a class="map-console" href="' . esc_url( get_bloginfo( 'url' ) ) . '?wo_map_console=1">' . esc_html__( 'Visitor Map Viewer', 'visitor-maps' ) . '</a><br />';
 						}
 						?>
 					</td>
