@@ -267,30 +267,30 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 
 						if ( $this->set['allow_profile_display'] ) {
 							// phpcs:ignore WordPress.Security.EscapeOutput
-							echo esc_html__( 'Profile Display:', 'visitor-maps' ) . ' ' . $this->draw_pull_down_menu( 'show', $show_arr, $show, 'onchange="this.form.submit();"' ) . ' ';
+							echo '<div class="profile select-wrapper"><label>' . esc_html__( 'Profile Display:', 'visitor-maps' ) . '</label> ' . $this->draw_pull_down_menu( 'show', $show_arr, $show, 'onchange="this.form.submit();"' ) . '</div> ';
 						}
 
 						// phpcs:ignore WordPress.Security.EscapeOutput
-						echo esc_html__( 'Sort:', 'visitor-maps' ) . ' ' . $this->draw_pull_down_menu( 'sort_by', $sort_by_arr, $sort_by, 'onchange="this.form.submit();"' ) . ' ';
+						echo '<div class="sort select-wrapper"><label>' . esc_html__( 'Sort:', 'visitor-maps' ) . '</label> ' . $this->draw_pull_down_menu( 'sort_by', $sort_by_arr, $sort_by, 'onchange="this.form.submit();"' ) . ' ';
 
 						// phpcs:ignore WordPress.Security.EscapeOutput
 						echo $this->draw_pull_down_menu( 'order', $order_arr, $order, 'onchange="this.form.submit();"' ) . ' ';
+						echo '</div>';
 
 						// phpcs:ignore WordPress.Security.EscapeOutput
-						echo esc_html__( 'Show Bots:', 'visitor-maps' ) . ' ' . $this->draw_pull_down_menu( 'bots', $bots_type, $bots, 'onchange="this.form.submit();"' ) . '<br />';
+						echo '<div class="show-bots select-wrapper"><label>' . esc_html__( 'Show Bots:', 'visitor-maps' ) . '</label> ' . $this->draw_pull_down_menu( 'bots', $bots_type, $bots, 'onchange="this.form.submit();"' ) . '</div><br />';
 
 						echo '<input type="hidden" name="page" value="whos-been-online" />';
 						echo '</form>';
-						echo '<a href="' . esc_url( admin_url( 'admin.php?page=visitor-maps' ) ) . '">' . esc_html__( 'Who\'s Online', 'visitor-maps' ) . "</a>\n";
+						echo '<br /><br /><br /><a href="' . esc_url( admin_url( 'admin.php?page=visitor-maps' ) ) . '">' . esc_html__( 'Who\'s Online', 'visitor-maps' ) . '</a> | ';
 
 						if ( current_user_can( 'manage_options' ) ) {
-							echo '<br /> <a href="' . esc_url( admin_url( 'admin.php?page=visitor_maps_opt' ) ) . '">' . esc_html__( 'Visitor Maps Options', 'visitor-maps' ) . '</a>';
+							echo '<a href="' . esc_url( admin_url( 'admin.php?page=visitor_maps_opt' ) ) . '">' . esc_html__( 'Visitor Maps Options', 'visitor-maps' ) . '</a> | ';
 						}
 						if ( Visitor_Maps::$core->get_option( 'enable_location_plugin', true ) ) {
-							echo '<br /><a class="map-console" href="' . esc_url( get_bloginfo( 'url' ) ) . '?wo_map_console=1">' . esc_html__( 'Visitor Map Viewer', 'visitor-maps' ) . '</a>';
+							echo '<a class="map-console" href="' . esc_url( get_bloginfo( 'url' ) ) . '?wo_map_console=1">' . esc_html__( 'Visitor Map Viewer', 'visitor-maps' ) . '</a>';
 						}
 						?>
-						<br />
 					</td>
 
 					<td>
@@ -782,7 +782,7 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 		 * @return string
 		 */
 		private function draw_pull_down_menu( $name, $values, $default = '', $parameters = '', $required = false ) {
-			$field = '<select name="' . esc_attr( $name ) . '"';
+			$field = '<select id="' . esc_attr( $name ) . '" name="' . esc_attr( $name ) . '"';
 
 			if ( ! empty( $parameters ) ) {
 				$field .= ' ' . $parameters;

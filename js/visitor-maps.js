@@ -45,7 +45,7 @@
 			}
 		}
 
-		editorHtml += '<br /><a href="#" class="vm-auto-update-form-container-toggle" title="Toggle to view or edit auto-update settings">+ ' + visitorMaps.automaticUpdate + '</a> (';
+		editorHtml += '<br /><br /><a href="#" class="vm-auto-update-form-container-toggle" title="Toggle to view or edit auto-update settings">+ ' + visitorMaps.automaticUpdate + '</a> (';
 
 		if ( ! vmAutoUpdate ) {
 			editorHtml += 'Off';

@@ -11,6 +11,39 @@
         padding-top: 20px;
         padding-bottom: 20px;
         padding-left: 20px;
+
+        .sort {
+            #sort_by {
+                width: 48%!important;
+            }
+
+            #order {
+                width: 50%!important;
+            }
+        }
+
+        label {
+            position: relative;
+            font-size: 12px !important;
+            text-align: left;
+            color: #999;
+            width: 100%;
+            cursor: default;
+            display: inline-block;
+        }
+
+        .select-wrapper {
+            display: block;
+            position: relative;
+            float: left;
+            margin: 0 10px 0 0;
+
+            select {
+                float: left;
+                height: 28px !important;
+                width: 100% !important;
+            }
+        }
     }
 }
 
