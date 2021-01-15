@@ -257,7 +257,7 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 //			var_dump($_SERVER);
 
 			?>
-			<table class="visitor-map-actions" data-nonce="<?php echo esc_attr( wp_create_nonce( 'vm_mode' ) ); ?>">
+			<table class="widefat visitor-map-actions" data-nonce="<?php echo esc_attr( wp_create_nonce( 'vm_mode' ) ); ?>">
 				<tr>
 					<td>
 						<?php
@@ -318,7 +318,7 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 				<input type="hidden" name="vm_referer" id="vm_referer" value="" />
 			</form>
 			<div id="vm-grid-container">
-				<table class="visitor-maps-data">
+				<table class="widefat visitor-maps-data">
 					<form id="vm_nav" action="<?php echo esc_url( admin_url( 'admin.php?page=whos-been-online' ) ); ?>" method="post">
 						<input id="nav-action" type="hidden" name="nav-action" value="">
 						<input id="pageno" type="hidden" name="pageno" value="">
