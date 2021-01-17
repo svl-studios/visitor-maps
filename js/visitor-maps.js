@@ -444,7 +444,7 @@
 				e.preventDefault();
 
 				window.open(
-					whoIsLink.attr( 'href' ),
+					$( this ).attr( 'href' ),
 					'who_is_lookup',
 					'height=650,width=800,toolbar=no,statusbar=no,scrollbars=yes'
 				).focus();
