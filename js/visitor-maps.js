@@ -26,7 +26,7 @@
 		var int;
 		var nonce;
 
-		//nonce = $( '.visitor-map-actions' ).data( 'nonce' );
+		nonce = $( '.visitor-map-actions' ).data( 'nonce' );
 
 		//$( '.visitor-map-actions' ).after(
 		//	'<form id="vm_form" action="' + window.location.href + '" method="post">' +
@@ -413,9 +413,9 @@
 			}
 		);
 
-		numGuests = $( 'img[alt="Active Guest"]' ).not( 'img[alt="Active Guest"]:first' ).length - 1;
+		// numGuests = $( 'img[alt="Active Guest"]' ).not( 'img[alt="Active Guest"]:first' ).length - 1;
 
-		$( 'title' ).html( '(' + numGuests + ') Who\'s Been Online' );
+		// $( 'title' ).html( '(' + numGuests + ') Who\'s Been Online' );
 	}; // activate.
 
 	$.visitorMaps.pageNavClick = function( ) {
