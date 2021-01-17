@@ -257,7 +257,7 @@
 	};
 
 	$.visitorMaps.activateGrid = function() {
-		var numGuests;
+		// var numGuests;
 
 		$( 'td[class*="referer"] a' ).each(
 			function() {
