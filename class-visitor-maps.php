@@ -104,7 +104,7 @@ if ( ! class_exists( 'Visitor_Maps' ) ) {
 		 *
 		 * @return Visitor_Maps
 		 */
-		public static function instance() {
+		public static function instance(): ?Visitor_Maps {
 			if ( ! self::$instance ) {
 				self::$instance = new self();
 
@@ -142,17 +142,24 @@ if ( ! class_exists( 'Visitor_Maps' ) ) {
 			if ( ! is_dir( self::$upload_dir ) ) {
 				wp_mkdir_p( self::$upload_dir );
 			}
+
+			add_action( 'init', array( get_called_class(), 'load_panel' ) );
+		}
+
+		/**
+		 * Load option panel.
+		 */
+		public static function load_panel() {
+			require_once self::$dir . 'inc/class-visitor-maps-core.php';
+			self::$core = new Visitor_Maps_Core();
+
+			require_once self::$dir . 'admin/class-visitor-maps-options.php';
 		}
 
 		/**
 		 * Core includes.
 		 */
 		public static function includes() {
-			require_once self::$dir . 'inc/class-visitor-maps-core.php';
-			self::$core = new Visitor_Maps_Core();
-
-			require_once self::$dir . 'admin/class-visitor-maps-options.php';
-
 			require_once self::$dir . 'inc/class-visitor-maps-enqueue.php';
 			require_once self::$dir . 'inc/class-visitor-maps-extended.php';
 
@@ -172,7 +179,7 @@ if ( ! class_exists( 'Visitor_Maps' ) ) {
 		 *
 		 * @param bool $network_wide Is Network wide.
 		 */
-		public static function activate( $network_wide ) {
+		public static function activate( bool $network_wide ) {
 			self::install_visitor_maps();
 		}
 
@@ -181,7 +188,7 @@ if ( ! class_exists( 'Visitor_Maps' ) ) {
 		 *
 		 * @param bool $network_wide Is Network wide.
 		 */
-		public static function deactivate( $network_wide ) {
+		public static function deactivate( bool $network_wide ) {
 			self::uninstall_visitor_maps();
 		}
 
@@ -260,7 +267,7 @@ if ( ! class_exists( 'Visitor_Maps' ) ) {
 		 *
 		 * @return bool
 		 */
-		private function vm_backup_htaccess( $htbackup ) {
+		private function vm_backup_htaccess( string $htbackup ): bool {
 			if ( ! copy( ABSPATH . '.htaccess', $htbackup ) ) {
 				return false;
 			} else {

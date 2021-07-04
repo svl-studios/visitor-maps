@@ -30,12 +30,12 @@ if ( ! class_exists( 'Visitor_Maps_Options' ) ) {
 		/**
 		 * Callback for allowed HTML.
 		 *
-		 * @param string $tags Tags for consideration.
-		 * @param string $unused Tags not to use.
+		 * @param array|string $tags   Tags for consideration.
+		 * @param string       $unused Tags not to use.
 		 *
-		 * @return mixed
+		 * @return array|string
 		 */
-		public function allowed_html( $tags, $unused ) {
+		public function allowed_html( array $tags, string $unused ) {
 			$tags['div']['data-nonce']  = true;
 			$tags['div']['data-update'] = true;
 			$tags['a']['aria-label']    = true;
@@ -48,7 +48,7 @@ if ( ! class_exists( 'Visitor_Maps_Options' ) ) {
 		 *
 		 * @return bool
 		 */
-		private function is_db_update() {
+		private function is_db_update(): bool {
 			$has_update = get_option( 'visitor_maps_geolitecity_has_update', false );
 
 			if ( $has_update ) {
@@ -56,7 +56,7 @@ if ( ! class_exists( 'Visitor_Maps_Options' ) ) {
 			}
 
 			$redux   = get_option( Visitor_Maps::OPT_NAME );
-			$lic_key = isset( $redux['maxmind_lic_key'] ) ? $redux['maxmind_lic_key'] : '';
+			$lic_key = $redux['maxmind_lic_key'] ?? '';
 
 			$local_file_time  = filemtime( Visitor_Maps::$upload_dir . Visitor_Maps::DATABASE_NAME . Visitor_Maps::DATABASE_EXT );
 			$remote_file_time = Visitor_Maps::$core->http_last_mod( Visitor_Maps::REMOTE_DATABASE . '?edition_id=' . Visitor_Maps::DATABASE_NAME . '&license_key=' . $lic_key . '&suffix=tar.gz', 1 );
@@ -148,7 +148,7 @@ if ( ! class_exists( 'Visitor_Maps_Options' ) ) {
 			);
 
 			$redux      = get_option( $opt_name );
-			$enable_opt = isset( $redux['enable_location_plugin'] ) ? $redux['enable_location_plugin'] : true;
+			$enable_opt = $redux['enable_location_plugin'] ?? true;
 
 			$usage  = '';
 			$update = '';
@@ -176,17 +176,11 @@ if ( ! class_exists( 'Visitor_Maps_Options' ) ) {
 				$update .= '<a href="#" class="update-geolitecity">';
 				$update .= $install;
 				$update .= '</a>.';
-				$update .= '<span class="lookup-data"></span>';
-				$update .= '</p>';
-				$update .= '</div>';
 			} elseif ( ! $enable_opt ) {
 				$show_top = false;
 
 				$update .= '<div data-nonce="' . $nonce . '" class="visitor-maps-geolitecity update-message notice inline notice-error notice-alt">';
 				$update .= '<p>' . esc_html__( 'The Maxmind GeoLiteCity database is installed but not enabled (click the switch below).', 'visitor-maps' );
-				$update .= '<span class="lookup-data"></span>';
-				$update .= '</p>';
-				$update .= '</div>';
 			} else {
 				$show_top = false;
 
@@ -205,10 +199,11 @@ if ( ! class_exists( 'Visitor_Maps_Options' ) ) {
 				$update .= '<div data-update="' . $data_update . '" data-nonce="' . $nonce . '" class="visitor-maps-geolitecity updated-message notice inline notice-success notice-alt">';
 				$update .= '<p>' . esc_html__( 'The Maxmind GeoLiteCity database is installed and enabled.', 'visitor-maps' ) . '&nbsp;&nbsp;';
 				$update .= $link;
-				$update .= '<span class="lookup-data"></span>';
-				$update .= '</p>';
-				$update .= '</div>';
 			}
+
+			$update .= '<span class="lookup-data"></span>';
+			$update .= '</p>';
+			$update .= '</div>';
 
 			$set_update = $update;
 			if ( ! $show_top ) {
@@ -581,7 +576,7 @@ if ( ! class_exists( 'Visitor_Maps_Options' ) ) {
 				)
 			);
 
-			Redux::init( Visitor_Maps::OPT_NAME );
+			// Redux::init( Visitor_Maps::OPT_NAME );
 		}
 	}
 
