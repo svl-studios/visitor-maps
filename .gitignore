@@ -76,6 +76,5 @@ yarn-error.log*
 build
 */.DS_Store
 
-vendor/*
 redux-templates/classes/library.json
 local_developer.txt
