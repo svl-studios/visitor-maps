@@ -108,8 +108,8 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 				}
 			}
 
-			$banned_ips          = get_option( 'vm_banned_ips' );
-			$banned_referers     = get_option( 'vm_banned_referers' );
+			$banned_ips          = get_option( 'vm_banned_ips', array() );
+			$banned_referers     = get_option( 'vm_banned_referers', array() );
 			$vm_auto_update      = ( ! get_option( 'vm_auto_update' ) ) ? 'false' : get_option( 'vm_auto_update' );
 			$vm_auto_update_time = ( ! get_option( 'vm_auto_update_time' ) ) ? 5 : get_option( 'vm_auto_update_time' );
 
@@ -126,10 +126,10 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		 *
 		 * @return string
 		 */
-		private function vm_ban_referer() {
+		private function vm_ban_referer(): string {
 			if ( isset( $_POST['vm_mode_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['vm_mode_nonce'] ) ), 'vm_mode' ) ) {
 				if ( isset( $_POST['vm_referer'] ) ) {
-					$vm_referer      = str_replace( 'http://', '', str_replace( 'www.', '', strtolower( trim( sanitize_text_field( wp_unslash( $_POST['vm_referer'] ) ) ) ) ) );
+					$vm_referer      = str_replace( array( 'http://', 'https://' ), '', str_replace( 'www.', '', strtolower( trim( sanitize_text_field( wp_unslash( $_POST['vm_referer'] ) ) ) ) ) );
 					$banned_referers = get_option( 'vm_banned_referers' );
 					$vm_output       = '';
 
@@ -153,7 +153,7 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		 *
 		 * @return string
 		 */
-		private function vm_unban_referer() {
+		private function vm_unban_referer(): string {
 			if ( isset( $_POST['vm_mode_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['vm_mode_nonce'] ) ), 'vm_mode' ) ) {
 				if ( isset( $_POST['vm_referer'] ) ) {
 					$vm_referer      = trim( sanitize_text_field( wp_unslash( $_POST['vm_referer'] ) ) );
@@ -182,7 +182,7 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		 *
 		 * @return string
 		 */
-		private function vm_purge_referers() {
+		private function vm_purge_referers(): string {
 			update_option( 'vm_banned_referers', array() );
 			$this->vm_rebuild_htaccess();
 			$vm_output .= "vmMessage += '" . esc_html__( 'All referers successfully unbanned!', 'visitor-maps' ) . "';\n";
@@ -196,7 +196,7 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		 *
 		 * @return string
 		 */
-		private function vm_ban_ip() {
+		private function vm_ban_ip(): string {
 			$banned_ips = get_option( 'vm_banned_ips' );
 
 			if ( isset( $_POST['vm_mode_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['vm_mode_nonce'] ) ), 'vm_mode' ) ) {
@@ -225,13 +225,13 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		 *
 		 * @return string
 		 */
-		private function vm_unban_ip() {
+		private function vm_unban_ip(): string {
 			$banned_ips = get_option( 'vm_banned_ips' );
+			$vm_output  = '';
 
 			if ( isset( $_POST['vm_mode_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['vm_mode_nonce'] ) ), 'vm_mode' ) ) {
 				if ( isset( $_POST['vm_ip'] ) ) {
 					$vm_ip      = trim( sanitize_text_field( wp_unslash( $_POST['vm_ip'] ) ) );
-					$vm_output  = '';
 					$vm_output .= "var mode = 'unban';\n";
 					$new_list   = array();
 
@@ -257,7 +257,7 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		 *
 		 * @return string
 		 */
-		private function vm_purge_ips() {
+		private function vm_purge_ips(): string {
 			update_option( 'vm_banned_ips', array() );
 			$this->vm_rebuild_htaccess();
 			$vm_output .= "vmMessage += '" . esc_html__( 'All IP addresses successfully unbanned!', 'visitor-maps' ) . "';\n";
@@ -270,7 +270,7 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		 *
 		 * @return bool
 		 */
-		private function filesystem_init() {
+		private function filesystem_init(): bool {
 			$url    = 'admin.php?page=whos-been-online';
 			$method = '';
 
@@ -292,12 +292,12 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		/**
 		 * Filesystem read.
 		 *
-		 * @param string $filename Name of file.
+		 * @param string $filename     Name of file.
 		 * @param bool   $return_array Return array.
 		 *
 		 * @return string|array
 		 */
-		private function filesystem_read( $filename, $return_array = false ) {
+		private function filesystem_read( string $filename, bool $return_array = false ) {
 			global $wp_filesystem;
 
 			if ( $this->filesystem_init() ) {
@@ -321,11 +321,11 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		 * Filesystem write.
 		 *
 		 * @param string $filename Name of file.
-		 * @param string $content Data to write.
+		 * @param string $content  Data to write.
 		 *
 		 * @return bool
 		 */
-		private function filesystem_write( $filename, $content ) {
+		private function filesystem_write( string $filename, string $content ): bool {
 			global $wp_filesystem;
 
 			if ( $this->filesystem_init() ) {
@@ -345,7 +345,7 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		 *
 		 * @param string $content Data to write.
 		 */
-		private function vm_write( $content ) {
+		private function vm_write( string $content ) {
 			$file = ABSPATH . '.htaccess';
 
 			$this->filesystem_write( $file, $content );
@@ -360,7 +360,7 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		 *
 		 * @return bool
 		 */
-		private function vm_backup_htaccess( $htbackup ) {
+		private function vm_backup_htaccess( string $htbackup ): bool {
 			if ( ! copy( ABSPATH . '.htaccess', $htbackup ) ) {
 				return false;
 			} else {
@@ -373,7 +373,7 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		 *
 		 * @return string
 		 */
-		private function vm_new_htaccess() {
+		private function vm_new_htaccess(): string {
 			$vm_output = '';
 
 			if ( ! file_exists( ABSPATH . '.htaccess' ) ) {
@@ -397,7 +397,7 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		 *
 		 * @return string
 		 */
-		private function vm_auto_update() {
+		private function vm_auto_update(): string {
 			if ( isset( $_POST['vm_mode_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['vm_mode_nonce'] ) ), 'vm_mode' ) ) {
 				if ( isset( $_POST['vm_auto_update'] ) && isset( $_POST['vm_auto_update_time'] ) ) {
 					$vm_auto_update      = trim( sanitize_text_field( wp_unslash( $_POST['vm_auto_update'] ) ) );
@@ -420,14 +420,14 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		 *
 		 * @param bool $backup DO backup flag.
 		 */
-		private function vm_rebuild_htaccess( $backup = true ) {
+		private function vm_rebuild_htaccess( bool $backup = true ) {
 			if ( $backup ) {
 				$htbackup = get_option( 'vm_htbackup' );
 
 				$this->vm_backup_htaccess( $htbackup );
 			}
 
-			$htcontent = $this->filesystem_read( ABSPATH . '.htaccess', false );
+			$htcontent = $this->filesystem_read( ABSPATH . '.htaccess' );
 
 			if ( stristr( $htcontent, 'Visitor Maps' ) !== false ) {
 				$part1   = explode( '# BEGIN Visitor Maps', $htcontent );
