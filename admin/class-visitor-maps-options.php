@@ -576,7 +576,7 @@ if ( ! class_exists( 'Visitor_Maps_Options' ) ) {
 				)
 			);
 
-			// Redux::init( Visitor_Maps::OPT_NAME );
+			Redux::init( Visitor_Maps::OPT_NAME );
 		}
 	}
 

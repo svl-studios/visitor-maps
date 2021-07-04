@@ -247,7 +247,6 @@ if ( ! Visitor_Maps::$core->get_option( 'hide_bots' ) ) {
 		ARRAY_A
 	);
 
-	$rows_count = $wpdb->get_var( 'SELECT FOUND_ROWS()' );
 } else {
 	// guests and members, no bots.
 	$rows_arr = $wpdb->get_results( '
@@ -258,8 +257,9 @@ if ( ! Visitor_Maps::$core->get_option( 'hide_bots' ) ) {
 		ARRAY_A
 	);
 
-	$rows_count = $wpdb->get_var( 'SELECT FOUND_ROWS()' );
 }
+
+$rows_count = $wpdb->get_var( 'SELECT FOUND_ROWS()' );
 // phpcs:enable
 
 // create pin on the map.

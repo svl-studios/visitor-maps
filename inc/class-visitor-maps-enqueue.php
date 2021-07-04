@@ -63,8 +63,7 @@ if ( ! class_exists( 'Visitor_Maps_Enqueue' ) ) {
 				'visitor-maps',
 				Visitor_Maps::$url . 'css/visitor-maps.css',
 				array(),
-				Visitor_Maps::VERSION,
-				'all'
+				Visitor_Maps::VERSION
 			);
 		}
 	}

@@ -64,7 +64,7 @@ msgstr ""
 msgid "Retry"
 msgstr ""
 
-#: admin/class-visitor-maps-ajax.php:213, admin/class-visitor-maps-options.php:199, inc/class-visitor-maps-enqueue.php:49
+#: admin/class-visitor-maps-ajax.php:213, admin/class-visitor-maps-options.php:193, inc/class-visitor-maps-enqueue.php:49
 msgid "Run lookup test?"
 msgstr ""
 
@@ -104,15 +104,15 @@ msgstr ""
 msgid "then drag the Who's Online widget to the sidebar column on the right."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:194, inc/class-visitor-maps-enqueue.php:51
+#: admin/class-visitor-maps-options.php:188, inc/class-visitor-maps-enqueue.php:51
 msgid "Install Update"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:206, inc/class-visitor-maps-enqueue.php:48
+#: admin/class-visitor-maps-options.php:200, inc/class-visitor-maps-enqueue.php:48
 msgid "The Maxmind GeoLiteCity database is installed and enabled."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:186, inc/class-visitor-maps-enqueue.php:50
+#: admin/class-visitor-maps-options.php:183, inc/class-visitor-maps-enqueue.php:50
 msgid "The Maxmind GeoLiteCity database is installed but not enabled (click the switch below)."
 msgstr ""
 
@@ -124,371 +124,371 @@ msgstr ""
 msgid "The Maxmind GeoLiteCity database is not yet installed."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:219
+#: admin/class-visitor-maps-options.php:214
 msgid "GeoLocation options will not be available until the GeoLiteCity database is installed."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:222
+#: admin/class-visitor-maps-options.php:217
 msgid "Visitor Map Usage"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:229
+#: admin/class-visitor-maps-options.php:224
 msgid "GeoLocation"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:236
+#: admin/class-visitor-maps-options.php:231
 msgid "MaxMind License Key"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:242
+#: admin/class-visitor-maps-options.php:237
 msgid "Enable GeoLocation"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:250
+#: admin/class-visitor-maps-options.php:245
 msgid "GeoLocation Map Text"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:251
+#: admin/class-visitor-maps-options.php:246
 msgid "Missing map background fix."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:254
+#: admin/class-visitor-maps-options.php:249
 msgid "Some PHP servers do not have full support for printing text on the Visitor Map image. Only if the Visitor Map just displays pins and no image for the world or countries, select this setting. After selecting this setting, check your visitor maps page to see if the map is now working."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:261
+#: admin/class-visitor-maps-options.php:256
 msgid "Display City & State"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:262
+#: admin/class-visitor-maps-options.php:257
 msgid "Enable display of city, state next to country flag."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:265
+#: admin/class-visitor-maps-options.php:260
 msgid "When enabled, the specific city and state information will appear next to the country flag."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:272
+#: admin/class-visitor-maps-options.php:267
 msgid "Visitor Map on Dashboard"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:273
+#: admin/class-visitor-maps-options.php:268
 msgid "Enable visitor map on Who's Online dashboard."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:276
+#: admin/class-visitor-maps-options.php:271
 msgid "Changes display options on Who's Online dashboard pages."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:283
+#: admin/class-visitor-maps-options.php:278
 msgid "Visitor Map on Shortcode Page"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:284
+#: admin/class-visitor-maps-options.php:279
 msgid "Enable visitor map on Visitor Map shortcode page."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:287
+#: admin/class-visitor-maps-options.php:282
 msgid "Changes map display options on the page where the visitor map shortcode was inserted."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:294
+#: admin/class-visitor-maps-options.php:289
 msgid "Visitor Map link in Widget"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:295
+#: admin/class-visitor-maps-options.php:290
 msgid "Enable visitor map link on Who's Online widget."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:298
+#: admin/class-visitor-maps-options.php:293
 msgid "Changes display options on Who's Online widget."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:305
+#: admin/class-visitor-maps-options.php:300
 msgid "Hover Labels for Location Pins"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:306
+#: admin/class-visitor-maps-options.php:301
 msgid "Enable hover labels for location pins on visitor map page."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:309
+#: admin/class-visitor-maps-options.php:304
 msgid "Some themes interfere with the proper display of the location pins on the Visitor Maps page. After enabling this setting, check your visitor maps page to make sure the pins are placed correctly. If the pins are about 10 pixels too low on the map, undo this setting."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:316
+#: admin/class-visitor-maps-options.php:311
 msgid "User Names on Hover Labels for Location Pins"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:317
+#: admin/class-visitor-maps-options.php:312
 msgid "Enable user names on hover labels for location pins on visitor map page."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:320
+#: admin/class-visitor-maps-options.php:315
 msgid "When enabled, registered users will have green location pins on the Visitor Maps page. Also the hover tag will include the user name."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:327
+#: admin/class-visitor-maps-options.php:322
 msgid "Map Viewing"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:328
+#: admin/class-visitor-maps-options.php:323
 msgid "Hide map viewing by non administrators."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:331
+#: admin/class-visitor-maps-options.php:326
 msgid "This setting restricts viewing the Visitor Map Viewer page to administrators only."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:338
+#: admin/class-visitor-maps-options.php:333
 msgid "Location Pin Limit"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:342
+#: admin/class-visitor-maps-options.php:337
 msgid "This limit protects server resources by limiting pins when displaying maps. Default is 2000. The human eye will not be able to see more than 2000 pins anyway."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:349
+#: admin/class-visitor-maps-options.php:344
 msgid "Visitor Map Time"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:350
+#: admin/class-visitor-maps-options.php:345
 msgid "How long should users remain on the current visitor map.  Duration unit is set below in the next option."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:358
+#: admin/class-visitor-maps-options.php:353
 msgid "Visitor Map Time Duration"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:359
+#: admin/class-visitor-maps-options.php:354
 msgid "The duration unit of time users should remain on the visitor map."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:361
+#: admin/class-visitor-maps-options.php:356
 msgid "Minutes"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:362
+#: admin/class-visitor-maps-options.php:357
 msgid "Hours"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:363
+#: admin/class-visitor-maps-options.php:358
 msgid "Days"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:372
+#: admin/class-visitor-maps-options.php:367
 msgid "Default Visitor Map"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:374, inc/classes/class-whos-online-map-page.php:109
+#: admin/class-visitor-maps-options.php:369, inc/classes/class-whos-online-map-page.php:109
 msgid "World (smallest)"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:375, inc/classes/class-whos-online-map-page.php:110
+#: admin/class-visitor-maps-options.php:370, inc/classes/class-whos-online-map-page.php:110
 msgid "World (small)"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:376, inc/classes/class-whos-online-map-page.php:111
+#: admin/class-visitor-maps-options.php:371, inc/classes/class-whos-online-map-page.php:111
 msgid "World (medium)"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:377, inc/classes/class-whos-online-map-page.php:112
+#: admin/class-visitor-maps-options.php:372, inc/classes/class-whos-online-map-page.php:112
 msgid "World (large)"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:381
+#: admin/class-visitor-maps-options.php:376
 msgid "Default map to display on the Visitor Maps page. After setting this, check your visitor maps page to make sure it fits correctly. If the map is too wide, select the next smaller one."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:389
+#: admin/class-visitor-maps-options.php:384
 msgid "Dashboard Permissions"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:390
+#: admin/class-visitor-maps-options.php:385
 msgid "Users who can view the dashboard pages."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:392, admin/class-visitor-maps-options.php:441
+#: admin/class-visitor-maps-options.php:387, admin/class-visitor-maps-options.php:436
 msgid "Administrators"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:393
+#: admin/class-visitor-maps-options.php:388
 msgid "Editors"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:394
+#: admin/class-visitor-maps-options.php:389
 msgid "Authors"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:395
+#: admin/class-visitor-maps-options.php:390
 msgid "Contributors"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:399
+#: admin/class-visitor-maps-options.php:394
 msgid "By default, only Administrators can view the dashboard pages. Change this setting to also allow Editors, Authors, or Contributors to view the dashboard pages. When set to Authors, you are also allowing Administrator and Editors."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:411
+#: admin/class-visitor-maps-options.php:406
 msgid "Visitors"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:417
+#: admin/class-visitor-maps-options.php:412
 msgid "Active Time"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:418
+#: admin/class-visitor-maps-options.php:413
 msgid "Minutes that a visitor is considered \"active\"."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:425
+#: admin/class-visitor-maps-options.php:420
 msgid "Inactive Time"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:426
+#: admin/class-visitor-maps-options.php:421
 msgid "Minutes until an inactive visitor is removed from display."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:433
+#: admin/class-visitor-maps-options.php:428
 msgid "Data Store"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:434
+#: admin/class-visitor-maps-options.php:429
 msgid "Days to store visitor data in database table. This data is used for the geolocation maps."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:442
+#: admin/class-visitor-maps-options.php:437
 msgid "Do not include administrators count or location on the maps."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:448, inc/classes/class-whos-online-been.php:75, inc/classes/class-whos-online-view.php:95, inc/classes/class-whos-online-view.php:620
+#: admin/class-visitor-maps-options.php:443, inc/classes/class-whos-online-been.php:75, inc/classes/class-whos-online-view.php:95, inc/classes/class-whos-online-view.php:621
 msgid "Bots"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:449
+#: admin/class-visitor-maps-options.php:444
 msgid "Do not include search bots in the visitors online count."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:455
+#: admin/class-visitor-maps-options.php:450
 msgid "Combine Guests & Members"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:456
+#: admin/class-visitor-maps-options.php:451
 msgid "Combine guests and members on widgets so they are only shown as visitors.  Use this setting when your site has registration turned off."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:462
+#: admin/class-visitor-maps-options.php:457
 msgid "IP Addresses to Ignore"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:463
+#: admin/class-visitor-maps-options.php:458
 msgid "Start each entry on a new line.  Use * for wildcards.  Examples:"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:469
+#: admin/class-visitor-maps-options.php:464
 msgid "URLs to Ignore"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:470
+#: admin/class-visitor-maps-options.php:465
 msgid "Optional list of URLs on your site you do not want in any Who's Online data.  This feature can be used to block any URLs such as /wp-admin/, or for compatibility with other plugins.  Use partial URL or full URL.  Start each entry on a new line.  Examples:"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:480
+#: admin/class-visitor-maps-options.php:475
 msgid "Lookups"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:486
+#: admin/class-visitor-maps-options.php:481
 msgid "WHOIS Lookup URL"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:487
+#: admin/class-visitor-maps-options.php:482
 msgid "URL to open when an IP address is clicked on."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:494
+#: admin/class-visitor-maps-options.php:489
 msgid "Open WHOIS URL is a Popup Window"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:500
+#: admin/class-visitor-maps-options.php:495
 msgid "Host Lookup for IP Addresses"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:510
+#: admin/class-visitor-maps-options.php:505
 msgid "Stats"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:516
+#: admin/class-visitor-maps-options.php:511
 msgid "Display in Blog Footer"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:517
+#: admin/class-visitor-maps-options.php:512
 msgid "Enable stats display in blog footer."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:523
+#: admin/class-visitor-maps-options.php:518
 msgid "Display in Admin Footer"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:524
+#: admin/class-visitor-maps-options.php:519
 msgid "Enable stats display in admin footer."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:530
+#: admin/class-visitor-maps-options.php:525
 msgid "Display on Map Page"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:531
+#: admin/class-visitor-maps-options.php:526
 msgid "Enable stats display on map page."
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:537
+#: admin/class-visitor-maps-options.php:532
 msgid "Credit Link"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:538
+#: admin/class-visitor-maps-options.php:533
 msgid "Enable plugin credit link:"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:548
+#: admin/class-visitor-maps-options.php:543
 msgid "Time Format"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:549
+#: admin/class-visitor-maps-options.php:544
 msgid "Available formatting:"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:549
+#: admin/class-visitor-maps-options.php:544
 msgid "Table of date format characters"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:555
+#: admin/class-visitor-maps-options.php:550
 msgid "Time Format (Max Users)"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:556
+#: admin/class-visitor-maps-options.php:551
 msgid "Time format for \"Max users today\" and \"Last refresh time\" display. Default: h:i a T (02:25 pm PST)"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:562
+#: admin/class-visitor-maps-options.php:557
 msgid "Time Format (Last Click)"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:563
+#: admin/class-visitor-maps-options.php:558
 msgid "Time format for \"Entry\" and \"Last Click\" display. Default\" h:i:sa (02:25:25pm)"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:569
+#: admin/class-visitor-maps-options.php:564
 msgid "Date/Time format (All Time Records)"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:570
+#: admin/class-visitor-maps-options.php:565
 msgid "Date/Time format for month, year, an all time records. Default: m-d-Y h:i a T (12-14-2008 02:25 pm PST)"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:576
+#: admin/class-visitor-maps-options.php:571
 msgid "Date/Time format (GeoLite data)"
 msgstr ""
 
-#: admin/class-visitor-maps-options.php:577
+#: admin/class-visitor-maps-options.php:572
 msgid "Date/Time format for \"The GeoLite data was last updated on...\". Default: m-d-Y h:i a T (12-14-2008 02:25 pm PST)"
 msgstr ""
 
@@ -509,7 +509,7 @@ msgstr ""
 msgid "click here to update"
 msgstr ""
 
-#: inc/class-visitor-maps-core.php:84, inc/class-visitor-maps-core.php:85, inc/class-visitor-maps-core.php:1479, inc/class-visitor-maps-core.php:1507, inc/class-visitor-maps-core.php:1523, inc/class-visitor-maps-core.php:1532, inc/classes/class-whos-online-been.php:284
+#: inc/class-visitor-maps-core.php:84, inc/class-visitor-maps-core.php:85, inc/class-visitor-maps-core.php:1478, inc/class-visitor-maps-core.php:1506, inc/class-visitor-maps-core.php:1522, inc/class-visitor-maps-core.php:1531, inc/classes/class-whos-online-been.php:283
 msgid "Who's Online"
 msgstr ""
 
@@ -521,7 +521,7 @@ msgstr ""
 msgid "You do not have permissions for managing this option"
 msgstr ""
 
-#: inc/class-visitor-maps-core.php:116, inc/class-visitor-maps-core.php:171, inc/class-visitor-maps-core.php:186, inc/class-visitor-maps-core.php:239, inc/class-visitor-maps-core.php:263, inc/class-visitor-maps-core.php:453, inc/class-visitor-maps-core.php:495, inc/class-visitor-maps-core.php:1479, inc/class-visitor-maps-core.php:1497, inc/class-visitor-maps-core.php:1636, inc/classes/class-whos-online-map-page.php:66
+#: inc/class-visitor-maps-core.php:116, inc/class-visitor-maps-core.php:171, inc/class-visitor-maps-core.php:186, inc/class-visitor-maps-core.php:239, inc/class-visitor-maps-core.php:263, inc/class-visitor-maps-core.php:453, inc/class-visitor-maps-core.php:495, inc/class-visitor-maps-core.php:1478, inc/class-visitor-maps-core.php:1496, inc/class-visitor-maps-core.php:1635, inc/classes/class-whos-online-map-page.php:66
 msgid "Visitor Maps"
 msgstr ""
 
@@ -531,11 +531,11 @@ msgstr ""
 msgid "View more maps in the %1$s"
 msgstr ""
 
-#: inc/class-visitor-maps-core.php:166, inc/class-visitor-maps-core.php:234, inc/class-visitor-maps-core.php:457, inc/classes/class-whos-online-been.php:290, inc/classes/class-whos-online-view.php:206
+#: inc/class-visitor-maps-core.php:166, inc/class-visitor-maps-core.php:234, inc/class-visitor-maps-core.php:457, inc/classes/class-whos-online-been.php:289, inc/classes/class-whos-online-view.php:206
 msgid "Visitor Map Viewer"
 msgstr ""
 
-#: inc/class-visitor-maps-core.php:171, inc/class-visitor-maps-core.php:239, inc/class-visitor-maps-core.php:495, inc/class-visitor-maps-core.php:1497, inc/class-visitor-maps-core.php:1636
+#: inc/class-visitor-maps-core.php:171, inc/class-visitor-maps-core.php:239, inc/class-visitor-maps-core.php:495, inc/class-visitor-maps-core.php:1496, inc/class-visitor-maps-core.php:1635
 msgid "Powered by"
 msgstr ""
 
@@ -559,23 +559,23 @@ msgstr ""
 msgid "View more maps in the "
 msgstr ""
 
-#: inc/class-visitor-maps-core.php:470, inc/class-visitor-maps-core.php:1185, inc/class-visitor-maps-core.php:1186
+#: inc/class-visitor-maps-core.php:470, inc/class-visitor-maps-core.php:1184, inc/class-visitor-maps-core.php:1185
 msgid "Max visitors today"
 msgstr ""
 
-#: inc/class-visitor-maps-core.php:470, inc/class-visitor-maps-core.php:474, inc/class-visitor-maps-core.php:478, inc/class-visitor-maps-core.php:482, inc/class-visitor-maps-core.php:1185, inc/class-visitor-maps-core.php:1186, inc/class-visitor-maps-core.php:1190, inc/class-visitor-maps-core.php:1191, inc/class-visitor-maps-core.php:1195, inc/class-visitor-maps-core.php:1196, inc/class-visitor-maps-core.php:1200, inc/class-visitor-maps-core.php:1201
+#: inc/class-visitor-maps-core.php:470, inc/class-visitor-maps-core.php:474, inc/class-visitor-maps-core.php:478, inc/class-visitor-maps-core.php:482, inc/class-visitor-maps-core.php:1184, inc/class-visitor-maps-core.php:1185, inc/class-visitor-maps-core.php:1189, inc/class-visitor-maps-core.php:1190, inc/class-visitor-maps-core.php:1194, inc/class-visitor-maps-core.php:1195, inc/class-visitor-maps-core.php:1199, inc/class-visitor-maps-core.php:1200
 msgid "at"
 msgstr ""
 
-#: inc/class-visitor-maps-core.php:474, inc/class-visitor-maps-core.php:1190, inc/class-visitor-maps-core.php:1191
+#: inc/class-visitor-maps-core.php:474, inc/class-visitor-maps-core.php:1189, inc/class-visitor-maps-core.php:1190
 msgid "This month"
 msgstr ""
 
-#: inc/class-visitor-maps-core.php:478, inc/class-visitor-maps-core.php:1195, inc/class-visitor-maps-core.php:1196
+#: inc/class-visitor-maps-core.php:478, inc/class-visitor-maps-core.php:1194, inc/class-visitor-maps-core.php:1195
 msgid "This year"
 msgstr ""
 
-#: inc/class-visitor-maps-core.php:482, inc/class-visitor-maps-core.php:1200, inc/class-visitor-maps-core.php:1201
+#: inc/class-visitor-maps-core.php:482, inc/class-visitor-maps-core.php:1199, inc/class-visitor-maps-core.php:1200
 msgid "All time"
 msgstr ""
 
@@ -589,30 +589,30 @@ msgstr ""
 
 #. translators: %d: Visitors count.
 #. translators: %d: Visitors count.
-#: inc/class-visitor-maps-core.php:1151, inc/class-visitor-maps-core.php:1602
+#: inc/class-visitor-maps-core.php:1150, inc/class-visitor-maps-core.php:1601
 msgid "%d visitors online now"
 msgstr ""
 
 #. translators: %d: Guest count.
 #. translators: %d: Guests count.
 #. translators: %d: Guest & Member count.
-#: inc/class-visitor-maps-core.php:1154, inc/class-visitor-maps-core.php:1605, inc/class-visitor-maps-core.php:1618
+#: inc/class-visitor-maps-core.php:1153, inc/class-visitor-maps-core.php:1604, inc/class-visitor-maps-core.php:1617
 msgid "%d guests"
 msgstr ""
 
 #. translators: %d: Bot count.
 #. translators: %d: Bots count.
-#: inc/class-visitor-maps-core.php:1158, inc/class-visitor-maps-core.php:1612
+#: inc/class-visitor-maps-core.php:1157, inc/class-visitor-maps-core.php:1611
 msgid "%d bots"
 msgstr ""
 
 #. translators: %d: Members count.
 #. translators: %d: Members count.
-#: inc/class-visitor-maps-core.php:1162, inc/class-visitor-maps-core.php:1608
+#: inc/class-visitor-maps-core.php:1161, inc/class-visitor-maps-core.php:1607
 msgid "%d members"
 msgstr ""
 
-#: inc/class-visitor-maps-core.php:1631
+#: inc/class-visitor-maps-core.php:1630
 msgid "Map of Visitors</a>"
 msgstr ""
 
@@ -726,31 +726,31 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:80, inc/classes/class-whos-online-view.php:100, inc/classes/class-whos-online-view.php:611
+#: inc/classes/class-whos-online-been.php:80, inc/classes/class-whos-online-view.php:100, inc/classes/class-whos-online-view.php:612
 msgid "Guests"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:101, inc/classes/class-whos-online-been.php:345, inc/classes/class-whos-online-view.php:250
+#: inc/classes/class-whos-online-been.php:101, inc/classes/class-whos-online-been.php:344, inc/classes/class-whos-online-view.php:250
 msgid "Who"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:106, inc/classes/class-whos-online-been.php:346
+#: inc/classes/class-whos-online-been.php:106, inc/classes/class-whos-online-been.php:345
 msgid "Visits"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:111, inc/classes/class-whos-online-been.php:347
+#: inc/classes/class-whos-online-been.php:111, inc/classes/class-whos-online-been.php:346
 msgid "Last Visit"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:116, inc/classes/class-whos-online-been.php:350, inc/classes/class-whos-online-view.php:253
+#: inc/classes/class-whos-online-been.php:116, inc/classes/class-whos-online-been.php:349, inc/classes/class-whos-online-view.php:253
 msgid "IP Address"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:121, inc/classes/class-whos-online-been.php:354, inc/classes/class-whos-online-view.php:258
+#: inc/classes/class-whos-online-been.php:121, inc/classes/class-whos-online-been.php:353, inc/classes/class-whos-online-view.php:258
 msgid "Location"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:126, inc/classes/class-whos-online-been.php:358, inc/classes/class-whos-online-view.php:266
+#: inc/classes/class-whos-online-been.php:126, inc/classes/class-whos-online-been.php:357, inc/classes/class-whos-online-view.php:266
 msgid "Last URL"
 msgstr ""
 
@@ -762,85 +762,85 @@ msgstr ""
 msgid "Ascending"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:184, inc/classes/class-whos-online-been.php:614, inc/classes/class-whos-online-view.php:106, inc/classes/class-whos-online-view.php:538
+#: inc/classes/class-whos-online-been.php:184, inc/classes/class-whos-online-been.php:614, inc/classes/class-whos-online-view.php:106, inc/classes/class-whos-online-view.php:539
 msgid "No"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:189, inc/classes/class-whos-online-been.php:616, inc/classes/class-whos-online-view.php:111, inc/classes/class-whos-online-view.php:540
+#: inc/classes/class-whos-online-been.php:189, inc/classes/class-whos-online-been.php:616, inc/classes/class-whos-online-view.php:111, inc/classes/class-whos-online-view.php:541
 msgid "Yes"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:270, inc/classes/class-whos-online-view.php:188
+#: inc/classes/class-whos-online-been.php:268, inc/classes/class-whos-online-view.php:188
 msgid "Profile Display:"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:274
+#: inc/classes/class-whos-online-been.php:272
 msgid "Sort:"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:280, inc/classes/class-whos-online-view.php:195
+#: inc/classes/class-whos-online-been.php:279, inc/classes/class-whos-online-view.php:195
 msgid "Show Bots:"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:287, inc/classes/class-whos-online-view.php:202
+#: inc/classes/class-whos-online-been.php:286, inc/classes/class-whos-online-view.php:202
 msgid "Visitor Maps Options"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:298, inc/classes/class-whos-online-been.php:298, inc/classes/class-whos-online-been.php:298, inc/classes/class-whos-online-been.php:742, inc/classes/class-whos-online-been.php:742, inc/classes/class-whos-online-view.php:213, inc/classes/class-whos-online-view.php:213, inc/classes/class-whos-online-view.php:213, inc/classes/class-whos-online-view.php:700, inc/classes/class-whos-online-view.php:700
+#: inc/classes/class-whos-online-been.php:297, inc/classes/class-whos-online-been.php:297, inc/classes/class-whos-online-been.php:297, inc/classes/class-whos-online-been.php:742, inc/classes/class-whos-online-been.php:742, inc/classes/class-whos-online-view.php:213, inc/classes/class-whos-online-view.php:213, inc/classes/class-whos-online-view.php:213, inc/classes/class-whos-online-view.php:701, inc/classes/class-whos-online-view.php:701
 msgid "Active Guest"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:300, inc/classes/class-whos-online-been.php:300, inc/classes/class-whos-online-been.php:300, inc/classes/class-whos-online-been.php:734, inc/classes/class-whos-online-been.php:734, inc/classes/class-whos-online-view.php:215, inc/classes/class-whos-online-view.php:215, inc/classes/class-whos-online-view.php:215, inc/classes/class-whos-online-view.php:692, inc/classes/class-whos-online-view.php:692
+#: inc/classes/class-whos-online-been.php:299, inc/classes/class-whos-online-been.php:299, inc/classes/class-whos-online-been.php:299, inc/classes/class-whos-online-been.php:734, inc/classes/class-whos-online-been.php:734, inc/classes/class-whos-online-view.php:215, inc/classes/class-whos-online-view.php:215, inc/classes/class-whos-online-view.php:215, inc/classes/class-whos-online-view.php:693, inc/classes/class-whos-online-view.php:693
 msgid "Inactive Guest"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:304, inc/classes/class-whos-online-been.php:304, inc/classes/class-whos-online-been.php:304, inc/classes/class-whos-online-been.php:730, inc/classes/class-whos-online-been.php:730, inc/classes/class-whos-online-view.php:219, inc/classes/class-whos-online-view.php:219, inc/classes/class-whos-online-view.php:219, inc/classes/class-whos-online-view.php:688, inc/classes/class-whos-online-view.php:688
+#: inc/classes/class-whos-online-been.php:303, inc/classes/class-whos-online-been.php:303, inc/classes/class-whos-online-been.php:303, inc/classes/class-whos-online-been.php:730, inc/classes/class-whos-online-been.php:730, inc/classes/class-whos-online-view.php:219, inc/classes/class-whos-online-view.php:219, inc/classes/class-whos-online-view.php:219, inc/classes/class-whos-online-view.php:689, inc/classes/class-whos-online-view.php:689
 msgid "Active Bot"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:306, inc/classes/class-whos-online-been.php:306, inc/classes/class-whos-online-been.php:306, inc/classes/class-whos-online-been.php:728, inc/classes/class-whos-online-been.php:728, inc/classes/class-whos-online-view.php:221, inc/classes/class-whos-online-view.php:221, inc/classes/class-whos-online-view.php:221, inc/classes/class-whos-online-view.php:686, inc/classes/class-whos-online-view.php:686
+#: inc/classes/class-whos-online-been.php:305, inc/classes/class-whos-online-been.php:305, inc/classes/class-whos-online-been.php:305, inc/classes/class-whos-online-been.php:728, inc/classes/class-whos-online-been.php:728, inc/classes/class-whos-online-view.php:221, inc/classes/class-whos-online-view.php:221, inc/classes/class-whos-online-view.php:221, inc/classes/class-whos-online-view.php:687, inc/classes/class-whos-online-view.php:687
 msgid "Inactive Bot"
 msgstr ""
 
 #. translators: %1$d = visitor count, %2$s = date.
 #. translators: %1$d = Visitor count, %2$s = Date.
-#: inc/classes/class-whos-online-been.php:333, inc/classes/class-whos-online-view.php:232
+#: inc/classes/class-whos-online-been.php:332, inc/classes/class-whos-online-view.php:232
 msgid "%1$d visitors since %2$s"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:333, inc/classes/class-whos-online-view.php:232
+#: inc/classes/class-whos-online-been.php:332, inc/classes/class-whos-online-view.php:232
 msgid "installation"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:362
+#: inc/classes/class-whos-online-been.php:361
 msgid "Referer & Search String"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:497, inc/classes/class-whos-online-view.php:414
+#: inc/classes/class-whos-online-been.php:497, inc/classes/class-whos-online-view.php:415
 msgid "Error"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:482, inc/classes/class-whos-online-view.php:399, inc/classes/class-whos-online-view.php:624
+#: inc/classes/class-whos-online-been.php:482, inc/classes/class-whos-online-view.php:400, inc/classes/class-whos-online-view.php:625
 msgid "You"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:478, inc/classes/class-whos-online-view.php:395
+#: inc/classes/class-whos-online-been.php:478, inc/classes/class-whos-online-view.php:396
 msgid "Guest"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:521, inc/classes/class-whos-online-view.php:431
+#: inc/classes/class-whos-online-been.php:521, inc/classes/class-whos-online-view.php:432
 msgid "visits"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:527, inc/classes/class-whos-online-view.php:436
+#: inc/classes/class-whos-online-been.php:527, inc/classes/class-whos-online-view.php:437
 msgid "host lookups not enabled"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:550, inc/classes/class-whos-online-been.php:550, inc/classes/class-whos-online-view.php:458, inc/classes/class-whos-online-view.php:458
+#: inc/classes/class-whos-online-been.php:550, inc/classes/class-whos-online-been.php:550, inc/classes/class-whos-online-view.php:459, inc/classes/class-whos-online-view.php:459
 msgid "unknown"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:637, inc/classes/class-whos-online-view.php:563
+#: inc/classes/class-whos-online-been.php:637, inc/classes/class-whos-online-view.php:564
 msgid "Last URL:"
 msgstr ""
 
@@ -861,15 +861,15 @@ msgstr ""
 msgid "LAST"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:753, inc/classes/class-whos-online-view.php:712
+#: inc/classes/class-whos-online-been.php:753, inc/classes/class-whos-online-view.php:713
 msgid "User Agent:"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:759, inc/classes/class-whos-online-view.php:718
+#: inc/classes/class-whos-online-been.php:759, inc/classes/class-whos-online-view.php:719
 msgid "Host:"
 msgstr ""
 
-#: inc/classes/class-whos-online-been.php:765, inc/classes/class-whos-online-view.php:723
+#: inc/classes/class-whos-online-been.php:765, inc/classes/class-whos-online-view.php:724
 msgid "Referer:"
 msgstr ""
 
@@ -1007,11 +1007,11 @@ msgid "error: geolocation data not enabled or installed"
 msgstr ""
 
 #. translators: %1$d = row count, %2$d = time unit.
-#: inc/classes/class-whos-online-view-maps.php:341
+#: inc/classes/class-whos-online-view-maps.php:338
 msgid "%1$d visitors since %2$d ago"
 msgstr ""
 
-#: inc/classes/class-whos-online-view-maps.php:337
+#: inc/classes/class-whos-online-view-maps.php:334
 msgid "%1$d visitors since %2$d %3$s ago"
 msgstr ""
 
@@ -1036,27 +1036,27 @@ msgid "Last Click"
 msgstr ""
 
 #. translators: %1$d = Inactive minutes, %2$d = Removed minutes.
-#: inc/classes/class-whos-online-view.php:591
+#: inc/classes/class-whos-online-view.php:592
 msgid "Visitors online (Considered inactive after %1$d minutes. Removed after %2$d minutes)"
 msgstr ""
 
-#: inc/classes/class-whos-online-view.php:598
+#: inc/classes/class-whos-online-view.php:599
 msgid "Duplicate IPs"
 msgstr ""
 
-#: inc/classes/class-whos-online-view.php:605
+#: inc/classes/class-whos-online-view.php:606
 msgid "Members (includes you)"
 msgstr ""
 
-#: inc/classes/class-whos-online-view.php:613
+#: inc/classes/class-whos-online-view.php:614
 msgid "are active"
 msgstr ""
 
-#: inc/classes/class-whos-online-view.php:630
+#: inc/classes/class-whos-online-view.php:631
 msgid "Your IP Address:"
 msgstr ""
 
-#: inc/classes/class-whos-online-view.php:635
+#: inc/classes/class-whos-online-view.php:636
 msgid "Your Host:"
 msgstr ""
 

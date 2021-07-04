@@ -331,7 +331,8 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 												// Check for duplicates.
 												if ( in_array( $whos_online['ip_address'], $ip_addrs, true ) ) {
 													$total_dupes ++;
-												};
+												}
+
 												$ip_addrs[] = $whos_online['ip_address'];
 
 												// Display Status
@@ -674,7 +675,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 		 *
 		 * @return string
 		 */
-		private function check_status( $whos_online ) {
+		private function check_status( array $whos_online ): string {
 			global $wpdb;
 
 			// phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp
@@ -707,7 +708,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 		 *
 		 * @param array $whos_online Who's online.
 		 */
-		private function display_details( $whos_online ) {
+		private function display_details( array $whos_online ) {
 			// Display User Agent.
 			echo esc_html__( 'User Agent:', 'visitor-maps' ) . ' ' . esc_html( wordwrap( $whos_online['user_agent'], $this->set['useragent_wordwrap_chars'], '<br />', true ) );
 			echo '<br />';
@@ -730,15 +731,15 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 		/**
 		 * Outputs the combo boxes.
 		 *
-		 * @param string $name Select name.
-		 * @param array  $values Select values.
-		 * @param string $default Default value.
+		 * @param string $name       Select name.
+		 * @param array  $values     Select values.
+		 * @param string $default    Default value.
 		 * @param string $parameters Field parameters.
-		 * @param bool   $required Is required.
+		 * @param bool   $required   Is required.
 		 *
 		 * @return string
 		 */
-		private function draw_pull_down_menu( $name, $values, $default = '', $parameters = '', $required = false ) {
+		private function draw_pull_down_menu( string $name, array $values, string $default = '', string $parameters = '', bool $required = false ): string {
 			$field = '<select name="' . esc_attr( $name ) . '"';
 
 			if ( ! empty( $parameters ) ) {
@@ -776,16 +777,16 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 		/**
 		 * Total time online.
 		 *
-		 * @param string $time_online Time online.
+		 * @param string $time_online The Time online.
 		 *
 		 * @return string
 		 */
-		private function time_online( $time_online ) {
-			$hrs         = (int) intval( $time_online / 3600 );
-			$time_online = (int) intval( $time_online - ( 3600 * $hrs ) );
-			$mns         = (int) intval( $time_online / 60 );
-			$time_online = (int) intval( $time_online - ( 60 * $mns ) );
-			$secs        = (int) intval( $time_online / 1 );
+		private function time_online( string $time_online ): string {
+			$hrs         = intval( $time_online / 3600 );
+			$time_online = intval( $time_online - ( 3600 * $hrs ) );
+			$mns         = intval( $time_online / 60 );
+			$time_online = intval( $time_online - ( 60 * $mns ) );
+			$secs        = intval( $time_online / 1 );
 
 			return sprintf( '%02d:%02d:%02d', $hrs, $mns, $secs );
 		}
@@ -797,7 +798,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 		 *
 		 * @return int
 		 */
-		private function check_geoip_date( $geoip_file_time ) {
+		private function check_geoip_date( string $geoip_file_time ): int {
 			global $wpdb;
 
 			// checking for a newer maxmind geo database update file

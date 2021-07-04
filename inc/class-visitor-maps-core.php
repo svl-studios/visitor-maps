@@ -44,12 +44,12 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Check URL last mod time.
 		 *
-		 * @param string $url URL to check.
+		 * @param string $url    URL to check.
 		 * @param int    $format Format.
 		 *
 		 * @return false|int|void
 		 */
-		public function http_last_mod( $url, $format = 0 ) {
+		public function http_last_mod( string $url, int $format = 0 ) {
 			$response = wp_remote_get( $url, array( 'timeout' => 1200 ) );
 
 			if ( is_array( $response ) && ! is_wp_error( $response ) ) {
@@ -403,7 +403,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		 *
 		 * @return string
 		 */
-		public function shortcode() {
+		public function shortcode(): string {
 			global $wpdb;
 
 			$string = '';
@@ -634,11 +634,11 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		 * Add Settings link to plugin page entry.
 		 *
 		 * @param array  $links Array of links.
-		 * @param string $file Plugin filename.
+		 * @param string $file  Plugin filename.
 		 *
-		 * @return mixed
+		 * @return array
 		 */
-		public function plugin_action_links( $links, $file ) {
+		public function plugin_action_links( array $links, string $file ): array {
 			static $this_plugin;
 
 			if ( ! $this_plugin ) {
@@ -665,7 +665,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		 *
 		 * @return string
 		 */
-		private function visitor_maps_activity_do() {
+		private function visitor_maps_activity_do(): string {
 			global $wpdb, $current_user, $user_ID;
 
 			$wo_table_wo = $wpdb->prefix . 'visitor_maps_wo';
@@ -701,7 +701,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 
 			$spiders = file( Visitor_Maps::$dir . '/spiders.txt' );
 
-			if ( ! empty( $user_agent_lower ) && '' !== $spiders ) {
+			if ( ! empty( $user_agent_lower ) && ! empty( $spiders ) ) {
 				for ( $i = 0, $n = count( $spiders ); $i < $n; $i ++ ) {
 					if ( ! empty( $spiders[ $i ] ) && is_integer( strpos( $user_agent_lower, trim( $spiders[ $i ] ) ) ) ) {
 						$spider_flag = $spiders[ $i ];
@@ -840,7 +840,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 
 					// is a nickname user coming back online? then need to re-set the time entry and online time.
 					if ( $stored_user->time_last_click < $xx_mins_ago ) {
-						$hostname = ( Visitor_Maps::$core->get_option( 'enable_host_lookups' ) ) ? $this->gethostbyaddr_timeout( $ip_address, 2 ) : '';
+						$hostname = ( Visitor_Maps::$core->get_option( 'enable_host_lookups' ) ) ? $this->gethostbyaddr_timeout( $ip_address ) : '';
 						$query   .= "num_visits       = '" . esc_sql( $stored_user->num_visits + 1 ) . "',
                             time_entry       = '" . esc_sql( $current_time ) . "',
                             time_last_click  = '" . esc_sql( $current_time ) . "',
@@ -851,7 +851,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
                             WHERE session_id = '" . esc_sql( $ip_address ) . "'";
 					} else {
 						if ( Visitor_Maps::$core->get_option( 'enable_host_lookups' ) ) {
-							$hostname = ( empty( $stored_user->hostname ) ) ? $this->gethostbyaddr_timeout( $ip_address, 2 ) : $stored_user->hostname;
+							$hostname = ( empty( $stored_user->hostname ) ) ? $this->gethostbyaddr_timeout( $ip_address ) : $stored_user->hostname;
 						} else {
 							$hostname = '';
 						}
@@ -881,7 +881,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 						$longitude    = '0.0000';
 					}
 
-					$hostname = ( Visitor_Maps::$core->get_option( 'enable_host_lookups' ) ) ? $this->gethostbyaddr_timeout( $ip_address, 2 ) : '';
+					$hostname = ( Visitor_Maps::$core->get_option( 'enable_host_lookups' ) ) ? $this->gethostbyaddr_timeout( $ip_address ) : '';
 
 					$query = 'INSERT IGNORE INTO ' . $wo_table_wo . "
                         (session_id,
@@ -929,9 +929,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 
 			$visitors_count = $this->set_whos_records();
 
-			$visitor_maps_stats = $this->get_whos_records( $visitors_count );
-
-			return $visitor_maps_stats;
+			return $this->get_whos_records( $visitors_count );
 		}
 
 		/**
@@ -943,7 +941,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		 * @throws AddressNotFoundException Address not found.
 		 * @throws InvalidDatabaseException Invalid database.
 		 */
-		public function get_location_info( $user_ip ) {
+		public function get_location_info( string $user_ip ): array {
 			// lookup country info for this ip.
 			// geoip lookup.
 
@@ -988,7 +986,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		 *
 		 * @return string|null
 		 */
-		private function set_whos_records() {
+		private function set_whos_records(): ?string {
 			global $wpdb;
 
 			$wo_table_wo = $wpdb->prefix . 'visitor_maps_wo';
@@ -1094,7 +1092,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		 *
 		 * @return string
 		 */
-		private function get_whos_records( $visitors_count ) {
+		private function get_whos_records( int $visitors_count ): string {
 			// get the day, month, year, all time records for display on web site,
 			// use the recycled the 'visitors online now' count.
 			global $visitor_maps_stats, $wpdb;
@@ -1104,6 +1102,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 			$current_time = (int) current_time( 'timestamp' ); // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp
 
 			$query_time = ( $current_time - absint( ( intval( Visitor_Maps::$core->get_option( 'track_time' ) ) * 60 ) ) );
+
 			if ( Visitor_Maps::$core->get_option( 'hide_bots' ) ) {
 				// phpcs:disable
 				$guests_count = $wpdb->get_var(
@@ -1212,7 +1211,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		 *
 		 * @return mixed
 		 */
-		public function get_visitor_maps_worldmap( $ms = 0 ) {
+		public function get_visitor_maps_worldmap( int $ms = 0 ) {
 			global $wpdb;
 
 			require_once Visitor_Maps::$dir . '/visitor-maps-worldmap.php';
@@ -1234,9 +1233,9 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Get request URL.
 		 *
-		 * @return mixed|string
+		 * @return string
 		 */
-		private function get_request_uri() {
+		private function get_request_uri(): string {
 			if ( isset( $_SERVER['REQUEST_URI'] ) ) {
 				$uri = sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) );
 			} else {
@@ -1257,9 +1256,9 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Get IP Address.
 		 *
-		 * @return mixed|string
+		 * @return string
 		 */
-		public function get_ip_address() {
+		public function get_ip_address(): string {
 			if ( isset( $_SERVER['REMOTE_ADDR'] ) ) {
 				$ip = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) );
 			} else {
@@ -1272,7 +1271,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Get HTTP USer Agent.
 		 *
-		 * @return array|false|mixed|string
+		 * @return array|false|string
 		 */
 		private function get_http_user_agent() {
 			if ( getenv( 'HTTP_USER_AGENT' ) ) {
@@ -1289,7 +1288,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Get HTTP Referer.
 		 *
-		 * @return array|false|mixed|string
+		 * @return array|false|string
 		 */
 		private function get_http_referer() {
 			if ( getenv( 'HTTP_REFERER' ) ) {
@@ -1310,12 +1309,12 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		 *
 		 * @return bool
 		 */
-		public function validate_color_wo( $string ) {
-			if ( is_string( $string ) && preg_match( '/^#[a-f0-9]{6}$/i', trim( $string ) ) ) {
+		public function validate_color_wo( string $string ): bool {
+			if ( preg_match( '/^#[a-f0-9]{6}$/i', trim( $string ) ) ) {
 				return true;
 			}
 
-			if ( is_string( $string ) && preg_match( '/^[a-f0-9]{6}$/i', trim( $string ) ) ) {
+			if ( preg_match( '/^[a-f0-9]{6}$/i', trim( $string ) ) ) {
 				return true;
 			}
 
@@ -1329,7 +1328,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		 *
 		 * @return bool
 		 */
-		public function validate_text_align( $string ) {
+		public function validate_text_align( string $string ): bool {
 			$allowed = array( 'll', 'ul', 'lr', 'ur', 'c', 'ct', 'cb' );
 
 			if ( in_array( $string, $allowed, true ) ) {
@@ -1346,7 +1345,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		 *
 		 * @return string
 		 */
-		public function host_to_domain( $host ) {
+		public function host_to_domain( string $host ): string {
 			if ( 'n/a' === $host || ! preg_match( '/.*\.[a-zA-Z]{2,3}/', $host ) ) {
 				return $host;
 			}
@@ -1386,12 +1385,12 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Get host by address timeout.
 		 *
-		 * @param string $ip WP address.
+		 * @param string $ip           WP address.
 		 * @param int    $timeout_secs Seconds.
 		 *
 		 * @return string
 		 */
-		private function gethostbyaddr_timeout( $ip, $timeout_secs = 2 ) {
+		private function gethostbyaddr_timeout( string $ip, int $timeout_secs = 2 ): string {
 			if ( strtoupper( substr( PHP_OS, 0, 3 ) ) === 'WIN' ) {
 				return $this->gethost_win( $ip, $timeout_secs );
 			} else {
@@ -1402,12 +1401,12 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Get host command line.
 		 *
-		 * @param string $ip IP address.
+		 * @param string $ip           IP address.
 		 * @param int    $timeout_secs Seconds.
 		 *
 		 * @return string
 		 */
-		private function gethost_lin( $ip, $timeout_secs = 2 ) {
+		private function gethost_lin( string $ip, int $timeout_secs = 2 ): string {
 			$time_start = microtime( true ); // set a timer.
 
 			// phpcs:ignore WordPress.PHP
@@ -1438,12 +1437,12 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Get host Windows.
 		 *
-		 * @param string $ip IP address.
+		 * @param string $ip           IP address.
 		 * @param int    $timeout_secs Seconds.
 		 *
 		 * @return string
 		 */
-		private function gethost_win( $ip, $timeout_secs = 2 ) {
+		private function gethost_win( string $ip, int $timeout_secs = 2 ): string {
 			$time_start = microtime( true ); // set a timer.
 
 			// phpcs:ignore WordPress.PHP
@@ -1517,7 +1516,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		 *
 		 * @param array $args Widget arguments.
 		 */
-		public function visitor_maps_widget( $args ) {
+		public function visitor_maps_widget( array $args ) {
 			extract( $args ); // phpcs:ignore WordPress.PHP.DontExtract
 
 			echo esc_html( $before_widget ) . esc_html( $before_title ) . esc_html__( "Who's Online", 'visitor-maps' ) . esc_html( $after_title );
@@ -1647,14 +1646,10 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		 *
 		 * @return string
 		 */
-		public function get_option( $option, $default = '' ) {
+		public function get_option( string $option, string $default = '' ): string {
 			global $visitor_maps_opt;
 
-			if ( isset( $visitor_maps_opt[ $option ] ) ) {
-				return $visitor_maps_opt[ $option ];
-			} else {
-				return $default;
-			}
+			return $visitor_maps_opt[ $option ] ?? $default;
 		}
 	}
 }

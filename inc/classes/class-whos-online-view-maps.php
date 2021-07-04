@@ -36,7 +36,7 @@ if ( ! class_exists( 'Whos_Online_View_Maps' ) ) {
 		 *
 		 * @return string
 		 */
-		public function display_map() {
+		public function display_map(): string {
 			global $wpdb;
 
 			$wo_table_wo = $wpdb->prefix . 'visitor_maps_wo';
@@ -103,11 +103,11 @@ if ( ! class_exists( 'Whos_Online_View_Maps' ) ) {
 			$this->set['image_pin_3'] = 'wo-pin-green5x5.jpg';
 
 			if ( ! isset( $_GET['nonce'] ) ) {
-				return;
+				return '';
 			}
 
 			if ( ! wp_verify_nonce( sanitize_key( $_GET['nonce'] ), 'do_wo_map' ) ) {
-				return;
+				return '';
 			}
 
 			// you can add more, just increment the numbers
@@ -268,9 +268,6 @@ if ( ! class_exists( 'Whos_Online_View_Maps' ) ) {
                      WHERE name = 'Guest' AND time_last_click > '" . $xx_secs_ago . "' LIMIT " . absint( Visitor_Maps::$core->get_option( 'pins_limit' ) ) . '',
 					ARRAY_A
 				);
-
-				// phpcs:ignore WordPress.DB.DirectDatabaseQuery
-				$rows_count = $wpdb->get_var( 'SELECT FOUND_ROWS()' );
 			} else {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery
 				$rows_arr = $wpdb->get_results(
@@ -278,11 +275,11 @@ if ( ! class_exists( 'Whos_Online_View_Maps' ) ) {
                      WHERE time_last_click > '" . $xx_secs_ago . "' LIMIT " . absint( Visitor_Maps::$core->get_option( 'pins_limit' ) ) . '',
 					ARRAY_A
 				);
-
-				// phpcs:ignore WordPress.DB.DirectDatabaseQuery
-				$rows_count = $wpdb->get_var( 'SELECT FOUND_ROWS()' );
-				// phpcs:enable
 			}
+
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery
+			$rows_count = $wpdb->get_var( 'SELECT FOUND_ROWS()' );
+			// phpcs:enable
 
 			$count = 0;
 			// create pins on the map.
@@ -363,12 +360,12 @@ if ( ! class_exists( 'Whos_Online_View_Maps' ) ) {
 		/**
 		 * Text Overlay.
 		 *
-		 * @param string $text Text.
-		 * @param int    $image_p Pointer to image resouce.
-		 * @param int    $new_width New width.
+		 * @param string $text       Text.
+		 * @param int    $image_p    Pointer to image resouce.
+		 * @param int    $new_width  New width.
 		 * @param int    $new_height New height.
 		 */
-		private function textoverlay( $text, $image_p, $new_width, $new_height ) {
+		private function textoverlay( string $text, int $image_p, int $new_width, int $new_height ) {
 			$fontstyle       = 5; // 1 to 5.
 			$fontcolor       = $this->gvar['text_color'];
 			$fontshadowcolor = $this->gvar['text_shadow_color'];
@@ -538,13 +535,13 @@ if ( ! class_exists( 'Whos_Online_View_Maps' ) ) {
 		 * TTF Wordwrap.
 		 *
 		 * @param array  $src_lines Array of lines.
-		 * @param string $font Font resource.
+		 * @param string $font      Font resource.
 		 * @param float  $text_size Text size.
-		 * @param int    $width Width.
+		 * @param int    $width     Width.
 		 *
 		 * @return array
 		 */
-		private function ttf_wordwrap( $src_lines, $font, $text_size, $width ) {
+		private function ttf_wordwrap( array $src_lines, string $font, float $text_size, int $width ): array {
 			$dst_lines = array(); // The destination lines array.
 
 			foreach ( $src_lines as $current_l ) {

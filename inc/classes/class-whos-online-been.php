@@ -253,8 +253,6 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 			}
 
 			$limit = 'LIMIT ' . ( $pageno - 1 ) * $rows_per_page . ',' . $rows_per_page;
-//var_dump( home_url($_SERVER['REQUEST_URI']));
-//			var_dump($_SERVER);
 
 			?>
 			<table class="widefat visitor-map-actions" data-nonce="<?php echo esc_attr( wp_create_nonce( 'vm_mode' ) ); ?>">
@@ -420,7 +418,8 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 
 														if ( in_array( $whos_online['ip_address'], $ip_addrs, true ) ) {
 															$total_dupes ++;
-														};
+														}
+
 														$ip_addrs[] = $whos_online['ip_address'];
 
 														$is_bot   = false;
@@ -669,10 +668,10 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 		/**
 		 * Output pagination.
 		 *
-		 * @param int $pageno Current page number.
+		 * @param int $pageno   Current page number.
 		 * @param int $lastpage last page count.
 		 */
-		private function output_page_nav( $pageno, $lastpage ) {
+		private function output_page_nav( int $pageno, int $lastpage ) {
 			?>
 			<tr>
 				<?php // phpcs:ignore WordPress.Security.EscapeOutput ?>
@@ -716,7 +715,7 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 		 *
 		 * @return string
 		 */
-		private function check_status( $whos_online ) {
+		private function check_status( array $whos_online ): string {
 			global $wpdb;
 
 			// phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp
@@ -750,7 +749,7 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 		 *
 		 * @param array $whos_online Who's online.
 		 */
-		private function display_details( $whos_online ) {
+		private function display_details( array $whos_online ) {
 			echo esc_html__( 'User Agent:', 'visitor-maps' ) . ' ' . esc_html( wordwrap( esc_html( $whos_online['user_agent'] ), $this->set['useragent_wordwrap_chars'], '<br />', true ) );
 			echo '<br />';
 
@@ -773,15 +772,15 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 		/**
 		 * Render combo boxes.
 		 *
-		 * @param string $name Select name.
-		 * @param array  $values Select values.
-		 * @param string $default Default value.
+		 * @param string $name       Select name.
+		 * @param array  $values     Select values.
+		 * @param string $default    Default value.
 		 * @param string $parameters Params.
-		 * @param bool   $required Is required.
+		 * @param bool   $required   Is required.
 		 *
 		 * @return string
 		 */
-		private function draw_pull_down_menu( $name, $values, $default = '', $parameters = '', $required = false ) {
+		private function draw_pull_down_menu( string $name, array $values, string $default = '', string $parameters = '', bool $required = false ): string {
 			$field = '<select id="' . esc_attr( $name ) . '" name="' . esc_attr( $name ) . '"';
 
 			if ( ! empty( $parameters ) ) {
@@ -819,17 +818,17 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 		/**
 		 * Calc time online.
 		 *
-		 * @param int $time_online Time online.
+		 * @param int $time_online The Time online.
 		 *
 		 * @return string
 		 */
-		private function time_online( $time_online ) {
+		private function time_online( int $time_online ): string {
 			// takes a time diff in secs and formats to 01:48:08  (hrs:min:secs).
-			$hrs         = (int) intval( $time_online / 3600 );
-			$time_online = (int) intval( $time_online - ( 3600 * $hrs ) );
-			$mns         = (int) intval( $time_online / 60 );
-			$time_online = (int) intval( $time_online - ( 60 * $mns ) );
-			$secs        = (int) intval( $time_online / 1 );
+			$hrs         = intval( $time_online / 3600 );
+			$time_online = intval( $time_online - ( 3600 * $hrs ) );
+			$mns         = intval( $time_online / 60 );
+			$time_online = intval( $time_online - ( 60 * $mns ) );
+			$secs        = intval( $time_online / 1 );
 
 			return sprintf( '%02d:%02d:%02d', $hrs, $mns, $secs );
 		}

@@ -9,8 +9,8 @@
  * Author URI:  http://www.svlstudios.com
  *
  * @package     VisitorMaps
- * @author      SVL Studios by Kevin Provance <kev@svlstudios.com>
- * @copyright   2020 Kevin Provance d/b/a SVL Studios
+ * @author      SVL Studios by Kevin Provance <support@svlstudios.com>
+ * @copyright   2021 Kevin Provance d/b/a SVL Studios
  */
 
 defined( 'ABSPATH' ) || exit;

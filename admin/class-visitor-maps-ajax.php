@@ -65,7 +65,7 @@ if ( ! class_exists( 'Visitor_Maps_AJAX' ) ) {
 		 *
 		 * @return WP_Error
 		 */
-		public function ajax() {
+		public function ajax(): WP_Error {
 			if ( ! isset( $_POST['nonce'] ) || ( isset( $_POST['nonce'] ) && ! wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'visitor_maps_geolitecity' ) ) ) {
 				$error = 'Security check failed.';
 
@@ -81,7 +81,7 @@ if ( ! class_exists( 'Visitor_Maps_AJAX' ) ) {
 
 			$error = '';
 
-			$is_update = isset( $_POST['update'] ) ? sanitize_text_field( wp_unslash( $_POST['update'] ) ) : false;
+			$is_update = isset( $_POST['update'] ) && sanitize_text_field( wp_unslash( $_POST['update'] ) );
 
 			$database_path = Visitor_Maps::$upload_dir . Visitor_Maps::DATABASE_NAME . Visitor_Maps::DATABASE_EXT;
 
@@ -163,13 +163,13 @@ if ( ! class_exists( 'Visitor_Maps_AJAX' ) ) {
 		/**
 		 * Get Geolocation data.
 		 *
-		 * @param string $user_ip IP address to lookup.
+		 * @param string $user_ip The IP address to lookup.
 		 *
 		 * @return array
 		 * @throws AddressNotFoundException Address not found.
 		 * @throws InvalidDatabaseException Invalid database.
 		 */
-		private function get_location_data( $user_ip ) {
+		private function get_location_data( string $user_ip ): array {
 			require_once Visitor_Maps::$dir . 'vendor/autoload.php';
 
 			$reader = new Reader( Visitor_Maps::$upload_dir . Visitor_Maps::DATABASE_NAME . Visitor_Maps::DATABASE_EXT );
