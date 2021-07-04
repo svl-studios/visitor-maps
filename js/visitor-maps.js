@@ -28,15 +28,6 @@
 
 		nonce = $( '.visitor-map-actions' ).data( 'nonce' );
 
-		//$( '.visitor-map-actions' ).after(
-		//	'<form id="vm_form" action="' + window.location.href + '" method="post">' +
-		//		'<input type="hidden" name="vm_mode_nonce" value="' + nonce + '">' +
-		//		'<input type="hidden" name="vm_mode" id="vm_mode" value="" />' +
-		//		'<input type="hidden" name="vm_ip" id="vm_ip" value="" />' +
-		//		'<input type="hidden" name="vm_referer" id="vm_referer" value="" />' +
-		//	'</form>'
-		//);
-
 		if ( vmMessage ) {
 			$( '#vm_form' ).after( '<div class="updated">' + vmMessage + '</div>' );
 

@@ -457,9 +457,9 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 
 					if ( '' !== $referer ) {
 						if ( count( $banned_referers ) < 2 ) {
-							$new_htcontent .= '\nRewriteCond %{HTTP_REFERER} ' . str_replace( '.', '\.', $referer ) . ' [NC]';
+							$new_htcontent .= "\nRewriteCond %{HTTP_REFERER} " . str_replace( '.', '\.', $referer ) . ' [NC]';
 						} else {
-							$new_htcontent .= '\nRewriteCond %{HTTP_REFERER} ' . str_replace( '.', '\.', $referer ) . ' [NC,OR]';
+							$new_htcontent .= "\nRewriteCond %{HTTP_REFERER} " . str_replace( '.', '\.', $referer ) . ' [NC,OR]';
 						}
 					}
 				}

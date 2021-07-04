@@ -693,7 +693,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 			$user_agent       = $this->get_http_user_agent();
 			$user_agent_lower = strtolower( $user_agent );
 			$current_time     = (int) current_time( 'timestamp' ); // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp
-			$xx_mins_ago      = ( $current_time - absint( ( Visitor_Maps::$core->get_option( 'track_time' ) * 60 ) ) );
+			$xx_mins_ago      = ( $current_time - absint( ( intval( Visitor_Maps::$core->get_option( 'track_time' ) ) * 60 ) ) );
 
 			// see if the user is a spider (bot) or not
 			// based on a list of spiders in spiders.txt file.
@@ -997,7 +997,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 
 			$mysql_now    = current_time( 'mysql' );
 			$current_time = (int) current_time( 'timestamp' ); // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp
-			$query_time   = ( $current_time - absint( ( Visitor_Maps::$core->get_option( 'track_time' ) * 60 ) ) );
+			$query_time   = ( $current_time - absint( ( intval( Visitor_Maps::$core->get_option( 'track_time' ) ) * 60 ) ) );
 
 			if ( Visitor_Maps::$core->get_option( 'hide_bots' ) ) {
 
@@ -1103,7 +1103,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 			$wo_table_wo  = $wpdb->prefix . 'visitor_maps_wo';
 			$current_time = (int) current_time( 'timestamp' ); // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp
 
-			$query_time = ( $current_time - absint( ( Visitor_Maps::$core->get_option( 'track_time' ) * 60 ) ) );
+			$query_time = ( $current_time - absint( ( intval( Visitor_Maps::$core->get_option( 'track_time' ) ) * 60 ) ) );
 			if ( Visitor_Maps::$core->get_option( 'hide_bots' ) ) {
 				// phpcs:disable
 				$guests_count = $wpdb->get_var(
