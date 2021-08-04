@@ -452,7 +452,7 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 				$banned_ips = array();
 			}
 
-			if ( null !== $banned_referers[0] ) {
+			if ( isset( $banned_referers[0] ) && ! empty( $banned_referers[0] ) ) {
 				$new_htcontent .= "\n# BEGIN Referers
 <IfModule mod_rewrite.c>
 # Uncomment 'Options +FollowSymlinks' if your server returns a '500 Internal Server' error.
