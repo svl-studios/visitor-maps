@@ -271,8 +271,9 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		 * @return bool
 		 */
 		private function filesystem_init(): bool {
-			$url    = 'admin.php?page=whos-been-online';
-			$method = '';
+			$url         = 'admin.php?page=whos-been-online';
+			$method      = '';
+			$form_fields = '';
 
 			$creds = request_filesystem_credentials( $url, $method, false, false, $form_fields );
 			if ( false === $creds ) {
@@ -442,6 +443,14 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 			$banned_referers = get_option( 'vm_banned_referers' );
 			$banned_ips      = get_option( 'vm_banned_ips' );
 			$new_htcontent   = "\n# BEGIN Visitor Maps";
+
+			if ( false === $banned_referers ) {
+				$banned_referers = array();
+			}
+
+			if ( false === $banned_ips ) {
+				$banned_ips = array();
+			}
 
 			if ( null !== $banned_referers[0] ) {
 				$new_htcontent .= "\n# BEGIN Referers
