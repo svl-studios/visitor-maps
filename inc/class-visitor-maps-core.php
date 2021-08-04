@@ -1207,11 +1207,11 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Get World map.
 		 *
-		 * @param int $ms Who knows.
+		 * @param int|array $ms Who knows.
 		 *
 		 * @return mixed
 		 */
-		public function get_visitor_maps_worldmap( int $ms = 0 ) {
+		public function get_visitor_maps_worldmap( $ms = 0 ) {
 			global $wpdb;
 
 			require_once Visitor_Maps::$dir . '/visitor-maps-worldmap.php';
