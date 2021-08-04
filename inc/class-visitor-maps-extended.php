@@ -440,8 +440,8 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 				$htpart2 = '';
 			}
 
-			$banned_referers = get_option( 'vm_banned_referers' );
-			$banned_ips      = get_option( 'vm_banned_ips' );
+			$banned_referers = get_option( 'vm_banned_referers', array() );
+			$banned_ips      = get_option( 'vm_banned_ips', array() );
 			$new_htcontent   = "\n# BEGIN Visitor Maps";
 
 			if ( false === $banned_referers ) {
