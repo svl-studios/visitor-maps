@@ -130,7 +130,7 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 			if ( isset( $_POST['vm_mode_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['vm_mode_nonce'] ) ), 'vm_mode' ) ) {
 				if ( isset( $_POST['vm_referer'] ) ) {
 					$vm_referer      = str_replace( array( 'http://', 'https://' ), '', str_replace( 'www.', '', strtolower( trim( sanitize_text_field( wp_unslash( $_POST['vm_referer'] ) ) ) ) ) );
-					$banned_referers = get_option( 'vm_banned_referers' );
+					$banned_referers = get_option( 'vm_banned_referers', array() );
 					$vm_output       = '';
 
 					if ( in_array( $vm_referer, $banned_referers, true ) ) {
