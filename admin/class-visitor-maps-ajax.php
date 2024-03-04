@@ -11,6 +11,7 @@ defined( 'ABSPATH' ) || exit;
 
 use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
+use JetBrains\PhpStorm\NoReturn;
 use MaxMind\Db\Reader\InvalidDatabaseException;
 
 if ( ! class_exists( 'Visitor_Maps_AJAX' ) ) {
@@ -32,8 +33,8 @@ if ( ! class_exists( 'Visitor_Maps_AJAX' ) ) {
 		/**
 		 * Test GeoLocation lookup.
 		 */
-		public function lookup() {
-			if ( ! isset( $_POST['nonce'] ) || ( isset( $_POST['nonce'] ) && ! wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'visitor_maps_geolitecity' ) ) ) {
+		#[NoReturn] public function lookup(): void {
+			if ( ! isset( $_POST['nonce'] ) || ( ! wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'visitor_maps_geolitecity' ) ) ) {
 				echo 'Security check failed.';
 
 				die;
@@ -66,7 +67,7 @@ if ( ! class_exists( 'Visitor_Maps_AJAX' ) ) {
 		 * @return WP_Error
 		 */
 		public function ajax(): WP_Error {
-			if ( ! isset( $_POST['nonce'] ) || ( isset( $_POST['nonce'] ) && ! wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'visitor_maps_geolitecity' ) ) ) {
+			if ( ! isset( $_POST['nonce'] ) || ( ! wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'visitor_maps_geolitecity' ) ) ) {
 				$error = 'Security check failed.';
 
 				echo wp_json_encode(
@@ -104,16 +105,15 @@ if ( ! class_exists( 'Visitor_Maps_AJAX' ) ) {
 				$error_data = $tmp_archive_path->get_error_data();
 
 				if ( isset( $error_data['code'] ) ) {
-					switch ( $error_data['code'] ) {
-						case 401:
-							echo wp_json_encode(
-								array(
-									'status' => 'error',
-									'error'  => esc_html__( 'The MaxMind license key is invalid. If you have recently created this key, you may need to wait for it to become active.', 'visitor-maps' ),
-								)
-							);
+					if ( 401 === $error_data['code'] ) {
+						echo wp_json_encode(
+							array(
+								'status' => 'error',
+								'error'  => esc_html__( 'The MaxMind license key is invalid. If you have recently created this key, you may need to wait for it to become active.', 'visitor-maps' ),
+							)
+						);
 
-							die;
+						die;
 					}
 				}
 				echo wp_json_encode(
@@ -137,7 +137,7 @@ if ( ! class_exists( 'Visitor_Maps_AJAX' ) ) {
 				return new WP_Error( 'visitormaps_maxmind_geolocation_database_archive', $exception->getMessage() );
 			} finally {
 				// Remove the archive since we only care about a single file in it.
-				unlink( $tmp_archive_path );
+				wp_delete_file( $tmp_archive_path );
 			}
 
 			copy( $tmp_database_path, $database_path );
@@ -163,7 +163,7 @@ if ( ! class_exists( 'Visitor_Maps_AJAX' ) ) {
 		/**
 		 * Get Geolocation data.
 		 *
-		 * @param string $user_ip The IP address to lookup.
+		 * @param string $user_ip IP address to lookup.
 		 *
 		 * @return array
 		 * @throws AddressNotFoundException Address not found.
@@ -195,7 +195,7 @@ if ( ! class_exists( 'Visitor_Maps_AJAX' ) ) {
 		/**
 		 * Enqueue AJAX JavaScript.
 		 */
-		public function enqueue() {
+		public function enqueue(): void {
 			$min = Redux_Functions::isMin();
 
 			wp_enqueue_script(

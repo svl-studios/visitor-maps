@@ -26,7 +26,7 @@ if ( ! class_exists( 'Visitor_Maps_Enqueue' ) ) {
 		/**
 		 * Enqueue necessary files.
 		 */
-		public function enqueue() {
+		public function enqueue(): void {
 			$redux = ReduxFrameworkInstances::get_instance( Visitor_Maps::OPT_NAME );
 			$page  = $redux->args['page_slug'];
 

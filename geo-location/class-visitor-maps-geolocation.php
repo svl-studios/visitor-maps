@@ -26,19 +26,19 @@ if ( ! class_exists( 'Visitor_Maps_Geolocation' ) ) {
 		/**
 		 * Display update message.
 		 *
-		 * @param int    $geoip_old      Age.
+		 * @param string $geoip_old      Age.
 		 * @param string $geoip_days_ago Age in days.
 		 */
-		public function view_display_form( int $geoip_old, string $geoip_days_ago ) {
+		public function view_display_form( string $geoip_old, string $geoip_days_ago ): void {
 			echo '<p>' . esc_html__( 'Uses GeoLiteCity data created by MaxMind, available from http://www.maxmind.com', 'visitor-maps' ) . '<br />';
-
-			if ( 1 === $geoip_old ) {
+			$geoip_old = true;
+			if ( $geoip_old ) {
 				/* translators: Number of days past */
 				echo '<span style="color:red">' . sprintf( esc_html__( 'The GeoLiteCity data was last updated %d days ago', 'visitor-maps' ), intval( $geoip_days_ago ) ) . ' ' . esc_html__( 'an update is available', 'visitor-maps' ) . ',
                       <a href="' . esc_url( wp_nonce_url( admin_url( 'plugins.php?page=visitor-maps' ), 'visitor-maps-geo_update' ) ) . '&do_geo=1">' . esc_html__( 'click here to update', 'visitor-maps' ) . '</a></span>';
 			} else {
 				/* translators: Number of days past */
-				echo sprintf( esc_html__( 'The GeoLiteCity data was last updated %d days ago', 'visitor-maps' ), intval( $geoip_days_ago ) );
+				printf( esc_html__( 'The GeoLiteCity data was last updated %d days ago', 'visitor-maps' ), intval( $geoip_days_ago ) );
 			}
 
 			echo '</p>';

@@ -31,11 +31,10 @@ if ( ! class_exists( 'Visitor_Maps_Options' ) ) {
 		 * Callback for allowed HTML.
 		 *
 		 * @param array|string $tags   Tags for consideration.
-		 * @param string       $unused Tags not to use.
 		 *
 		 * @return array|string
 		 */
-		public function allowed_html( array $tags, string $unused ) {
+		public function allowed_html( array $tags ): array|string {
 			$tags['div']['data-nonce']  = true;
 			$tags['div']['data-update'] = true;
 			$tags['a']['aria-label']    = true;
@@ -79,7 +78,7 @@ if ( ! class_exists( 'Visitor_Maps_Options' ) ) {
 		/**
 		 * Set plugin options.
 		 */
-		private function set_options() {
+		private function set_options(): void {
 			$opt_name = Visitor_Maps::OPT_NAME;
 
 			$args = array(
@@ -575,8 +574,6 @@ if ( ! class_exists( 'Visitor_Maps_Options' ) ) {
 					),
 				)
 			);
-
-			Redux::init( Visitor_Maps::OPT_NAME );
 		}
 	}
 

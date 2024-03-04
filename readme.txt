@@ -4,10 +4,10 @@ Contributors: Mike Challis
 Author URI: http://www.svlstudios.com
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V3BPEZ9WGYEYG
 Tags: plugin, plugins, users, visitors, visitor, whos online, map, maps, geolocation, location, country, statistics, stats, widget, sidebar, admin, dashboard, multilingual
-Requires at least: 4.0
-Requires PHP: 5.3
-Tested up to: 5.7
-Stable tag: 2.0.0
+Requires at least: 5.0
+Requires PHP: 8.0
+Tested up to: 6.5
+Stable tag: 2.0.1
 
 Displays Visitor Maps with location pins, city, and country. Includes a Who's Online Sidebar. Has an admin dashboard to view visitor details.
 
@@ -36,7 +36,7 @@ Features:
 Requirements/Restrictions:
 -------------------------
  * Wordpress 
- * PHP5
+ * PHP8
  * 30 megs of server space(with geolocation enabled)
  * PHP register_globals and safe_mode should be set to "Off"
 

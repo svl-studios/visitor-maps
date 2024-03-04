@@ -73,7 +73,7 @@
 	};
 
 	$.visitorMaps.ajax.geoLiteCityUpdate = function( obj ) {
-		obj.find( '.update-geolitecity' ).on(
+		obj.find( '.update-geolitecity' ).bind(
 			'click',
 			function( e ) {
 				var updateParent = $( this ).parent().parent();

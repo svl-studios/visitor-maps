@@ -22,7 +22,7 @@ if ( ! class_exists( 'Whos_Online_Map_Page' ) ) {
 		 *
 		 * @param bool $nonce_check Flag to bypass nonce check (for initial load as none is needed).
 		 */
-		public function do_map_page( bool $nonce_check = true ) {
+		public function do_map_page( bool $nonce_check = true ): void {
 			$map_time  = Visitor_Maps::$core->get_option( 'default_map_time' );  // default.
 			$map_units = Visitor_Maps::$core->get_option( 'default_map_units' ); // default.
 
@@ -155,8 +155,6 @@ if ( ! class_exists( 'Whos_Online_Map_Page' ) ) {
 								'47' => esc_html__( 'Brazil', 'visitor-maps' ) . ' ' . esc_html__( '(brown)', 'visitor-maps' ),
 							);
 
-							$selected = '';
-
 							foreach ( $map_select_array as $k => $v ) {
 								if ( "$k" === $map_selected ) {
 									$selected = 'selected="selected"';
@@ -169,8 +167,7 @@ if ( ! class_exists( 'Whos_Online_Map_Page' ) ) {
 							?>
 						</select>
 						<input type="hidden" name="nonce" value="<?php echo esc_attr( wp_create_nonce( 'wo_map_console' ) ); ?>"/>
-						<input type="submit" name="<?php echo esc_attr__( 'Go', 'visitor-maps' ); ?>"
-							value="<?php echo esc_attr__( 'Go', 'visitor-maps' ); ?>"/>
+						<input type="submit" name="<?php echo esc_attr__( 'Go', 'visitor-maps' ); ?>" value="<?php echo esc_attr__( 'Go', 'visitor-maps' ); ?>"/>
 					</p>
 				</form>
 				<?php
@@ -191,7 +188,7 @@ if ( ! class_exists( 'Whos_Online_Map_Page' ) ) {
 						'pin'        => '1',
 						// 1,2,3 (you can add more pin images in settings)
 						'pins'       => 'off',
-						// off (off is required for HTML map).
+						// off (off is required for html map).
 						'text'       => 'on',
 						// on or off.
 						'textcolor'  => '000000',
@@ -209,11 +206,11 @@ if ( ! class_exists( 'Whos_Online_Map_Page' ) ) {
 						'lr_lon'     => '180',
 						// default 180 for worldmap.
 						'offset_x'   => '0',
-						// + or - offset for x-axis  - moves pins left, + moves pins right.
+						// + or - offset for x axis  - moves pins left, + moves pins right.
 						'offset_y'   => '0',
-						// + or - offset for y-axis  - moves pins up,   + moves pins down.
+						// + or - offset for y axis  - moves pins up,   + moves pins down.
 						'type'       => 'jpg',
-						// jpg or PNG (map output type).
+						// jpg or png (map output type).
 					);
 
 					// phpcs:ignore WordPress.Security.EscapeOutput
@@ -851,15 +848,15 @@ if ( ! class_exists( 'Whos_Online_Map_Page' ) ) {
 		/**
 		 * Set map units.
 		 *
-		 * @param string $string Unit to verify.
+		 * @param string $str Unit to verify.
 		 *
 		 * @return bool
 		 */
-		private function validate_map_units( string $string ): bool {
+		private function validate_map_units( string $str ): bool {
 			// only allow proper text align codes.
 			$allowed = array( 'minutes', 'hours', 'days' );
 
-			if ( in_array( $string, $allowed, true ) ) {
+			if ( in_array( $str, $allowed, true ) ) {
 				return true;
 			}
 
@@ -869,19 +866,19 @@ if ( ! class_exists( 'Whos_Online_Map_Page' ) ) {
 		/**
 		 * Validate input color.
 		 *
-		 * @param string $string Color to validate.
+		 * @param string $str Color to validate.
 		 *
 		 * @return bool
 		 */
-		private function validate_input_color( string $string ): bool {
+		private function validate_input_color( string $str ): bool {
 			// protect form input color fields from hackers and check for valid css color code hex
 			// only allow simple 6 char hex codes with or without # like this 336699 or #336699.
 
-			if ( is_string( $string ) && preg_match( '/^#[a-f0-9]{6}$/i', trim( $string ) ) ) {
+			if ( preg_match( '/^#[a-f0-9]{6}$/i', trim( $str ) ) ) {
 				return true;
 			}
 
-			if ( is_string( $string ) && preg_match( '/^[a-f0-9]{6}$/i', trim( $string ) ) ) {
+			if ( preg_match( '/^[a-f0-9]{6}$/i', trim( $str ) ) ) {
 				return true;
 			}
 

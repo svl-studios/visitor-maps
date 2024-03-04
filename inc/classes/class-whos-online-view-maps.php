@@ -22,14 +22,14 @@ if ( ! class_exists( 'Whos_Online_View_Maps' ) ) {
 		 *
 		 * @var array
 		 */
-		private $set = array();
+		private array $set = array();
 
 		/**
 		 * GVar.
 		 *
 		 * @var array
 		 */
-		private $gvar = array();
+		private array $gvar = array();
 
 		/**
 		 * Display Map.
@@ -265,21 +265,21 @@ if ( ! class_exists( 'Whos_Online_View_Maps' ) ) {
 				// phpcs:disable
 				$rows_arr = $wpdb->get_results(
 					'SELECT SQL_CALC_FOUND_ROWS user_id, name, longitude, latitude FROM ' . $wo_table_wo . "
-                     WHERE name = 'Guest' AND time_last_click > '" . $xx_secs_ago . "' LIMIT " . absint( Visitor_Maps::$core->get_option( 'pins_limit' ) ) . '',
+                     WHERE name = 'Guest' AND time_last_click > '" . $xx_secs_ago . "' LIMIT " . absint( Visitor_Maps::$core->get_option( 'pins_limit' ) ),
 					ARRAY_A
 				);
 			} else {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery
 				$rows_arr = $wpdb->get_results(
 					'SELECT SQL_CALC_FOUND_ROWS user_id, name, longitude, latitude FROM ' . $wo_table_wo . "
-                     WHERE time_last_click > '" . $xx_secs_ago . "' LIMIT " . absint( Visitor_Maps::$core->get_option( 'pins_limit' ) ) . '',
+                     WHERE time_last_click > '" . $xx_secs_ago . "' LIMIT " . absint( Visitor_Maps::$core->get_option( 'pins_limit' ) ),
 					ARRAY_A
 				);
+				// phpcs:enable
 			}
 
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery
 			$rows_count = $wpdb->get_var( 'SELECT FOUND_ROWS()' );
-			// phpcs:enable
 
 			$count = 0;
 			// create pins on the map.
@@ -287,24 +287,21 @@ if ( ! class_exists( 'Whos_Online_View_Maps' ) ) {
 				foreach ( $rows_arr as $row ) {
 					if ( '0.0000' !== $row['longitude'] && '0.0000' !== $row['latitude'] ) {
 						if ( 0 === $ul_lat ) { // must be the world map.
-							$count ++;
+							++$count;
 							$x = floor( ( $row['longitude'] + 180 ) / $scale );
 							$y = floor( ( 180 - ( $row['latitude'] + 90 ) ) / $scale );
-						} else {      // its a custom map
-							// filter out what we do not want.
-							if ( ( $row['latitude'] > $lr_lat && $row['latitude'] < $ul_lat ) && ( $row['longitude'] < $lr_lon && $row['longitude'] > $ul_lon ) ) {
-								$count ++;
-								$x = floor( $image_worldmap_width * ( $row['longitude'] - $ul_lon ) / ( $lr_lon - $ul_lon ) + $offset_x );
-								$y = floor( $image_worldmap_height * ( $row['latitude'] - $ul_lat ) / ( $lr_lat - $ul_lat ) + $offset_y );
+						} elseif ( ( $row['latitude'] > $lr_lat && $row['latitude'] < $ul_lat ) && ( $row['longitude'] < $lr_lon && $row['longitude'] > $ul_lon ) ) {
+							++$count;
+							$x = floor( $image_worldmap_width * ( $row['longitude'] - $ul_lon ) / ( $lr_lon - $ul_lon ) + $offset_x );
+							$y = floor( $image_worldmap_height * ( $row['latitude'] - $ul_lat ) / ( $lr_lat - $ul_lat ) + $offset_y );
 
-								// discard pixels that are outside the image because of offsets.
-								if ( ( $x < 0 || $x > $image_worldmap_width ) || ( $y < 0 || $y > $image_worldmap_height ) ) {
-									$count --;
-									continue;
-								}
-							} else {
+							// discard pixels that are outside the image because of offsets.
+							if ( ( $x < 0 || $x > $image_worldmap_width ) || ( $y < 0 || $y > $image_worldmap_height ) ) {
+								--$count;
 								continue;
 							}
+						} else {
+							continue;
 						}
 
 						// Now mark the point on the map using a green 2 pixel rectangle.
@@ -365,7 +362,7 @@ if ( ! class_exists( 'Whos_Online_View_Maps' ) ) {
 		 * @param int    $new_width  New width.
 		 * @param int    $new_height New height.
 		 */
-		private function textoverlay( string $text, int $image_p, int $new_width, int $new_height ) {
+		private function textoverlay( string $text, int $image_p, int $new_width, int $new_height ): void {
 			$fontstyle       = 5; // 1 to 5.
 			$fontcolor       = $this->gvar['text_color'];
 			$fontshadowcolor = $this->gvar['text_shadow_color'];

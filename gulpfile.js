@@ -74,7 +74,7 @@ var AUTOPREFIXER_BROWSERS = [ 'last 2 version', '> 1%', 'ie > 10', 'ie_mob > 10'
 var gulp = require( 'gulp' ); // Gulp of-course.
 
 // CSS related plugins.
-var sass      = require( 'gulp-sass' ); // Gulp pluign for Sass compilation.
+var sass = require( 'gulp-sass' )( require( 'node-sass' ) ); // Gulp plugin for Sass compilation.
 
 var minifycss    = require( 'gulp-uglifycss' ); // Minifies CSS files.
 var autoprefixer = require( 'gulp-autoprefixer' ); // Autoprefixing magic.

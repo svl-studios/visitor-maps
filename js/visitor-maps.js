@@ -106,8 +106,7 @@
 
 			$( 'a.map-console' ).after( editorHtml );
 
-			$( '.vm-banned-ips-form-container-toggle' ).on(
-				'click',
+			$( '.vm-banned-ips-form-container-toggle' ).click(
 				function() {
 					if ( $( '.vm-banned-ips-form-container' ).is( ':visible' ) ) {
 						$( '.vm-banned-ips-form-container' ).hide( 'slow' );
@@ -119,8 +118,7 @@
 				}
 			);
 
-			$( '.vm-banned-referers-form-container-toggle' ).on(
-				'click',
+			$( '.vm-banned-referers-form-container-toggle' ).click(
 				function() {
 					if ( $( '.vm-banned-referers-form-container' ).is( ':visible' ) ) {
 						$( '.vm-banned-referers-form-container' ).hide( 'slow' );
@@ -142,8 +140,7 @@
 			$( 'a.map-console' ).after( editorHtml );
 		} // if htaccess.
 
-		$( '.vm-auto-update-form-container-toggle' ).on(
-			'click',
+		$( '.vm-auto-update-form-container-toggle' ).click(
 			function() {
 				if ( $( '.vm-auto-update-form-container' ).is( ':visible' ) ) {
 					$( '.vm-auto-update-form-container' ).hide( 'slow' );
@@ -311,6 +308,8 @@
 			}
 		);
 
+		// $( '.table-top td:contains("' + refererText + '")' ).append( ' & Search String' );
+
 		$( '.column-dark td:has(a), .column-light td:has(a)' ).each(
 			function() {
 				$( this ).wrapInner(
@@ -402,6 +401,10 @@
 				}
 			}
 		);
+
+		// numGuests = $( 'img[alt="Active Guest"]' ).not( 'img[alt="Active Guest"]:first' ).length - 1;
+
+		// $( 'title' ).html( '(' + numGuests + ') Who\'s Been Online' );
 	}; // activate.
 
 	$.visitorMaps.pageNavClick = function( ) {
@@ -458,7 +461,7 @@
 	$.visitorMaps.switchClick = function() {
 		var redux = $( '.redux-main .location-enable .switch-options label' );
 
-		redux.on(
+		redux.bind(
 			'click',
 			function( ) {
 				if ( $( this ).hasClass( 'cb-enable' ) ) {

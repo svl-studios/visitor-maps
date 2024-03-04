@@ -25,7 +25,7 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		/**
 		 * Init.
 		 */
-		public function vm_init() {
+		public function vm_init(): void {
 			if ( Visitor_Maps::VERSION !== get_option( 'vm_version' ) ) {
 				Visitor_Maps::$instance->vm_install();
 			}
@@ -36,30 +36,28 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 
 			if ( $htaccess ) {
 				$vm_output .= "var htaccess = true, htaccessWarning = false, vmMessage = ''";
-			} else {
-				if ( get_option( 'htaccess_warning' ) ) {
-					$vm_output .= 'var htaccess = false, htaccessWarning = true, vmMessage = "<h3>"' . esc_html__( 'Visitor Maps Notice', 'visitor-maps' ) . '"</h3>" ';
+			} elseif ( get_option( 'htaccess_warning' ) ) {
+				$vm_output .= 'var htaccess = false, htaccessWarning = true, vmMessage = "<h3>"' . esc_html__( 'Visitor Maps Notice', 'visitor-maps' ) . '"</h3>" ';
 
-					if ( ! file_exists( ABSPATH . '.htaccess' ) ) {
+				if ( ! file_exists( ABSPATH . '.htaccess' ) ) {
 
-						// translators: %s = path to .htaccess.
-						$vm_output .= '<p>' . sprintf( esc_html__( '%s could not be found. IP and referer banning have been disabled.', 'visitor-maps' ), '<strong><em>' . ABSPATH . '.htaccess</em></strong>' );
+					// translators: %s = path to .htaccess.
+					$vm_output .= '<p>' . sprintf( esc_html__( '%s could not be found. IP and referer banning have been disabled.', 'visitor-maps' ), '<strong><em>' . ABSPATH . '.htaccess</em></strong>' );
 
-						// translators: %s = path to .htaccess.
-						$vm_output .= '</p><p>' . sprintf( esc_html__( 'To enable IP and referer banning features, be sure %s exists, then reactivate the plugin.', 'visitor-maps' ), '<strong><em>' . ABSPATH . '.htaccess</em></strong>' ) . '</p>';
-						$vm_output .= '<form action="#" method="post"><input type="hidden" name="vm_mode_nonce" value="' . wp_create_nonce( 'vm_mode' ) . '">';
-						$vm_output .= '<button title="' . esc_attr__( 'Press to generate a new file', 'visitor-maps' ) . ' - ' . ABSPATH . '.htaccess" type="submit">' . esc_html__( 'Create A New .htaccess File Now', 'visitor-maps' ) . '</button>';
-						$vm_output .= '<input type="hidden" name="vm_mode" value="new htaccess" /></form>';
-						$vm_output .= '<form action="#" method="post"><button title="' . esc_attr__( 'Press to dismiss this warning. Banning features will not be enabled.', 'visitor-maps' ) . '" type="submit">' . esc_html__( 'Dismiss Message', 'visiot-maps' ) . '</button>';
-						$vm_output .= '<input type="hidden" name="vm_mode" value="dismiss htaccess warning" /></form>';
-					} else {
-
-						// translators: %1$s = path to .htaccess, %2$s = path to .htaccess.
-						$vm_output .= sprintf( esc_html__( '%1$s could not be copied. IP and referer banning have been disabled. To enable those features, be sure %2$s exists, then reactivate the plugin.', 'visitor-maps' ), '<strong><em>' . ABSPATH . '.htaccess</em></strong>', '<strong><em>' . ABSPATH . '.htaccess</em></strong>' );
-					}
+					// translators: %s = path to .htaccess.
+					$vm_output .= '</p><p>' . sprintf( esc_html__( 'To enable IP and referer banning features, be sure %s exists, then reactivate the plugin.', 'visitor-maps' ), '<strong><em>' . ABSPATH . '.htaccess</em></strong>' ) . '</p>';
+					$vm_output .= '<form action="#" method="post"><input type="hidden" name="vm_mode_nonce" value="' . wp_create_nonce( 'vm_mode' ) . '">';
+					$vm_output .= '<button title="' . esc_attr__( 'Press to generate a new file', 'visitor-maps' ) . ' - ' . ABSPATH . '.htaccess" type="submit">' . esc_html__( 'Create A New .htaccess File Now', 'visitor-maps' ) . '</button>';
+					$vm_output .= '<input type="hidden" name="vm_mode" value="new htaccess" /></form>';
+					$vm_output .= '<form action="#" method="post"><button title="' . esc_attr__( 'Press to dismiss this warning. Banning features will not be enabled.', 'visitor-maps' ) . '" type="submit">' . esc_html__( 'Dismiss Message', 'visiot-maps' ) . '</button>';
+					$vm_output .= '<input type="hidden" name="vm_mode" value="dismiss htaccess warning" /></form>';
 				} else {
-					$vm_output .= "var htaccess = false, htaccessWarning = false, vmMessage = ''";
+
+					// translators: %1$s = path to .htaccess, %2$s = path to .htaccess.
+					$vm_output .= sprintf( esc_html__( '%1$s could not be copied. IP and referer banning have been disabled. To enable those features, be sure %2$s exists, then reactivate the plugin.', 'visitor-maps' ), '<strong><em>' . ABSPATH . '.htaccess</em></strong>', '<strong><em>' . ABSPATH . '.htaccess</em></strong>' );
 				}
+			} else {
+				$vm_output .= "var htaccess = false, htaccessWarning = false, vmMessage = ''";
 			}
 
 			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
@@ -130,13 +128,13 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 			if ( isset( $_POST['vm_mode_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['vm_mode_nonce'] ) ), 'vm_mode' ) ) {
 				if ( isset( $_POST['vm_referer'] ) ) {
 					$vm_referer      = str_replace( array( 'http://', 'https://' ), '', str_replace( 'www.', '', strtolower( trim( sanitize_text_field( wp_unslash( $_POST['vm_referer'] ) ) ) ) ) );
-					$banned_referers = get_option( 'vm_banned_referers', array() );
+					$banned_referers = get_option( 'vm_banned_referers' );
 					$vm_output       = '';
 
 					if ( in_array( $vm_referer, $banned_referers, true ) ) {
 						$vm_output .= "vmMessage += '" . $vm_referer . ' ' . esc_html__( 'is already banned!', 'visitor-maps' ) . "';\n";
 					} else {
-						array_push( $banned_referers, $vm_referer );
+						$banned_referers[] = $vm_referer;
 						update_option( 'vm_banned_referers', $banned_referers );
 						$this->vm_rebuild_htaccess();
 						$vm_output .= "vmMessage += '" . $vm_referer . ' ' . esc_html__( 'successfully banned!', 'visitor-maps' ) . "';\n";
@@ -163,7 +161,7 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 
 					foreach ( $banned_referers as $referer ) {
 						if ( $vm_referer !== $referer ) {
-							array_push( $new_list, $referer );
+							$new_list[] = $referer;
 						}
 					}
 
@@ -207,7 +205,7 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 					if ( in_array( $vm_ip, $banned_ips, true ) ) {
 						$vm_output .= "vmMessage += '" . $vm_ip . ' ' . esc_html__( 'is already banned!', 'visitor-maps' ) . "';\n";
 					} else {
-						array_push( $banned_ips, $vm_ip );
+						$banned_ips[] = $vm_ip;
 						update_option( 'vm_banned_ips', $banned_ips );
 						$this->vm_rebuild_htaccess();
 						$vm_output .= "vmMessage += '" . $vm_ip . ' ' . esc_html__( 'successfully banned!', 'visitor-maps' ) . "';\n";
@@ -237,7 +235,7 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 
 					foreach ( $banned_ips as $ip ) {
 						if ( trim( $ip ) !== $vm_ip ) {
-							array_push( $new_list, trim( $ip ) );
+							$new_list[] = trim( $ip );
 						}
 					}
 
@@ -271,9 +269,8 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		 * @return bool
 		 */
 		private function filesystem_init(): bool {
-			$url         = 'admin.php?page=whos-been-online';
-			$method      = '';
-			$form_fields = '';
+			$url    = 'admin.php?page=whos-been-online';
+			$method = '';
 
 			$creds = request_filesystem_credentials( $url, $method, false, false, $form_fields );
 			if ( false === $creds ) {
@@ -298,7 +295,7 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		 *
 		 * @return string|array
 		 */
-		private function filesystem_read( string $filename, bool $return_array = false ) {
+		private function filesystem_read( string $filename, bool $return_array = false ): array|string {
 			global $wp_filesystem;
 
 			if ( $this->filesystem_init() ) {
@@ -346,12 +343,14 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		 *
 		 * @param string $content Data to write.
 		 */
-		private function vm_write( string $content ) {
+		private function vm_write( string $content ): void {
+			global $wp_filesystem;
+
 			$file = ABSPATH . '.htaccess';
 
 			$this->filesystem_write( $file, $content );
 
-			chmod( ABSPATH . '.htaccess', 0755 );
+			$wp_filesystem->chmod( ABSPATH . '.htaccess', 0755 );
 		}
 
 		/**
@@ -421,7 +420,7 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		 *
 		 * @param bool $backup DO backup flag.
 		 */
-		private function vm_rebuild_htaccess( bool $backup = true ) {
+		private function vm_rebuild_htaccess( bool $backup = true ): void {
 			if ( $backup ) {
 				$htbackup = get_option( 'vm_htbackup' );
 
@@ -440,19 +439,11 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 				$htpart2 = '';
 			}
 
-			$banned_referers = get_option( 'vm_banned_referers', array() );
-			$banned_ips      = get_option( 'vm_banned_ips', array() );
+			$banned_referers = get_option( 'vm_banned_referers' );
+			$banned_ips      = get_option( 'vm_banned_ips' );
 			$new_htcontent   = "\n# BEGIN Visitor Maps";
 
-			if ( false === $banned_referers ) {
-				$banned_referers = array();
-			}
-
-			if ( false === $banned_ips ) {
-				$banned_ips = array();
-			}
-
-			if ( isset( $banned_referers[0] ) && ! empty( $banned_referers[0] ) ) {
+			if ( null !== $banned_referers[0] ) {
 				$new_htcontent .= "\n# BEGIN Referers
 <IfModule mod_rewrite.c>
 # Uncomment 'Options +FollowSymlinks' if your server returns a '500 Internal Server' error.

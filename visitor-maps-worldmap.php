@@ -274,25 +274,23 @@ if ( $rows_arr ) { // check of there are any visitors
 	foreach ( $rows_arr as $row ) {
 		if ( '0.0000' !== $row['longitude'] && '0.0000' !== $row['latitude'] ) {
 			if ( 0 === $ul_lat ) { // must be the world map.
-				$count ++;
+				++$count;
 				$x = floor( ( $row['longitude'] + 180 ) / $scale );
 				$y = floor( ( 180 - ( $row['latitude'] + 90 ) ) / $scale );
-			} else {      // its a custom map
-				// filter out what we do not want.
-				if ( ( $row['latitude'] > $lr_lat && $row['latitude'] < $ul_lat ) && ( $row['longitude'] < $lr_lon && $row['longitude'] > $ul_lon ) ) {
-					$count ++;
-					$x = floor( $image_worldmap_width * ( $row['longitude'] - $ul_lon ) / ( $lr_lon - $ul_lon ) + $offset_x );
-					$y = floor( $image_worldmap_height * ( $row['latitude'] - $ul_lat ) / ( $lr_lat - $ul_lat ) + $offset_y );
+			} elseif ( ( $row['latitude'] > $lr_lat && $row['latitude'] < $ul_lat ) && ( $row['longitude'] < $lr_lon && $row['longitude'] > $ul_lon ) ) {
+				++$count;
+				$x = floor( $image_worldmap_width * ( $row['longitude'] - $ul_lon ) / ( $lr_lon - $ul_lon ) + $offset_x );
+				$y = floor( $image_worldmap_height * ( $row['latitude'] - $ul_lat ) / ( $lr_lat - $ul_lat ) + $offset_y );
 
-					// discard pixels that are outside the image because of offsets.
-					if ( ( $x < 0 || $x > $image_worldmap_width ) || ( $y < 0 || $y > $image_worldmap_height ) ) {
-						$count --;
-						continue;
-					}
-				} else {
+				// discard pixels that are outside the image because of offsets.
+				if ( ( $x < 0 || $x > $image_worldmap_width ) || ( $y < 0 || $y > $image_worldmap_height ) ) {
+					--$count;
 					continue;
 				}
+			} else {
+				continue;
 			}
+
 			$title_pre      = '';
 			$this_image_pin = $image_pin;
 			if ( Visitor_Maps::$core->get_option( 'enable_users_map_hover' ) && $row['user_id'] > 0 && '' !== $row['name'] ) {
@@ -307,13 +305,13 @@ if ( $rows_arr ) { // check of there are any visitors
 				// find name for bot.
 				// different pin color for bot.
 				if ( ! empty( $row['name'] ) ) {
-					for ( $i = 0, $n = count( $spiders ); $i < $n; $i ++ ) {
+					for ( $i = 0, $n = count( $spiders ); $i < $n; $i++ ) {
 						if ( ! empty( $spiders[ $i ] ) && is_integer( strpos( $row['name'], trim( $spiders[ $i ] ) ) ) ) {
 							// Tokenize UserAgent and try to find Bots name.
 							$tok = strtok( $row['name'], ' ();/' );
 							while ( false !== $tok ) {
 								if ( strlen( strtolower( $tok ) ) > 3 ) {
-									if ( ! strstr( strtolower( $tok ), 'mozilla' ) && ! strstr( strtolower( $tok ), 'compatible' ) && ! strstr( strtolower( $tok ), 'msie' ) && ! strstr( strtolower( $tok ), 'windows' ) ) {
+									if ( ! str_contains( strtolower( $tok ), 'mozilla' ) && ! str_contains( strtolower( $tok ), 'compatible' ) && ! str_contains( strtolower( $tok ), 'msie' ) && ! str_contains( strtolower( $tok ), 'windows' ) ) {
 										$title_pre = $tok . ' ' . esc_html__( 'from', 'visitor-maps' ) . ' ';
 										if ( 1 === $g['pin'] ) {
 											$this_image_pin = str_replace( '.jpg', '-bot.jpg', $image_pin );

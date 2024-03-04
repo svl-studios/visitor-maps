@@ -55,49 +55,49 @@ if ( ! class_exists( 'Visitor_Maps' ) ) {
 		 *
 		 * @var string
 		 */
-		public static $dir = '';
+		public static string $dir = '';
 
 		/**
 		 * Plugin URL.
 		 *
 		 * @var string
 		 */
-		public static $url = '';
+		public static string $url = '';
 
 		/**
 		 * WP Upload Directory.
 		 *
 		 * @var string
 		 */
-		public static $upload_dir = '';
+		public static string $upload_dir = '';
 
 		/**
 		 * WP Upload URL.
 		 *
 		 * @var string
 		 */
-		public static $upload_url = '';
+		public static string $upload_url = '';
 
 		/**
 		 * Core object pointer.
 		 *
-		 * @var null
+		 * @var Visitor_Maps_Core|null
 		 */
-		public static $core = null;
+		public static ?Visitor_Maps_Core $core = null;
 
 		/**
 		 * Geolocation object pointer.
 		 *
-		 * @var null
+		 * @var Visitor_Maps_Geolocation|null
 		 */
-		public static $geolocation = null;
+		public static ?Visitor_Maps_Geolocation $geolocation = null;
 
 		/**
 		 * Instance pointer.
 		 *
-		 * @var null
+		 * @var Visitor_Maps|null
 		 */
-		public static $instance = null;
+		public static ?Visitor_Maps $instance = null;
 
 		/**
 		 * Initiate instance.
@@ -119,7 +119,7 @@ if ( ! class_exists( 'Visitor_Maps' ) ) {
 		/**
 		 * Core init.
 		 */
-		public static function init() {
+		public static function init(): void {
 			self::$dir = trailingslashit( wp_normalize_path( dirname( realpath( __FILE__ ) ) ) );
 			self::$url = trailingslashit( plugin_dir_url( __FILE__ ) );
 
@@ -149,7 +149,7 @@ if ( ! class_exists( 'Visitor_Maps' ) ) {
 		/**
 		 * Load option panel.
 		 */
-		public static function load_panel() {
+		public static function load_panel(): void {
 			require_once self::$dir . 'inc/class-visitor-maps-core.php';
 			self::$core = new Visitor_Maps_Core();
 
@@ -159,7 +159,7 @@ if ( ! class_exists( 'Visitor_Maps' ) ) {
 		/**
 		 * Core includes.
 		 */
-		public static function includes() {
+		public static function includes(): void {
 			require_once self::$dir . 'inc/class-visitor-maps-enqueue.php';
 			require_once self::$dir . 'inc/class-visitor-maps-extended.php';
 
@@ -170,32 +170,26 @@ if ( ! class_exists( 'Visitor_Maps' ) ) {
 		/**
 		 * Core hooks.
 		 */
-		private static function hooks() {
-
-		}
+		private static function hooks() {}
 
 		/**
 		 * Plugin activate.
-		 *
-		 * @param bool $network_wide Is Network wide.
 		 */
-		public static function activate( bool $network_wide ) {
+		public static function activate(): void {
 			self::install_visitor_maps();
 		}
 
 		/**
 		 * Plugin deactivate.
-		 *
-		 * @param bool $network_wide Is Network wide.
 		 */
-		public static function deactivate( bool $network_wide ) {
+		public static function deactivate(): void {
 			self::uninstall_visitor_maps();
 		}
 
 		/**
 		 * Install Visitor Maps database table.
 		 */
-		private static function install_visitor_maps() {
+		private static function install_visitor_maps(): void {
 			global $wpdb, $wp_version;
 
 			$wo_table_wo = $wpdb->prefix . 'visitor_maps_wo';
@@ -278,7 +272,7 @@ if ( ! class_exists( 'Visitor_Maps' ) ) {
 		/**
 		 * Install extended options.
 		 */
-		public static function vm_install() {
+		public static function vm_install(): void {
 			global $wp_version;
 
 			$vm_htbackup         = get_option( 'vm_htbackup', false );
@@ -327,7 +321,7 @@ if ( ! class_exists( 'Visitor_Maps' ) ) {
 		/**
 		 * Uninstall Visitor Maps database table.
 		 */
-		private static function uninstall_visitor_maps() {
+		private static function uninstall_visitor_maps(): void {
 			global $wpdb;
 
 			$wo_table_wo = $wpdb->prefix . 'visitor_maps_wo';

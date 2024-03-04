@@ -45,11 +45,10 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		 * Check URL last mod time.
 		 *
 		 * @param string $url    URL to check.
-		 * @param int    $format Format.
 		 *
 		 * @return false|int|void
 		 */
-		public function http_last_mod( string $url, int $format = 0 ) {
+		public function http_last_mod( string $url ) {
 			$response = wp_remote_get( $url, array( 'timeout' => 1200 ) );
 
 			if ( is_array( $response ) && ! is_wp_error( $response ) ) {
@@ -62,7 +61,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Add menus to WP admin.
 		 */
-		public function admin_menu() {
+		public function admin_menu(): void {
 			global $admin_page_hooks;
 			$admin_page_hooks['whos-been-online'] = sanitize_title( 'whos-been-online' ); // phpcs:disable WordPress.WP.GlobalVariablesOverride.Prohibited
 
@@ -107,7 +106,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * "Who's Been Online" page.
 		 */
-		public function visitor_maps_whos_been_online() {
+		public function visitor_maps_whos_been_online(): void {
 			if ( ! current_user_can( Visitor_Maps::$core->get_option( 'dashboard_permissions' ) ) ) {
 				wp_die( esc_html__( 'You do not have permissions for managing this option', 'visitor-maps' ) );
 			}
@@ -177,7 +176,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * "Visitor's Maps" page.
 		 */
-		public function visitor_maps_admin_view() {
+		public function visitor_maps_admin_view(): void {
 			if ( ! current_user_can( Visitor_Maps::$core->get_option( 'dashboard_permissions' ) ) ) {
 				wp_die( esc_html__( 'You do not have permissions for managing this option', 'visitor-maps' ) );
 			}
@@ -245,7 +244,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Do Map Console.
 		 */
-		public function do_map_console() {
+		public function do_map_console(): void {
 			global $visitor_maps_stats;
 
 			if ( isset( $_GET['wo_map_console'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
@@ -255,14 +254,14 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 
 				$visitor_maps_stats = $this->visitor_maps_activity_do();
 				?>
-			<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-			<html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
+				<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+				<html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
 				<head profile="http://gmpg.org/xfn/11">
 					<meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>" charset="<?php bloginfo( 'charset' ); ?>"/>
 					<title>
 						<?php echo esc_html__( 'Visitor Maps', 'visitor-maps' ) . ' - ' . bloginfo( 'name' ); ?>
 					</title>
-					<style type="text/css">
+					<style>
 						table.wo_map {
 							margin-left: auto;
 							margin-right: auto;
@@ -284,7 +283,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 							font-size: 12px;
 						}
 					</style>
-					<script type="text/javascript"><!--
+					<script>
 						function getRefToDivMod( divID, oDoc ) {
 							if ( !oDoc ) {
 								oDoc = document;
@@ -341,41 +340,39 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 							var oH2 = oH2.clip ? oH2.clip.height : oH2.offsetHeight;
 							x.resizeTo( oW2 + ((oW + 200) - myW), oH2 + ((oH + 200) - myH) );
 						}
-
-						//-->
 					</script>
 				</head>
 				<?php
 				if ( Visitor_Maps::$core->get_option( 'enable_location_plugin' ) ) {
 					?>
 				<body onload="resizeWinTo('wrapper');" style="padding:0;margin:0;">
-					<div style="position:absolute;left:0px;top:0px;" id="wrapper">
-						<table>
-							<tr>
-								<td>
-					<?php
-					require_once Visitor_Maps::$dir . 'inc/classes/class-whos-online-map-page.php';
+				<div style="position:absolute;left:0px;top:0px;" id="wrapper">
+					<table>
+						<tr>
+							<td>
+								<?php
+								require_once Visitor_Maps::$dir . 'inc/classes/class-whos-online-map-page.php';
 
-					$wo_map_page = new Whos_Online_Map_Page();
-					$wo_map_page->do_map_page( false );
+								$wo_map_page = new Whos_Online_Map_Page();
+								$wo_map_page->do_map_page( false );
 
-					echo '<p><a href="javascript:window.close()">' . esc_html__( 'Close', 'visitor-maps' ) . '</a></p>';
+								echo '<p><a href="javascript:window.close()">' . esc_html__( 'Close', 'visitor-maps' ) . '</a></p>';
 
-					if ( Visitor_Maps::$core->get_option( 'enable_credit_link' ) ) {
-						echo '<p><small>' . esc_html__( 'Powered by Visitor Maps', 'visitor-maps' ) . '</small></p>';
-					}
-					?>
-								</td>
-							</tr>
-						</table>
-					</div>'
+								if ( Visitor_Maps::$core->get_option( 'enable_credit_link' ) ) {
+									echo '<p><small>' . esc_html__( 'Powered by Visitor Maps', 'visitor-maps' ) . '</small></p>';
+								}
+								?>
+							</td>
+						</tr>
+					</table>
+				</div>'
 					<?php
 				} else {
 					echo '<body><p>' . esc_html__( 'Visitor Maps geolocation is disabled in settings.', 'visitor-maps' ) . '</p>';
 				}
 				?>
 				</body>
-			</html>
+				</html>
 				<?php
 				exit;
 			}
@@ -384,7 +381,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Do Map Image.
 		 */
-		public function do_map_image() {
+		public function do_map_image(): void {
 			if ( isset( $_GET['do_wo_map'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 				if ( Visitor_Maps::$core->get_option( 'enable_location_plugin' ) ) {
 
@@ -501,7 +498,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Admin options for pages (at top).
 		 */
-		public function admin_view_header() {
+		public function admin_view_header(): void {
 			if ( isset( $_GET['page'] ) && 'visitor-maps' === $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 				$wo_prefs_arr_def = array(
 					'bots'    => '0',
@@ -600,7 +597,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Log visitor activity.
 		 */
-		public function activity() {
+		public function activity(): void {
 			global $visitor_maps_stats;
 
 			$visitor_maps_stats = $this->visitor_maps_activity_do();
@@ -609,7 +606,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Add stats to admin footer.
 		 */
-		public function admin_footer_stats() {
+		public function admin_footer_stats(): void {
 			global $visitor_maps_stats;
 
 			if ( Visitor_Maps::$core->get_option( 'enable_admin_footer' ) && ( current_user_can( Visitor_Maps::$core->get_option( 'dashboard_permissions' ) ) ) ) {
@@ -622,7 +619,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Add stats to public footer.
 		 */
-		public function public_footer_stats() {
+		public function public_footer_stats(): void {
 			global $visitor_maps_stats;
 
 			if ( Visitor_Maps::$core->get_option( 'enable_blog_footer' ) ) {
@@ -656,7 +653,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Init core.
 		 */
-		public function init() {
+		public function init(): void {
 			load_plugin_textdomain( 'visitor-maps', false, 'visitor-maps/languages' );
 		}
 
@@ -701,8 +698,8 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 
 			$spiders = file( Visitor_Maps::$dir . '/spiders.txt' );
 
-			if ( ! empty( $user_agent_lower ) && ! empty( $spiders ) ) {
-				for ( $i = 0, $n = count( $spiders ); $i < $n; $i ++ ) {
+			if ( ! empty( $user_agent_lower ) && is_array( $spiders ) ) {
+				for ( $i = 0, $n = count( $spiders ); $i < $n; $i++ ) {
 					if ( ! empty( $spiders[ $i ] ) && is_integer( strpos( $user_agent_lower, trim( $spiders[ $i ] ) ) ) ) {
 						$spider_flag = $spiders[ $i ];
 						break;
@@ -736,7 +733,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery
 				$wpdb->query(
 					$wpdb->prepare(
-						// phpcs:disable
+					// phpcs:disable
 						'DELETE from ' . $wo_table_wo . "
                         WHERE (time_last_click < %d and nickname = '')
                         OR   (time_last_click < %d and nickname IS NULL)",
@@ -750,7 +747,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery
 				$wpdb->query(
 					$wpdb->prepare(
-						// phpcs:disable
+					// phpcs:disable
 						'DELETE from ' . $wo_table_wo . "
                         WHERE (time_last_click < %d and nickname = '')
                         OR   (time_last_click < %d and nickname IS NULL)",
@@ -966,15 +963,15 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 
 			if ( strtolower( get_option( 'blog_charset' ) ) === 'utf-8' && function_exists( 'utf8_encode' ) ) {
 				if ( '' !== $location_info['city_name'] ) {
-					$location_info['city_name'] = utf8_encode( $location_info['city_name'] );
+					$location_info['city_name'] = mb_convert_encoding( $location_info['city_name'], 'UTF-8', 'ISO-8859-1' );
 				}
 
 				if ( '' !== $location_info['state_name'] ) {
-					$location_info['state_name'] = utf8_encode( $location_info['state_name'] );
+					$location_info['state_name'] = mb_convert_encoding( $location_info['state_name'], 'UTF-8', 'ISO-8859-1' );
 				}
 
 				if ( '' !== $location_info['country_name'] ) {
-					$location_info['country_name'] = utf8_encode( $location_info['country_name'] );
+					$location_info['country_name'] = mb_convert_encoding( $location_info['country_name'], 'UTF-8', 'ISO-8859-1' );
 				}
 			}
 
@@ -1093,7 +1090,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		 * @return string
 		 */
 		private function get_whos_records( int $visitors_count ): string {
-			// get the day, month, year, all time records for display on web site,
+			// get the day, month, year, all time records for display on website,
 			// use the recycled the 'visitors online now' count.
 			global $visitor_maps_stats, $wpdb;
 
@@ -1103,28 +1100,18 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 
 			$query_time = ( $current_time - absint( ( intval( Visitor_Maps::$core->get_option( 'track_time' ) ) * 60 ) ) );
 
-			if ( Visitor_Maps::$core->get_option( 'hide_bots' ) ) {
-				// phpcs:disable
-				$guests_count = $wpdb->get_var(
-					$wpdb->prepare(
-						'SELECT count(*) FROM ' . $wo_table_wo . "
-                        WHERE user_id = '0' 
-                        AND name = 'Guest' 
-                        AND time_last_click > %d",
-						$query_time
-					)
-				);
-			} else {
-				$guests_count = $wpdb->get_var(
-					$wpdb->prepare(
-						'SELECT count(*) FROM ' . $wo_table_wo . "
-                        WHERE user_id = '0' 
-                        AND name = 'Guest' 
-                        AND time_last_click > %d",
-						$query_time
-					)
-				);
+			// phpcs:disable
+			$guests_count = $wpdb->get_var(
+				$wpdb->prepare(
+					'SELECT count(*) FROM ' . $wo_table_wo . "
+					WHERE user_id = '0' 
+					AND name = 'Guest' 
+					AND time_last_click > %d",
+					$query_time
+				)
+			);
 
+			if ( ! Visitor_Maps::$core->get_option( 'hide_bots' ) ) {
 				$bots_count = $wpdb->get_var(
 					$wpdb->prepare(
 						'SELECT count(*) FROM ' . $wo_table_wo . "
@@ -1207,11 +1194,11 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Get World map.
 		 *
-		 * @param int|array $ms Who knows.
+		 * @param array $ms Map settings.
 		 *
-		 * @return mixed
+		 * @return string
 		 */
-		public function get_visitor_maps_worldmap( $ms = 0 ) {
+		public function get_visitor_maps_worldmap( array $ms = array() ): string { //phpcs:ignore
 			global $wpdb;
 
 			require_once Visitor_Maps::$dir . '/visitor-maps-worldmap.php';
@@ -1238,15 +1225,11 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		private function get_request_uri(): string {
 			if ( isset( $_SERVER['REQUEST_URI'] ) ) {
 				$uri = sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) );
-			} else {
-				if ( isset( $_SERVER['PHP_SELF'] ) ) {
-					if ( isset( $_SERVER['argv'] ) && isset( $_SERVER['argv'][0] ) ) {
-						$uri = sanitize_text_field( wp_unslash( $_SERVER['PHP_SELF'] ) ) . '?' . sanitize_text_field( wp_unslash( $_SERVER['argv'][0] ) );
-					} else {
-						if ( isset( $_SERVER['QUERY_STRING'] ) ) {
-							$uri = sanitize_text_field( wp_unslash( $_SERVER['PHP_SELF'] ) ) . '?' . sanitize_text_field( wp_unslash( $_SERVER['QUERY_STRING'] ) );
-						}
-					}
+			} elseif ( isset( $_SERVER['PHP_SELF'] ) ) {
+				if ( isset( $_SERVER['argv'][0] ) ) {
+					$uri = sanitize_text_field( wp_unslash( $_SERVER['PHP_SELF'] ) ) . '?' . sanitize_text_field( wp_unslash( $_SERVER['argv'][0] ) );
+				} elseif ( isset( $_SERVER['QUERY_STRING'] ) ) {
+					$uri = sanitize_text_field( wp_unslash( $_SERVER['PHP_SELF'] ) ) . '?' . sanitize_text_field( wp_unslash( $_SERVER['QUERY_STRING'] ) );
 				}
 			}
 
@@ -1271,9 +1254,9 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Get HTTP USer Agent.
 		 *
-		 * @return array|false|string
+		 * @return array|bool|string
 		 */
-		private function get_http_user_agent() {
+		private function get_http_user_agent(): bool|array|string {
 			if ( getenv( 'HTTP_USER_AGENT' ) ) {
 				$agent = getenv( 'HTTP_USER_AGENT' );
 			} elseif ( isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
@@ -1288,9 +1271,9 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Get HTTP Referer.
 		 *
-		 * @return array|false|string
+		 * @return array|bool|string
 		 */
-		private function get_http_referer() {
+		private function get_http_referer(): bool|array|string {
 			if ( getenv( 'HTTP_REFERER' ) ) {
 				$referer = getenv( 'HTTP_REFERER' );
 			} elseif ( isset( $_SERVER['HTTP_REFERER'] ) ) {
@@ -1305,16 +1288,16 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Validate Color.
 		 *
-		 * @param string $string Color string.
+		 * @param string $str Color string.
 		 *
 		 * @return bool
 		 */
-		public function validate_color_wo( string $string ): bool {
-			if ( preg_match( '/^#[a-f0-9]{6}$/i', trim( $string ) ) ) {
+		public function validate_color_wo( string $str ): bool {
+			if ( preg_match( '/^#[a-f0-9]{6}$/i', trim( $str ) ) ) {
 				return true;
 			}
 
-			if ( preg_match( '/^[a-f0-9]{6}$/i', trim( $string ) ) ) {
+			if ( preg_match( '/^[a-f0-9]{6}$/i', trim( $str ) ) ) {
 				return true;
 			}
 
@@ -1324,14 +1307,14 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Validate text align.
 		 *
-		 * @param string $string Text to check.
+		 * @param string $str Text to check.
 		 *
 		 * @return bool
 		 */
-		public function validate_text_align( string $string ): bool {
+		public function validate_text_align( string $str ): bool {
 			$allowed = array( 'll', 'ul', 'lr', 'ur', 'c', 'ct', 'cb' );
 
-			if ( in_array( $string, $allowed, true ) ) {
+			if ( in_array( $str, $allowed, true ) ) {
 				return true;
 			}
 
@@ -1346,7 +1329,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		 * @return string
 		 */
 		public function host_to_domain( string $host ): string {
-			if ( 'n/a' === $host || ! preg_match( '/.*\.[a-zA-Z]{2,3}/', $host ) ) {
+			if ( 'n/a' === $host || ! preg_match( '/\.[a-zA-Z]{2,3}/', $host ) ) {
 				return $host;
 			}
 
@@ -1431,7 +1414,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 			$host = rtrim( $host, "\n" );
 			$host = rtrim( $host, '.' );
 
-			return ( preg_match( '/.*\.[a-zA-Z]{2,3}/', $host ) ) ? $host : 'n/a';
+			return ( preg_match( '/\.[a-zA-Z]{2,3}/', $host ) ) ? $host : 'n/a';
 		}
 
 		/**
@@ -1461,7 +1444,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 				if ( preg_match( '/^Name:\s+(.*)$/', $line, $parts ) ) {
 					$host = trim( ( isset( $parts[1] ) ) ? $parts[1] : '' );
 
-					return ( preg_match( '/.*\.[a-zA-Z]{2,3}/', $host ) ) ? $host : 'n/a';
+					return ( preg_match( '/\.[a-zA-Z]{2,3}/', $host ) ) ? $host : 'n/a';
 				}
 			}
 
@@ -1471,7 +1454,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Dashboard widget.
 		 */
-		public function dashboard_widget() {
+		public function dashboard_widget(): void {
 			if ( current_user_can( Visitor_Maps::$core->get_option( 'dashboard_permissions' ) ) ) {
 				wp_add_dashboard_widget(
 					'visitor_maps_dashboard_widget',
@@ -1487,7 +1470,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Map dashboard widget.
 		 */
-		public function visitor_maps_dashboard_widget() {
+		public function visitor_maps_dashboard_widget(): void {
 			global $visitor_maps_stats;
 
 			echo '<p>' . $visitor_maps_stats . '</p>'; // phpcs:ignore WordPress.Security.EscapeOutput
@@ -1500,7 +1483,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Register widget.
 		 */
-		public function register_widget() {
+		public function register_widget(): void {
 			wp_register_sidebar_widget(
 				'visitor-maps',
 				esc_html__( "Who's Online", 'visitor-maps' ),
@@ -1516,7 +1499,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		 *
 		 * @param array $args Widget arguments.
 		 */
-		public function visitor_maps_widget( array $args ) {
+		public function visitor_maps_widget( array $args ): void {
 			extract( $args ); // phpcs:ignore WordPress.PHP.DontExtract
 
 			echo esc_html( $before_widget ) . esc_html( $before_title ) . esc_html__( "Who's Online", 'visitor-maps' ) . esc_html( $after_title );
@@ -1527,7 +1510,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Visitor Maps Sidebar.
 		 */
-		public function visitor_maps_manual_sidebar() {
+		public function visitor_maps_manual_sidebar(): void {
 			echo '<h2>' . esc_html__( "Who's Online", 'visitor-maps' ) . '</h2>';
 
 			$this->visitor_maps_widget_content();
@@ -1536,7 +1519,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		/**
 		 * Widget content.
 		 */
-		private function visitor_maps_widget_content() {
+		private function visitor_maps_widget_content(): void {
 			global $visitor_maps_stats, $wpdb;
 
 			$wo_table_wo  = $wpdb->prefix . 'visitor_maps_wo';
@@ -1617,12 +1600,10 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 					$stats_guests = sprintf( esc_html__( '%d guests', 'visitor-maps' ), ( $guests_count + $members_count ) );
 					echo '<div>' . esc_html( $stats_visitors ) . '</div><div><span style=\"white-space:nowrap\">' . esc_html( $stats_guests ) . ',</span> <span style=\"white-space:nowrap\">' . esc_html( $stats_bots ) . '</span>';
 				}
-			} else {
-				if ( ! Visitor_Maps::$core->get_option( 'combine_members' ) ) {
+			} elseif ( ! Visitor_Maps::$core->get_option( 'combine_members' ) ) {
 					echo '<div>' . esc_html( $stats_visitors ) . '</div><div><span style=\"white-space:nowrap\">' . esc_html( $stats_guests ) . ',</span> <span style=\"white-space:nowrap\">' . esc_html( $stats_members ) . '</span>';
-				} else {
-					echo '<div>' . esc_html( $stats_visitors );
-				}
+			} else {
+				echo '<div>' . esc_html( $stats_visitors );
 			}
 
 			if ( Visitor_Maps::$core->get_option( 'enable_widget_link' ) && Visitor_Maps::$core->get_option( 'enable_location_plugin' ) ) {
@@ -1642,14 +1623,18 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		 * Get pluygin option.
 		 *
 		 * @param string $option Option key.
-		 * @param string $default Default value.
+		 * @param string $def    Default value.
 		 *
 		 * @return string
 		 */
-		public function get_option( string $option, string $default = '' ): string {
+		public function get_option( string $option, string $def = '' ): string {
 			global $visitor_maps_opt;
 
-			return $visitor_maps_opt[ $option ] ?? $default;
+			if ( isset( $visitor_maps_opt[ $option ] ) ) {
+				return $visitor_maps_opt[ $option ];
+			} else {
+				return $def;
+			}
 		}
 	}
 }
