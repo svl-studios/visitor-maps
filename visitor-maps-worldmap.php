@@ -180,6 +180,7 @@ if ( Visitor_Maps::$core->get_option( 'hide_text_on_worldmap' ) ) {
 $image_pin      = Visitor_Maps::$url . 'img/maps/' . $c['image_pin'];  // default.
 $image_pin_path = Visitor_Maps::$dir . 'img/maps/' . $c['image_pin'];  // default.
 $g['pin']       = 1;
+
 if ( isset( $ms['pin'] ) && is_numeric( $ms['pin'] ) ) {
 	$g['pin']       = floor( $ms['pin'] );
 	$image_pin      = Visitor_Maps::$url . 'img/maps/' . $c[ 'image_pin_' . $g['pin'] ];
@@ -190,6 +191,7 @@ if ( isset( $ms['pin'] ) && is_numeric( $ms['pin'] ) ) {
 		$g['pin']       = 1;
 	}
 }
+
 // select the map image type.
 if ( isset( $ms['type'] ) && 'jpg' === $ms['type'] ) {
 	$img_type = 'jpg';
@@ -211,7 +213,7 @@ $scale = 360 / $image_worldmap_width;
 if ( is_array( $ms ) ) {
 	$nonce = wp_create_nonce( 'do_wo_map' );
 
-	$image_worldmap = get_bloginfo( 'url' ) . '?do_wo_map=1&amp;nonce=' . $nonce . '&amp;time=' . $g['time'] . '&amp;units=' . $g['units'] . '&amp;map=' . $g['map'] . '&amp;pin=' . $g['pin'] . '&amp;pins=off&amp;text=' . $g['text_display'] . '&amp;textcolor=' . $g['text_color'] . '&amp;textshadow=' . $g['text_shadow_color'] . '&amp;textalign=' . $g['text_align'] . '&amp;ul_lat=' . $ul_lat . '&amp;ul_lon=' . $ul_lon . '&amp;lr_lat=' . $lr_lat . '&amp;lr_lon=' . $lr_lon . '&amp;offset_x=' . $offset_x . '&amp;offset_y=' . $offset_y . '&amp;wp-minify-off=1&amp;type=' . $img_type;
+	$image_worldmap = get_bloginfo( 'url' ) . '?do_wo_map=1&amp;nonce=' . $nonce . '&amp;time=' . $g['time'] . '&amp;units=' . $g['units'] . '&amp;map=' . $g['map'] . '&amp;pin=' . $g['pin'] . '&amp;pins=on&amp;text=' . $g['text_display'] . '&amp;textcolor=' . $g['text_color'] . '&amp;textshadow=' . $g['text_shadow_color'] . '&amp;textalign=' . $g['text_align'] . '&amp;ul_lat=' . $ul_lat . '&amp;ul_lon=' . $ul_lon . '&amp;lr_lat=' . $lr_lat . '&amp;lr_lon=' . $lr_lon . '&amp;offset_x=' . $offset_x . '&amp;offset_y=' . $offset_y . '&amp;wp-minify-off=1&amp;type=' . $img_type;
 }
 
 // HTML maps automatically printed inside tables?
