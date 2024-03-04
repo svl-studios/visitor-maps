@@ -46,7 +46,7 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 
 					// translators: %s = path to .htaccess.
 					$vm_output .= '</p><p>' . sprintf( esc_html__( 'To enable IP and referer banning features, be sure %s exists, then reactivate the plugin.', 'visitor-maps' ), '<strong><em>' . ABSPATH . '.htaccess</em></strong>' ) . '</p>';
-					$vm_output .= '<form action="#" method="post"><input type="hidden" name="vm_mode_nonce" value="' . wp_create_nonce( 'vm_mode' ) . '">';
+					$vm_output .= '<form action="#" method="post"><input type="hidden" id="vm_mode_hidden" name="vm_mode_nonce" value="' . wp_create_nonce( 'vm_mode' ) . '">';
 					$vm_output .= '<button title="' . esc_attr__( 'Press to generate a new file', 'visitor-maps' ) . ' - ' . ABSPATH . '.htaccess" type="submit">' . esc_html__( 'Create A New .htaccess File Now', 'visitor-maps' ) . '</button>';
 					$vm_output .= '<input type="hidden" name="vm_mode" value="new htaccess" /></form>';
 					$vm_output .= '<form action="#" method="post"><button title="' . esc_attr__( 'Press to dismiss this warning. Banning features will not be enabled.', 'visitor-maps' ) . '" type="submit">' . esc_html__( 'Dismiss Message', 'visiot-maps' ) . '</button>';
