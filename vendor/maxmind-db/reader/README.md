@@ -112,9 +112,16 @@ you are using an autoloader, no changes to your code should be necessary.
 
 First install [libmaxminddb](https://github.com/maxmind/libmaxminddb) as
 described in its [README.md
-file](https://github.com/maxmind/libmaxminddb/blob/master/README.md#installing-from-a-tarball).
-After successfully installing libmaxmindb, run the following commands from the
-top-level directory of this distribution:
+file](https://github.com/maxmind/libmaxminddb/blob/main/README.md#installing-from-a-tarball).
+After successfully installing libmaxmindb, you may install the extension
+from [pecl](https://pecl.php.net/package/maxminddb):
+
+```
+pecl install maxminddb
+```
+
+Alternatively, you may install it from the source. To do so, run the following
+commands from the top-level directory of this distribution:
 
 ```
 cd ext
@@ -125,7 +132,7 @@ make test
 sudo make install
 ```
 
-You then must load your extension. The recommend method is to add the
+You then must load your extension. The recommended method is to add the
 following to your `php.ini` file:
 
 ```
@@ -173,6 +180,6 @@ The MaxMind DB Reader PHP API uses [Semantic Versioning](https://semver.org/).
 
 ## Copyright and License ##
 
-This software is Copyright (c) 2014-2020 by MaxMind, Inc.
+This software is Copyright (c) 2014-2023 by MaxMind, Inc.
 
 This is free software, licensed under the Apache License, Version 2.0.

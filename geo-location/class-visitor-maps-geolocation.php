@@ -20,7 +20,7 @@ if ( ! class_exists( 'Visitor_Maps_Geolocation' ) ) {
 		 * Visitor_Maps_Geolocation constructor.
 		 */
 		public function __construct() {
-			add_action( 'visitor_maps_geoip_view', array( &$this, 'view_display_form' ), 10, 2 );
+			add_action( 'visitor_maps_geoip_view', array( $this, 'view_display_form' ), 10, 2 );
 		}
 
 		/**
@@ -31,7 +31,7 @@ if ( ! class_exists( 'Visitor_Maps_Geolocation' ) ) {
 		 */
 		public function view_display_form( string $geoip_old, string $geoip_days_ago ): void {
 			echo '<p>' . esc_html__( 'Uses GeoLiteCity data created by MaxMind, available from http://www.maxmind.com', 'visitor-maps' ) . '<br />';
-			$geoip_old = true;
+			//$geoip_old = true;
 			if ( $geoip_old ) {
 				/* translators: Number of days past */
 				echo '<span style="color:red">' . sprintf( esc_html__( 'The GeoLiteCity data was last updated %d days ago', 'visitor-maps' ), intval( $geoip_days_ago ) ) . ' ' . esc_html__( 'an update is available', 'visitor-maps' ) . ',

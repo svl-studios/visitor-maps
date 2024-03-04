@@ -69,6 +69,11 @@ typedef zend_object free_obj_t;
 #define IS_MIXED IS_UNDEF
 #endif
 
+/* ZEND_THIS was added in 7.4 */
+#ifndef ZEND_THIS
+#define ZEND_THIS (&EX(This))
+#endif
+
 typedef struct _maxminddb_obj {
     MMDB_s *mmdb;
     zend_object std;
@@ -138,7 +143,7 @@ PHP_METHOD(MaxMind_Db_Reader, __construct) {
     }
 
     MMDB_s *mmdb = (MMDB_s *)ecalloc(1, sizeof(MMDB_s));
-    uint16_t status = MMDB_open(db_file, MMDB_MODE_MMAP, mmdb);
+    int const status = MMDB_open(db_file, MMDB_MODE_MMAP, mmdb);
 
     if (MMDB_SUCCESS != status) {
         zend_throw_exception_ex(
@@ -151,7 +156,7 @@ PHP_METHOD(MaxMind_Db_Reader, __construct) {
         return;
     }
 
-    maxminddb_obj *mmdb_obj = Z_MAXMINDDB_P(getThis());
+    maxminddb_obj *mmdb_obj = Z_MAXMINDDB_P(ZEND_THIS);
     mmdb_obj->mmdb = mmdb;
 }
 
@@ -202,7 +207,7 @@ get_record(INTERNAL_FUNCTION_PARAMETERS, zval *record, int *prefix_len) {
         return FAILURE;
     }
 
-    const maxminddb_obj *mmdb_obj = (maxminddb_obj *)Z_MAXMINDDB_P(getThis());
+    const maxminddb_obj *mmdb_obj = (maxminddb_obj *)Z_MAXMINDDB_P(ZEND_THIS);
 
     MMDB_s *mmdb = mmdb_obj->mmdb;
 
@@ -383,12 +388,12 @@ handle_entry_data_list(const MMDB_entry_data_list_s *entry_data_list,
             return handle_array(entry_data_list, z_value TSRMLS_CC);
         case MMDB_DATA_TYPE_UTF8_STRING:
             ZVAL_STRINGL(z_value,
-                         (char *)entry_data_list->entry_data.utf8_string,
+                         entry_data_list->entry_data.utf8_string,
                          entry_data_list->entry_data.data_size);
             break;
         case MMDB_DATA_TYPE_BYTES:
             ZVAL_STRINGL(z_value,
-                         (char *)entry_data_list->entry_data.bytes,
+                         (char const *)entry_data_list->entry_data.bytes,
                          entry_data_list->entry_data.data_size);
             break;
         case MMDB_DATA_TYPE_DOUBLE:
@@ -431,11 +436,11 @@ handle_map(const MMDB_entry_data_list_s *entry_data_list,
     array_init(z_value);
     const uint32_t map_size = entry_data_list->entry_data.data_size;
 
-    uint i;
+    uint32_t i;
     for (i = 0; i < map_size && entry_data_list; i++) {
         entry_data_list = entry_data_list->next;
 
-        char *key = estrndup((char *)entry_data_list->entry_data.utf8_string,
+        char *key = estrndup(entry_data_list->entry_data.utf8_string,
                              entry_data_list->entry_data.data_size);
         if (NULL == key) {
             zend_throw_exception_ex(maxminddb_exception_ce,
@@ -463,7 +468,7 @@ handle_array(const MMDB_entry_data_list_s *entry_data_list,
 
     array_init(z_value);
 
-    uint i;
+    uint32_t i;
     for (i = 0; i < size && entry_data_list; i++) {
         entry_data_list = entry_data_list->next;
         zval new_value;

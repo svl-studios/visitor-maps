@@ -7,7 +7,8 @@ namespace MaxMind\Db\Reader;
 class Util
 {
     /**
-     * @param resource $stream
+     * @param resource    $stream
+     * @param int<0, max> $numberOfBytes
      */
     public static function read($stream, int $offset, int $numberOfBytes): string
     {
@@ -24,6 +25,7 @@ class Util
                 return $value;
             }
         }
+
         throw new InvalidDatabaseException(
             'The MaxMind DB file contains bad data'
         );

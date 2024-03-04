@@ -1,60 +1,59 @@
-<?php return array (
-  'root' => 
-  array (
-    'pretty_version' => 'dev-master',
-    'version' => 'dev-master',
-    'aliases' => 
-    array (
+<?php return array(
+    'root' => array(
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'type' => 'library',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'reference' => '91d9ab007dabe5408c97d3943d298de8ae51fb88',
+        'name' => '__root__',
+        'dev' => true,
     ),
-    'reference' => 'e4afb56e88581be5e7c430d2aed8fc33d3e4bbb2',
-    'name' => '__root__',
-  ),
-  'versions' => 
-  array (
-    '__root__' => 
-    array (
-      'pretty_version' => 'dev-master',
-      'version' => 'dev-master',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'e4afb56e88581be5e7c430d2aed8fc33d3e4bbb2',
+    'versions' => array(
+        '__root__' => array(
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'reference' => '91d9ab007dabe5408c97d3943d298de8ae51fb88',
+            'dev_requirement' => false,
+        ),
+        'composer/ca-bundle' => array(
+            'pretty_version' => '1.4.1',
+            'version' => '1.4.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/./ca-bundle',
+            'aliases' => array(),
+            'reference' => '3ce240142f6d59b808dd65c1f52f7a1c252e6cfd',
+            'dev_requirement' => false,
+        ),
+        'geoip2/geoip2' => array(
+            'pretty_version' => 'v2.13.0',
+            'version' => '2.13.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../geoip2/geoip2',
+            'aliases' => array(),
+            'reference' => '6a41d8fbd6b90052bc34dff3b4252d0f88067b23',
+            'dev_requirement' => false,
+        ),
+        'maxmind-db/reader' => array(
+            'pretty_version' => 'v1.11.1',
+            'version' => '1.11.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../maxmind-db/reader',
+            'aliases' => array(),
+            'reference' => '1e66f73ffcf25e17c7a910a1317e9720a95497c7',
+            'dev_requirement' => false,
+        ),
+        'maxmind/web-service-common' => array(
+            'pretty_version' => 'v0.9.0',
+            'version' => '0.9.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../maxmind/web-service-common',
+            'aliases' => array(),
+            'reference' => '4dc5a3e8df38aea4ca3b1096cee3a038094e9b53',
+            'dev_requirement' => false,
+        ),
     ),
-    'composer/ca-bundle' => 
-    array (
-      'pretty_version' => '1.2.8',
-      'version' => '1.2.8.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '8a7ecad675253e4654ea05505233285377405215',
-    ),
-    'geoip2/geoip2' => 
-    array (
-      'pretty_version' => 'v2.11.0',
-      'version' => '2.11.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'd01be5894a5c1a3381c58c9b1795cd07f96c30f7',
-    ),
-    'maxmind-db/reader' => 
-    array (
-      'pretty_version' => 'v1.8.0',
-      'version' => '1.8.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'b566d429ac9aec10594b0935be8ff38302f8d5c8',
-    ),
-    'maxmind/web-service-common' => 
-    array (
-      'pretty_version' => 'v0.8.1',
-      'version' => '0.8.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '32f274051c543fc865e5a84d3a2c703913641ea8',
-    ),
-  ),
 );

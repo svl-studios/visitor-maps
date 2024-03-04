@@ -125,7 +125,7 @@ if ( ! class_exists( 'Visitor_Maps_AJAX' ) ) {
 
 				die;
 			}
-
+error_log('download database');
 			// Extract the database from the archive.
 			try {
 				$file = new PharData( $tmp_archive_path );
