@@ -85,7 +85,7 @@
 				editorHtml += '<a class="vm_ban_toggle" data-ip="' + bannedIps[i] + '" data-mode="unban" title="Unban this IP address" href="javascript:void(0);" style="background-color:#B30000;color:white;padding:0px 4px;text-decoration:none;-moz-border-radius:10px;-khtml-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;">X</a> ' + bannedIps[i] + '<br />';
 			}
 
-			editorHtml += '</div><a class="vm_ban_toggle add_ip" data-ip="" data-mode="ban" title="Ban any IP address" href="javascript:void(0);" style="background-color:#008000;color:white;padding:0px 4px;text-decoration:none;-moz-border-radius:10px;-khtml-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;">X</a> <input type="text" value="" class="ip_to_add" placeholder="New IP Address To Ban" style="width:174px;" /></div>';
+			editorHtml += '</div><a class="vm_ban_toggle add_ip" data-ip="" data-mode="ban" title="Ban any IP address" href="javascript:void(0);" style="background-color:#008000;color:white;padding:0px 4px;text-decoration:none;-moz-border-radius:10px;-khtml-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;">X</a> <input type="text" value="" id="ip_to_add" class="ip_to_add" placeholder="New IP Address To Ban" style="width:174px;" /></div>';
 
 			numReferers = ( '' === bannedReferers[0]) ? 0 : bannedReferers.length;
 
@@ -102,11 +102,12 @@
 				editorHtml += '<a class="vm_ban_referers_toggle" data-referer="' + bannedReferers[i] + '" data-mode="unban referer" title="Unban this referer" href="javascript:void(0);" style="background-color:#B30000;color:white;padding:0px 4px;text-decoration:none;-moz-border-radius:10px;-khtml-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;">X</a> ' + bannedReferers[i] + '<br />';
 			}
 
-			editorHtml += '</div><a class="vm_ban_referers_toggle add_referer" data-referer="" data-mode="ban referer" title="Ban any referer" href="javascript:void(0);" style="background-color:#008000;color:white;padding:0px 4px;text-decoration:none;-moz-border-radius:10px;-khtml-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;">X</a> <input type="text" value="" class="vm_referer_to_add" placeholder="New Referer To Ban" style="width:174px;" /></div>';
+			editorHtml += '</div><a class="vm_ban_referers_toggle add_referer" data-referer="" data-mode="ban referer" title="Ban any referer" href="javascript:void(0);" style="background-color:#008000;color:white;padding:0px 4px;text-decoration:none;-moz-border-radius:10px;-khtml-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;">X</a> <input type="text" value="" id="vm_referer_to_add" class="vm_referer_to_add" placeholder="New Referer To Ban" style="width:174px;" /></div>';
 
 			$( 'a.map-console' ).after( editorHtml );
 
-			$( '.vm-banned-ips-form-container-toggle' ).click(
+			$( '.vm-banned-ips-form-container-toggle' ).on (
+				'click',
 				function() {
 					if ( $( '.vm-banned-ips-form-container' ).is( ':visible' ) ) {
 						$( '.vm-banned-ips-form-container' ).hide( 'slow' );
@@ -118,7 +119,8 @@
 				}
 			);
 
-			$( '.vm-banned-referers-form-container-toggle' ).click(
+			$( '.vm-banned-referers-form-container-toggle' ).on(
+				'click',
 				function() {
 					if ( $( '.vm-banned-referers-form-container' ).is( ':visible' ) ) {
 						$( '.vm-banned-referers-form-container' ).hide( 'slow' );
@@ -140,7 +142,8 @@
 			$( 'a.map-console' ).after( editorHtml );
 		} // if htaccess.
 
-		$( '.vm-auto-update-form-container-toggle' ).click(
+		$( '.vm-auto-update-form-container-toggle' ).on(
+			'click',
 			function() {
 				if ( $( '.vm-auto-update-form-container' ).is( ':visible' ) ) {
 					$( '.vm-auto-update-form-container' ).hide( 'slow' );
@@ -461,7 +464,7 @@
 	$.visitorMaps.switchClick = function() {
 		var redux = $( '.redux-main .location-enable .switch-options label' );
 
-		redux.bind(
+		redux.on(
 			'click',
 			function( ) {
 				if ( $( this ).hasClass( 'cb-enable' ) ) {
