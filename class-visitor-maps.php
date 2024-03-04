@@ -143,6 +143,10 @@ if ( ! class_exists( 'Visitor_Maps' ) ) {
 				wp_mkdir_p( self::$upload_dir );
 			}
 
+			if ( ! class_exists( 'ReduxFramework' ) ) {
+				include_once self::$dir . 'vendor/reduxframework/redux-framework/redux-core/framework.php';
+			}
+
 			add_action( 'init', array( get_called_class(), 'load_panel' ) );
 		}
 
