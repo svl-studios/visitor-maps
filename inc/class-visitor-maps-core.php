@@ -1024,8 +1024,8 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 					'UPDATE ' . $wo_table_st . "
                     SET
                     count = %d,
-                    time = %d
-                    WHERE (day(%d) != day(time) AND type = 'day')
+                    time = %s
+                    WHERE (day(%s) != day(time) AND type = 'day')
                     OR (count < %d AND type = 'day')",
 					absint( $visitors_count ),
 					$mysql_now,
@@ -1039,8 +1039,8 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 					'UPDATE ' . $wo_table_st . "
                     SET
                     count = %d,
-                    time = %d
-                    WHERE (month(%d) != month(time) AND type = 'month')
+                    time = %s
+                    WHERE (month(%s) != month(time) AND type = 'month')
                     OR (count < %d AND type = 'month')",
 					absint( $visitors_count ),
 					$mysql_now,
@@ -1054,8 +1054,8 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 					'UPDATE ' . $wo_table_st . "
                     SET
                     count = %d,
-                    time = %d
-                    WHERE (year(%d) != year(time) AND type = 'year')
+                    time = %s
+                    WHERE (year(%s) != year(time) AND type = 'year')
                     OR (count < %d AND type = 'year')",
 					absint( $visitors_count ),
 					$mysql_now,
@@ -1069,7 +1069,7 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 					'UPDATE ' . $wo_table_st . "
                     SET
                     count = %d,
-                    time = %d
+                    time = %s
                     WHERE count < %d
                     AND type = 'all'",
 					absint( $visitors_count ),
