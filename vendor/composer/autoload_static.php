@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInit3b26836dadd6baa8b98f6925754a5635
 {
     public static $prefixLengthsPsr4 = array (
+        'O' => 
+        array (
+            'OomphInc\\ComposerInstallersExtender\\' => 36,
+        ),
         'M' => 
         array (
             'MaxMind\\WebService\\' => 19,
@@ -19,11 +23,16 @@ class ComposerStaticInit3b26836dadd6baa8b98f6925754a5635
         ),
         'C' => 
         array (
+            'Composer\\Installers\\' => 20,
             'Composer\\CaBundle\\' => 18,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'OomphInc\\ComposerInstallersExtender\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/oomphinc/composer-installers-extender/src',
+        ),
         'MaxMind\\WebService\\' => 
         array (
             0 => __DIR__ . '/..' . '/maxmind/web-service-common/src/WebService',
@@ -39,6 +48,10 @@ class ComposerStaticInit3b26836dadd6baa8b98f6925754a5635
         'GeoIp2\\' => 
         array (
             0 => __DIR__ . '/..' . '/geoip2/geoip2/src',
+        ),
+        'Composer\\Installers\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
         ),
         'Composer\\CaBundle\\' => 
         array (
