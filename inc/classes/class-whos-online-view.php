@@ -454,7 +454,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 																<?php
 																if ( '-' !== $whos_online['country_code'] ) {
 																	$whos_online['country_code'] = strtolower( $whos_online['country_code'] );
-																	if ( '-' === $whos_online['country_code'] || '--' === $country_code ) { // unknown.
+																	if ( '-' === $whos_online['country_code'] || '--' === $whos_online['country_code'] ) { // unknown.
 																		echo '<img src="' . esc_url( Visitor_Maps::$url ) . 'img/flags/unknown.png" alt="' . esc_attr__( 'unknown', 'visitor-maps' ) . '" title="' . esc_attr__( 'unknown', 'visitor-maps' ) . '" />';
 																	} else {
 																		echo '<img src="' . esc_url( Visitor_Maps::$url ) . 'img/flags/' . esc_html( $whos_online['country_code'] ) . '.png" alt="' . esc_attr( $whos_online['country_name'] ) . '" title="' . esc_attr( $whos_online['country_name'] ) . '" />';
