@@ -352,17 +352,19 @@ if ( ! class_exists( 'Whos_Online_View_Maps' ) ) {
 
 			imagedestroy( $map_im );
 			imagedestroy( $pin_im );
+
+			return '';
 		}
 
 		/**
 		 * Text Overlay.
 		 *
-		 * @param string $text       Text.
-		 * @param int    $image_p    Pointer to image resouce.
-		 * @param int    $new_width  New width.
-		 * @param int    $new_height New height.
+		 * @param string  $text       Text.
+		 * @param GdImage $image_p    Pointer to image resouce.
+		 * @param int     $new_width  New width.
+		 * @param int     $new_height New height.
 		 */
-		private function textoverlay( string $text, int $image_p, int $new_width, int $new_height ): void {
+		private function textoverlay( string $text, GdImage $image_p, int $new_width, int $new_height ): void {
 			$fontstyle       = 5; // 1 to 5.
 			$fontcolor       = $this->gvar['text_color'];
 			$fontshadowcolor = $this->gvar['text_shadow_color'];
