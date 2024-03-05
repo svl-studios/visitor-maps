@@ -272,18 +272,18 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 
 						if ( $this->set['allow_profile_display'] ) {
 							// phpcs:ignore WordPress.Security.EscapeOutput
-							echo '<div class="profile select-wrapper"><label>' . esc_html__( 'Profile Display:', 'visitor-maps' ) . '</label> ' . $this->draw_pull_down_menu( 'show', $show_arr, $show, 'onchange="this.form.submit();"' ) . '</div> ';
+							echo '<div class="profile select-wrapper"><span class="label">' . esc_html__( 'Profile Display:', 'visitor-maps' ) . '</span> ' . $this->draw_pull_down_menu( 'show', $show_arr, $show, 'onchange="this.form.submit();"' ) . '</div> ';
 						}
 
 						// phpcs:ignore WordPress.Security.EscapeOutput
-						echo '<div class="sort select-wrapper"><label>' . esc_html__( 'Sort:', 'visitor-maps' ) . '</label> ' . $this->draw_pull_down_menu( 'sort_by', $sort_by_arr, $sort_by, 'onchange="this.form.submit();"' ) . ' ';
+						echo '<div class="sort select-wrapper"><span class="label">' . esc_html__( 'Sort:', 'visitor-maps' ) . '</span> ' . $this->draw_pull_down_menu( 'sort_by', $sort_by_arr, $sort_by, 'onchange="this.form.submit();"' ) . ' ';
 
 						// phpcs:ignore WordPress.Security.EscapeOutput
 						echo $this->draw_pull_down_menu( 'order', $order_arr, $order, 'onchange="this.form.submit();"' ) . ' ';
 						echo '</div>';
 
 						// phpcs:ignore WordPress.Security.EscapeOutput
-						echo '<div class="show-bots select-wrapper"><label>' . esc_html__( 'Show Bots:', 'visitor-maps' ) . '</label> ' . $this->draw_pull_down_menu( 'bots', $bots_type, $bots, 'onchange="this.form.submit();"' ) . '</div><br />';
+						echo '<div class="show-bots select-wrapper"><span class="label">' . esc_html__( 'Show Bots:', 'visitor-maps' ) . '</span> ' . $this->draw_pull_down_menu( 'bots', $bots_type, $bots, 'onchange="this.form.submit();"' ) . '</div><br />';
 
 						echo '<input type="hidden" name="page" value="whos-been-online" />';
 						echo '</form>';
@@ -292,6 +292,7 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 						if ( current_user_can( 'manage_options' ) ) {
 							echo '<a href="' . esc_url( admin_url( 'admin.php?page=visitor_maps_opt' ) ) . '">' . esc_html__( 'Visitor Maps Options', 'visitor-maps' ) . '</a> | ';
 						}
+
 						if ( Visitor_Maps::$core->get_option( 'enable_location_plugin', true ) ) {
 							echo '<a class="map-console" href="' . esc_url( get_bloginfo( 'url' ) ) . '?wo_map_console=1">' . esc_html__( 'Visitor Map Viewer', 'visitor-maps' ) . '</a>';
 						}

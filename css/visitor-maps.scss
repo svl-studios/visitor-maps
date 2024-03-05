@@ -12,6 +12,12 @@
         padding-bottom: 20px;
         padding-left: 20px;
 
+        .refresh {
+            #refresh {
+                width: 48%!important;
+            }
+        }
+
         .sort {
             #sort_by {
                 width: 48%!important;
@@ -22,7 +28,7 @@
             }
         }
 
-        label {
+        .label {
             position: relative;
             font-size: 12px !important;
             text-align: left;
