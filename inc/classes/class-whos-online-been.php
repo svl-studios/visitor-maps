@@ -337,7 +337,7 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 						<tr>
 							<td class="visitors-since">
 								<?php // translators: %1$d = visitor count, %2$s = date. ?>
-								<b><?php printf( esc_html__( '%1$d visitors since %2$s', 'visitor-maps' ), (int) $numrows, ( intval( $numrows ) > 0 ) ? esc_html( gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), (int) $since ) ) : esc_html__( 'installation', 'visitor-maps' ) ); ?></b>
+								<b><?php printf( esc_html__( '%1$d visitors since %2$s', 'visitor-maps' ), (int) $numrows, ( intval( $numrows ) > 0 ) ? esc_html( date_i18n( Visitor_Maps::$core->get_option( 'date_time_format' ), (int) $since ) ) : esc_html__( 'installation', 'visitor-maps' ) ); ?></b>
 							</td>
 						</tr>
 						<?php $this->output_page_nav( $pageno, $lastpage ); ?>
@@ -513,7 +513,7 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 																</td>
 
 															<!-- Last Visit -->
-																<td class="last-visit" style="color:<?php echo esc_attr( $fg_color ); ?>;">&nbsp;<?php echo esc_html( gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), $whos_online['time_last_click'] ) ); ?>
+																<td class="last-visit" style="color:<?php echo esc_attr( $fg_color ); ?>;">&nbsp;<?php echo esc_html( date_i18n( Visitor_Maps::$core->get_option( 'date_time_format' ), $whos_online['time_last_click'] ) ); ?>
 																</td>
 
 															<!-- IP Address -->

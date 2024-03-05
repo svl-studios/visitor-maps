@@ -469,19 +469,19 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 
 				foreach ( $visitors_arr as $visitors ) {
 					if ( 'day' === $visitors['type'] ) {
-						$day = esc_html__( 'Max visitors today', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'time_format' ), strtotime( current_time( $visitors['time'] ) ) );
+						$day = esc_html__( 'Max visitors today', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date_i18n( Visitor_Maps::$core->get_option( 'time_format' ), strtotime( current_time( $visitors['time'] ) ) );
 					}
 
 					if ( 'month' === $visitors['type'] ) {
-						$month = esc_html__( 'This month', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
+						$month = esc_html__( 'This month', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date_i18n( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
 					}
 
 					if ( 'year' === $visitors['type'] ) {
-						$year = esc_html__( 'This year', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
+						$year = esc_html__( 'This year', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date_i18n( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
 					}
 
 					if ( 'all' === $visitors['type'] ) {
-						$all = esc_html__( 'All time', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
+						$all = esc_html__( 'All time', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date_i18n( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
 					}
 				}
 
@@ -1173,23 +1173,23 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 
 			foreach ( $visitors_arr as $visitors ) {
 				if ( 'day' === $visitors['type'] ) {
-					$visitor_maps_stats['today'] = esc_html__( 'Max visitors today', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'time_format' ), strtotime( current_time( $visitors['time'] ) ) );
-					$string                     .= esc_html__( 'Max visitors today', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'time_format' ), strtotime( current_time( $visitors['time'] ) ) ) . '<br />';
+					$visitor_maps_stats['today'] = esc_html__( 'Max visitors today', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date_i18n( Visitor_Maps::$core->get_option( 'time_format' ), strtotime( current_time( $visitors['time'] ) ) );
+					$string                     .= esc_html__( 'Max visitors today', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date_i18n( Visitor_Maps::$core->get_option( 'time_format' ), strtotime( current_time( $visitors['time'] ) ) ) . '<br />';
 				}
 
 				if ( 'month' === $visitors['type'] ) {
-					$visitor_maps_stats['month'] = esc_html__( 'This month', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
-					$string                     .= esc_html__( 'This month', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) ) . '<br />';
+					$visitor_maps_stats['month'] = esc_html__( 'This month', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date_i18n( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
+					$string                     .= esc_html__( 'This month', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date_i18n( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) ) . '<br />';
 				}
 
 				if ( 'year' === $visitors['type'] ) {
-					$visitor_maps_stats['year'] = esc_html__( 'This year', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
-					$string                    .= esc_html__( 'This year', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) ) . '<br />';
+					$visitor_maps_stats['year'] = esc_html__( 'This year', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date_i18n( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
+					$string                    .= esc_html__( 'This year', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date_i18n( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) ) . '<br />';
 				}
 
 				if ( 'all' === $visitors['type'] ) {
-					$visitor_maps_stats['all'] = esc_html__( 'All time', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
-					$string                   .= esc_html__( 'All time', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) ) . '<br />';
+					$visitor_maps_stats['all'] = esc_html__( 'All time', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date_i18n( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) );
+					$string                   .= esc_html__( 'All time', 'visitor-maps' ) . ': ' . $visitors['count'] . ' ' . esc_html__( 'at', 'visitor-maps' ) . ' ' . date_i18n( Visitor_Maps::$core->get_option( 'date_time_format' ), strtotime( current_time( $visitors['time'] ) ) ) . '<br />';
 				}
 			}
 

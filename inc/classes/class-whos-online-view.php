@@ -131,6 +131,8 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 			$this->set['image_active_bot']     = 'active_bot.gif'; // active bot.
 			$this->set['image_inactive_bot']   = 'inactive_bot.gif'; // inactive bot.
 
+			//date_default_timezone_set(wp_timezone_string());
+
 			$this->wo_visitor_ip = Visitor_Maps::$core->get_ip_address();
 
 			// phpcs:disable
@@ -235,13 +237,13 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 					<tr>
 						<td class="visitors-since">
 							<?php // translators: %1$d = Visitor count, %2$s = Date. ?>
-							<b><?php printf( esc_html__( '%1$d visitors since %2$s', 'visitor-maps' ), (int) $numrows, ( intval( $numrows ) > 0 ) ? esc_html( gmdate( Visitor_Maps::$core->get_option( 'date_time_format' ), (int) $since ) ) : esc_html__( 'installation', 'visitor-maps' ) ); ?></b>
+							<b><?php printf( esc_html__( '%1$d visitors since %2$s', 'visitor-maps' ), (int) $numrows, ( intval( $numrows ) > 0 ) ? esc_html( date_i18n( Visitor_Maps::$core->get_option( 'date_time_format' ), (int) $since ) ) : esc_html__( 'installation', 'visitor-maps' ) ); ?></b>
 						</td>
 					</tr>
 					<tr>
 						<td class="visitors-since">
 							<?php // phpcs:ignore WordPress ?>
-							<b><?php echo esc_html__( 'Last refresh at', 'visitor-maps' ) . ' ' . esc_html__( gmdate( Visitor_Maps::$core->get_option( 'time_format' ) ), current_time( 'timestamp' ) ); ?></b>
+							<b><?php echo esc_html__( 'Last refresh at', 'visitor-maps' ) . ' ' . esc_html__( date_i18n( Visitor_Maps::$core->get_option( 'time_format' ) ), current_time( 'timestamp' ) ); ?></b>
 						</td>
 					</tr>
 					<tr>
@@ -504,12 +506,12 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 
 															<!-- Time Entry -->
 															<td class="time" style="color:<?php echo esc_attr( $fg_color ); ?>;">&nbsp;
-																<?php echo esc_html( gmdate( Visitor_Maps::$core->get_option( 'time_format_hms' ), $whos_online['time_entry'] ) ); ?>
+																<?php echo esc_html( date_i18n( Visitor_Maps::$core->get_option( 'time_format_hms' ), $whos_online['time_entry'] ) ); ?>
 															</td>
 
 															<!-- Last Click -->
 															<td class="last-click" style="color:<?php echo esc_attr( $fg_color ); ?>;">&nbsp;
-																<?php echo esc_html( gmdate( Visitor_Maps::$core->get_option( 'time_format_hms' ), $whos_online['time_last_click'] ) ); ?>
+																<?php echo esc_html( date_i18n( Visitor_Maps::$core->get_option( 'time_format_hms' ), $whos_online['time_last_click'] ) ); ?>
 															</td>
 
 															<?php
@@ -633,12 +635,12 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 													<br/>
 													<?php
 													if ( $this->set['allow_ip_display'] ) {
-														echo esc_html__( 'Your IP Address:', 'visitor-maps' ) . ' ' . esc_html( $this->wo_visitor_ip );
+														echo esc_html__( 'Your IP Address:', 'visitor-maps' ) . ' <strong>' . esc_html( $this->wo_visitor_ip ) . '</strong>';
 													}
 													if ( Visitor_Maps::$core->get_option( 'enable_host_lookups' ) ) {
 														$this_host = ( isset( $this->set['hostname'] ) && '' !== $this->set['hostname'] ) ? Visitor_Maps::$core->host_to_domain( $this->set['hostname'] ) : 'n/a';
 														// Display Hostname.
-														echo '<br />' . esc_html__( 'Your Host:', 'visitor-maps' ) . ' (' . esc_html( $this_host ) . ') ' . esc_html( ( isset( $this->set['hostname'] ) && '' !== $this->set['hostname'] ) ? $this->set['hostname'] : 'n/a' ) . '<br />';
+														echo '<br />' . esc_html__( 'Your Host:', 'visitor-maps' ) . '<strong> (' . esc_html( $this_host ) . ') ' . esc_html( ( isset( $this->set['hostname'] ) && '' !== $this->set['hostname'] ) ? $this->set['hostname'] : 'n/a' ) . '</strong><br />';
 													}
 
 													// ------------------------ geoip lookup -------------------------.
@@ -843,7 +845,7 @@ if ( ! class_exists( 'Whos_Online_View' ) ) {
 
 			// sanity check the remote date.
 			if ( $remote_file_time < ( $current_time - ( 365 * 24 * 60 * 60 ) ) ) { // $remote_file_time less than 1 year ago
-				echo 'Warning: The last modified date of the Maxmind GeoLiteCity database' . esc_html( $remote_file_time ) . 'is out of expected range<br />';
+				echo 'Warning: The last modified date of the Maxmind GeoLiteCity database' . esc_html( $remote_file_time ) . 'is out of expected range.<br />';
 
 				return 0;
 			}
