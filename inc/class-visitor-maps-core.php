@@ -49,7 +49,12 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 		 * @return false|int|void
 		 */
 		public function http_last_mod( string $url ) {
-			$response = wp_remote_get( $url, array( 'timeout' => 1200 ) );
+			$args = array(
+				'timeout' => 1200,
+				'method'  => 'HEAD',
+			);
+
+			$response = wp_remote_get( $url, $args );
 
 			if ( is_array( $response ) && ! is_wp_error( $response ) ) {
 				$headers = wp_remote_retrieve_headers( $response );
