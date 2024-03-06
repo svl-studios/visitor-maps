@@ -156,68 +156,64 @@ if ( ! class_exists( 'Visitor_Maps_Options' ) ) {
 			$show_top = true;
 			$hidden   = false;
 
-			$pagename = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$usage .= esc_html__( 'Add the shortcode [visitor-maps] in a Page (not a Post). That page will then become your Visitor Maps page.', 'visitor-maps' ) . '&nbsp;&nbsp;<a href="' . Visitor_Maps::$url . 'img/help/screenshot-6.gif" target="_new">' . esc_html__( 'Help', 'visitor-maps' ) . '</a><br>';
+			$usage .= esc_html__( "Add the Who's Online sidebar. Click on Appearance,", 'visitor-maps' ) . ' <a href=' . admin_url( 'widgets.php' ) . '>' . esc_html__( 'Widgets', 'visitor-maps' ) . '</a>, ' . esc_html__( 'then drag the Who\'s Online widget to the sidebar column on the right.', 'visitor-maps' ) . '&nbsp;&nbsp;<a href="' . Visitor_Maps::$url . 'img/help/screenshot-7.gif" target="_new">' . esc_html__( 'Help', 'visitor-maps' ) . '</a>';
 
-			if ( 'visitor_maps_opt' === $pagename ) {
-				$usage .= esc_html__( 'Add the shortcode [visitor-maps] in a Page (not a Post). That page will then become your Visitor Maps page.', 'visitor-maps' ) . '&nbsp;&nbsp;<a href="' . Visitor_Maps::$url . 'img/help/screenshot-6.gif" target="_new">' . esc_html__( 'Help', 'visitor-maps' ) . '</a><br>';
-				$usage .= esc_html__( "Add the Who's Online sidebar. Click on Appearance,", 'visitor-maps' ) . ' <a href=' . admin_url( 'widgets.php' ) . '>' . esc_html__( 'Widgets', 'visitor-maps' ) . '</a>, ' . esc_html__( 'then drag the Who\'s Online widget to the sidebar column on the right.', 'visitor-maps' ) . '&nbsp;&nbsp;<a href="' . Visitor_Maps::$url . 'img/help/screenshot-7.gif" target="_new">' . esc_html__( 'Help', 'visitor-maps' ) . '</a>';
+			include_once Visitor_Maps::$dir . 'admin/class-visitor-maps-ajax.php';
 
-				include_once Visitor_Maps::$dir . 'admin/class-visitor-maps-ajax.php';
+			require_once ABSPATH . 'wp-includes/pluggable.php';
+			$nonce = wp_create_nonce( 'visitor_maps_geolitecity' );
 
-				require_once ABSPATH . 'wp-includes/pluggable.php';
-				$nonce = wp_create_nonce( 'visitor_maps_geolitecity' );
+			if ( ! is_file( Visitor_Maps::$upload_dir . Visitor_Maps::DATABASE_NAME . Visitor_Maps::DATABASE_EXT ) ) {
+				$hidden   = true;
+				$show_top = true;
 
-				if ( ! is_file( Visitor_Maps::$upload_dir . Visitor_Maps::DATABASE_NAME . Visitor_Maps::DATABASE_EXT ) ) {
-					$hidden   = true;
-					$show_top = true;
+				$install = esc_html__( 'Install Now', 'visitor-maps' );
 
-					$install = esc_html__( 'Install Now', 'visitor-maps' );
+				$update .= '<div data-nonce="' . $nonce . '" class="visitor-maps-geolitecity update-message notice inline notice-warning notice-alt">';
+				$update .= '<p>' . esc_html__( 'The Maxmind GeoLiteCity database is not yet installed.', 'visitor-maps' ) . '&nbsp;&nbsp;';
+				$update .= '<a href="#" class="update-geolitecity">';
+				$update .= $install;
+				$update .= '</a>.';
+			} elseif ( ! $enable_opt ) {
+				$show_top = false;
 
-					$update .= '<div data-nonce="' . $nonce . '" class="visitor-maps-geolitecity update-message notice inline notice-warning notice-alt">';
-					$update .= '<p>' . esc_html__( 'The Maxmind GeoLiteCity database is not yet installed.', 'visitor-maps' ) . '&nbsp;&nbsp;';
-					$update .= '<a href="#" class="update-geolitecity">';
-					$update .= $install;
-					$update .= '</a>.';
-				} elseif ( ! $enable_opt ) {
-					$show_top = false;
+				$update .= '<div data-nonce="' . $nonce . '" class="visitor-maps-geolitecity update-message notice inline notice-error notice-alt">';
+				$update .= '<p>' . esc_html__( 'The Maxmind GeoLiteCity database is installed but not enabled (click the switch below).', 'visitor-maps' );
+			} else {
+				$show_top = false;
 
-					$update .= '<div data-nonce="' . $nonce . '" class="visitor-maps-geolitecity update-message notice inline notice-error notice-alt">';
-					$update .= '<p>' . esc_html__( 'The Maxmind GeoLiteCity database is installed but not enabled (click the switch below).', 'visitor-maps' );
+				if ( $this->is_db_update() ) {
+					$link        = 'An update is available.&nbsp;&nbsp;<a href="#" class="update-geolitecity">' . esc_html__( 'Install Update', 'visitor-maps' ) . '</a>.';
+					$data_update = '1';
+
+					update_option( 'visitor_maps_geolitecity_has_update', true );
 				} else {
-					$show_top = false;
+					$link        = '<a href="#" class="geolitecity-lookup">' . esc_html__( 'Run lookup test?', 'visitor-maps' ) . '</a>';
+					$data_update = '0';
 
-					if ( $this->is_db_update() ) {
-						$link        = 'An update is available.&nbsp;&nbsp;<a href="#" class="update-geolitecity">' . esc_html__( 'Install Update', 'visitor-maps' ) . '</a>.';
-						$data_update = '1';
-
-						update_option( 'visitor_maps_geolitecity_has_update', true );
-					} else {
-						$link        = '<a href="#" class="geolitecity-lookup">' . esc_html__( 'Run lookup test?', 'visitor-maps' ) . '</a>';
-						$data_update = '0';
-
-						update_option( 'visitor_maps_geolitecity_has_update', false );
-					}
-
-					$update .= '<div data-update="' . $data_update . '" data-nonce="' . $nonce . '" class="visitor-maps-geolitecity updated-message notice inline notice-success notice-alt">';
-					$update .= '<p>' . esc_html__( 'The Maxmind GeoLiteCity database is installed and enabled.', 'visitor-maps' ) . '&nbsp;&nbsp;';
-					$update .= $link;
+					update_option( 'visitor_maps_geolitecity_has_update', false );
 				}
 
-				$update .= '<span class="lookup-data"></span>';
-				$update .= '</p>';
-				$update .= '</div>';
-
-				$set_update = $update;
-				if ( ! $show_top ) {
-					$set_update = '';
-				}
-
-				if ( $hidden ) {
-					$warn = '<br><strong class="geolocation-warn">' . esc_html__( 'GeoLocation options will not be available until the GeoLiteCity database is installed.', 'visitor-maps' ) . '</strong>';
-				}
-
-				$args['intro_text'] = '<p><strong>' . esc_html__( 'Visitor Map Usage', 'visitor-maps' ) . '</strong><p><br>' . $usage . $set_update;
+				$update .= '<div data-update="' . $data_update . '" data-nonce="' . $nonce . '" class="visitor-maps-geolitecity updated-message notice inline notice-success notice-alt">';
+				$update .= '<p>' . esc_html__( 'The Maxmind GeoLiteCity database is installed and enabled.', 'visitor-maps' ) . '&nbsp;&nbsp;';
+				$update .= $link;
 			}
+
+			$update .= '<span class="lookup-data"></span>';
+			$update .= '</p>';
+			$update .= '</div>';
+
+			$set_update = $update;
+			if ( ! $show_top ) {
+				$set_update = '';
+			}
+
+			if ( $hidden ) {
+				$warn = '<br><strong class="geolocation-warn">' . esc_html__( 'GeoLocation options will not be available until the GeoLiteCity database is installed.', 'visitor-maps' ) . '</strong>';
+			}
+
+			$args['intro_text'] = '<p><strong>' . esc_html__( 'Visitor Map Usage', 'visitor-maps' ) . '</strong><p><br>' . $usage . $set_update;
 
 			Redux::setArgs( $opt_name, $args );
 
