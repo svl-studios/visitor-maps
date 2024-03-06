@@ -298,7 +298,6 @@ if ( ! class_exists( 'Whos_Online_Been' ) ) {
 						}
 						?>
 					</td>
-
 					<td>
 						<table class="visitor-map-key">
 							<tr>

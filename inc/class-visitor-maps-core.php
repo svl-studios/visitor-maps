@@ -195,6 +195,8 @@ if ( ! class_exists( 'Visitor_Maps_Core' ) ) {
 			$wo_view->view_whos_online();
 
 			if ( Visitor_Maps::$core->get_option( 'enable_location_plugin' ) && Visitor_Maps::$core->get_option( 'enable_dash_map' ) ) {
+				echo '<br /><br />';
+
 				$map_settings = array(
 					'time'       => Visitor_Maps::$core->get_option( 'track_time' ),
 					// digits of time.
