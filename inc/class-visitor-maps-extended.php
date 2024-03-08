@@ -269,8 +269,9 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		 * @return bool
 		 */
 		private function filesystem_init(): bool {
-			$url    = 'admin.php?page=whos-been-online';
-			$method = '';
+			$url         = 'admin.php?page=whos-been-online';
+			$method      = '';
+			$form_fields = '';
 
 			$creds = request_filesystem_credentials( $url, $method, false, false, $form_fields );
 			if ( false === $creds ) {
@@ -339,6 +340,28 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		}
 
 		/**
+		 * Filesystem Is Writable.
+		 *
+		 * @param string $path Path of file.
+		 *
+		 * @return bool
+		 */
+		private function filesystem_is_writeable( string $path ): string {
+			global $wp_filesystem;
+
+			if ( $this->filesystem_init() ) {
+				if ( ! $wp_filesystem->is_writable( $path ) ) {
+					echo 'File pr path is not writable';
+					return false;
+				}
+
+				return true;
+			}
+
+			return false;
+		}
+
+		/**
 		 * Write .htaccess
 		 *
 		 * @param string $content Data to write.
@@ -358,14 +381,15 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		 *
 		 * @param string $htbackup Backup file name.
 		 *
-		 * @return bool
+		 * @return void
 		 */
-		private function vm_backup_htaccess( string $htbackup ): bool {
-			if ( ! copy( ABSPATH . '.htaccess', $htbackup ) ) {
-				return false;
-			} else {
-				return true;
+		private function vm_backup_htaccess( string $htbackup ): void {
+			if ( ! $this->filesystem_is_writeable( $htbackup ) ) {
+				$htbackup = ABSPATH . '.htaccess.backup.' . wp_generate_password( 6, false );
+				update_option( 'vm_htaccess', true );
 			}
+
+			copy( ABSPATH . '.htaccess', $htbackup );
 		}
 
 		/**
@@ -443,7 +467,7 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 			$banned_ips      = get_option( 'vm_banned_ips' );
 			$new_htcontent   = "\n# BEGIN Visitor Maps";
 
-			if ( null !== $banned_referers[0] ) {
+			if ( ! empty( $banned_referers ) && null !== $banned_referers[0] ) {
 				$new_htcontent .= "\n# BEGIN Referers
 <IfModule mod_rewrite.c>
 # Uncomment 'Options +FollowSymlinks' if your server returns a '500 Internal Server' error.
@@ -474,7 +498,7 @@ RewriteRule .* - [F]
 # END Referers";
 			}
 
-			if ( '' !== $banned_ips[0] ) {
+			if ( ! empty( $banned_ips ) && '' !== $banned_ips[0] ) {
 				$new_htcontent .= "\n# BEGIN banned ips
 order allow,deny";
 				foreach ( $banned_ips as $ip ) {
