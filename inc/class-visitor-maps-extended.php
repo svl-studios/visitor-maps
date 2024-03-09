@@ -351,7 +351,7 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 
 			if ( $this->filesystem_init() ) {
 				if ( ! $wp_filesystem->is_writable( $path ) ) {
-					echo 'File: ' . $path . 'is not writable';
+					echo 'File: ' . esc_html( $path ) . ' is not writable';
 					return false;
 				}
 
@@ -386,7 +386,7 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 		private function vm_backup_htaccess( string $htbackup ): void {
 			if ( ! $this->filesystem_is_writeable( $htbackup ) ) {
 				$htbackup = ABSPATH . '.htaccess.backup.' . wp_generate_password( 6, false );
-				update_option( 'vm_htaccess', true );
+				update_option( 'vm_htbackup', $htbackup );
 			}
 
 			copy( ABSPATH . '.htaccess', $htbackup );
