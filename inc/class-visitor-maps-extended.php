@@ -351,7 +351,7 @@ if ( ! class_exists( 'Visitor_Maps_Extended' ) ) {
 
 			if ( $this->filesystem_init() ) {
 				if ( ! $wp_filesystem->is_writable( $path ) ) {
-					echo 'File pr path is not writable';
+					echo 'File: ' . $path . 'is not writable';
 					return false;
 				}
 
