@@ -324,9 +324,9 @@
 		if ( htaccess ) {
 
 			// enable ip banning.
-			$( 'a[href*="http://www.ip-adress.com/ip_tracer/"]' ).each(
+			$( 'a[href*="https://www.ipaddress.com/ipv4/"]' ).each(
 				function() {
-					var ip = $( this ).attr( 'href' ).split( 'http://www.ip-adress.com/ip_tracer/' );
+					var ip = $( this ).attr( 'href' ).split( 'https://www.ipaddress.com/ipv4/' );
 					if ( ( -1 !== $.inArray( ip[1], bannedIps ) || ( ip[1] === vmIp && 'unban' !== mode ) ) && ( ip[1] !== adminIp ) ) {
 						$( this ).before(
 							'<a class="vm_ban_toggle unban" data-ip="' + ip[1] + '" data-mode="unban" title="Unban this IP address" href="javascript:void(0);">X</a> '

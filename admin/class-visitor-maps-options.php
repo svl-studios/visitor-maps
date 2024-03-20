@@ -479,7 +479,7 @@ if ( ! class_exists( 'Visitor_Maps_Options' ) ) {
 							'type'     => 'text',
 							'title'    => esc_html__( 'WHOIS Lookup URL', 'visitor-maps' ),
 							'subtitle' => esc_html__( 'URL to open when an IP address is clicked on.', 'visitor-maps' ),
-							'default'  => 'http://www.ip-adress.com/ip_tracer/',
+							'default'  => 'https://www.ipaddress.com/ipv4/',
 							'validate' => 'url',
 						),
 						array(
